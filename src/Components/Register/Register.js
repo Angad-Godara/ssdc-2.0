@@ -2,6 +2,7 @@ import React from 'react'
 import './Register.css'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
 import { BsFacebook, BsLinkedin } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 function Register() {
     return (
@@ -26,7 +27,7 @@ function Register() {
                     </form>
                     <button className='register__button'>Sign Up</button>
                     <div className='register__actions'>
-                        Have an account?<a href='/' className='register__signin'>Sign In</a>
+                        Have an account?<Link to='/login' className='register__signin'>Sign In</Link>
                     </div>
                     <div className='auth__options'>
                         <p>or you can sign in with</p>

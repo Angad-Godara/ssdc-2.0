@@ -2,6 +2,7 @@ import React from 'react'
 import './Login.css'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
 import { BsFacebook, BsLinkedin } from 'react-icons/bs'
+import { Link } from 'react-router-dom'
 
 function Login() {
     return (
@@ -20,8 +21,8 @@ function Login() {
                     </form>
                     <button className='login__button'>Sign In</button>
                     <div className='login__actions'>
-                        <a href='/'>Forgot Password?</a>
-                        <a href='/'>Sign Up</a>
+                        <Link to='/register'>Forgot Password?</Link>
+                        <Link to='/register'>Sign Up</Link>
                     </div>
                     <div className='auth__options'>
                         <p>or you can sign in with</p>
