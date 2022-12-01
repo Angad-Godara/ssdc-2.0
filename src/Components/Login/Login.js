@@ -10,13 +10,20 @@ function Login() {
                         alt='SSDC' />
                     <form className='login__form'>
                         <span>
-                            <input type="text" placeholder='Username or Email' />
+                            <input type="text" placeholder='Username or E-mail' />
                         </span>
                         <span>
-                            <input type="text" placeholder='Password' />
+                            <input type="password" placeholder='Password' />
                         </span>
                     </form>
                     <button className='login__button'>Sign In</button>
+                    <div className='login__actions'>
+                        <a href='#'>Forgot Password?</a>
+                        <a href='#'>Sign Up</a>
+                    </div>
+                    <div className='oauth__options'>
+                        <p>or you can sign in with</p>
+                    </div>
                 </div>
             </div>
         </div>

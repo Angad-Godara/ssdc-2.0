@@ -25,7 +25,7 @@ function Navbar() {
                 </div>
                 <div className='nav__member'>
                     <div className='nav__member__option'>
-                        <a href="#" iOutlineStar />
+                        <AiOutlineStar />
                         <a href="#" className='nav__member__option__link'>Members</a>
                     </div>
                 </div>
