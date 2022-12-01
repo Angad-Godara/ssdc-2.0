@@ -4,8 +4,9 @@
     min-width: 100%;
     display: flex;
     justify-content: center;
-    height: 70px;
+    height: 50px;
     background: white;
+    font-size: small;
 }
 
 .options__container{
@@ -20,7 +21,7 @@
 }
 
 .nav__logo{
-    height: 50px;
+    height: 40px;
     object-fit: contain;
     border-radius: 50%;
 }
@@ -48,10 +49,11 @@
 .nav__member__option{
     border: 2px solid rgb(255, 152, 0);
     color: rgb(255, 152, 0);
-    padding: 5px 8px;
+    padding: 4px 5px;
     border-radius: 4px;
     display: flex;
     align-items: center;
+    justify-content: center;
     transition: cubic-bezier(0.075, 0.82, 0.165, 1) 700ms;
 }
 

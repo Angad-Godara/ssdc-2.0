@@ -1,5 +1,7 @@
 import React from 'react'
 import './Login.css'
+import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
+import { BsFacebook, BsLinkedin } from 'react-icons/bs'
 
 function Login() {
     return (
@@ -18,11 +20,20 @@ function Login() {
                     </form>
                     <button className='login__button'>Sign In</button>
                     <div className='login__actions'>
-                        <a href='#'>Forgot Password?</a>
-                        <a href='#'>Sign Up</a>
+                        <a href='/'>Forgot Password?</a>
+                        <a href='/'>Sign Up</a>
                     </div>
-                    <div className='oauth__options'>
+                    <div className='auth__options'>
                         <p>or you can sign in with</p>
+                        <div className='login__options'>
+                            <AiFillGoogleCircle className='logo__google login__option__logos' size={'30'} />
+                            <AiFillGithub className='logo__github login__option__logos' size={'30'} />
+                            <BsLinkedin className='logo__linkedin login__option__logos' size={'25'} style={{ borderRadius: '50%' }} />
+                            <BsFacebook className='logo__facebook login__option__logos' size={'25'} />
+                        </div>
+                    </div>
+                    <div className='welcome__note'>
+                        <h3>Welcome to SSDC</h3>
                     </div>
                 </div>
             </div>
@@ -31,3 +42,6 @@ function Login() {
 }
 
 export default Login
+
+// <AiFillGoogleCircle />  Google icon
+// <AiFillGithub /> Github

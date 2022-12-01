@@ -11,22 +11,22 @@ function Navbar() {
                         <img className='nav__logo' src={'https://raw.githubusercontent.com/Angad-Godara/ssdc-web-dev/main/public/ssdcLogo.jpg'} alt='logo' />
                     </div>
                     <div className='nav__option'>
-                        <a href="#" className="option__link">Explore</a>
+                        <a href="/" className="option__link">Explore</a>
                     </div>
                     <div className='nav__option'>
-                        <a href="#" className="option__link">Team</a>
+                        <a href="/" className="option__link">Team</a>
                     </div>
                     <div className='nav__option'>
-                        <a href="#" className="option__link">Projects</a>
+                        <a href="/" className="option__link">Projects</a>
                     </div>
                     <div className='nav__option'>
-                        <a href="#" className="option__link">Alumni</a>
+                        <a href="/" className="option__link">Alumni</a>
                     </div>
                 </div>
                 <div className='nav__member'>
                     <div className='nav__member__option'>
-                        <AiOutlineStar />
-                        <a href="#" className='nav__member__option__link'>Members</a>
+                        <AiOutlineStar size={'16px'} />
+                        <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Members</span>
                     </div>
                 </div>
             </div>

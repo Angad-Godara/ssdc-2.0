@@ -1,6 +1,6 @@
-.login__wrapper{
+.register__wrapper{
     color: rgba(0, 0, 0, 0.65);
-    padding-top: 30px;
+    padding-top: 40px;
     height: 100%;
     width: 100%;
     display: flex;
@@ -8,9 +8,9 @@
     align-items: center;
 }
 
-.login__container{
+.register__container{
     width: 425px;
-    height: 70vh;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,14 +20,14 @@
     padding: 10px 20px;
 }
 
-.login__logo{
+.register__logo{
     width: 65px;
     object-fit: contain;
     border-radius: 50%;
     margin: 10px 0 20px 0;
 }
 
-.login__form__wrapper{
+.register__form__wrapper{
     height: 100%;
     padding: 25px 0;
     width: 85%;
@@ -37,7 +37,7 @@
     justify-content: center;
 }
 
-.login__form{
+.register__form{
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -45,11 +45,11 @@
     color: #546e7a;
 }
 
-.login__form>span{
+.register__form>span{
     margin: 10px 0;
 }
 
-.login__form>span>input{
+.register__form>span>input{
     width: 100%;
     padding: 10px 15px;
     font-size: 15px;
@@ -61,19 +61,19 @@
     outline: none;
 }
 
-.login__form>span>input:hover{
+.register__form>span>input:hover{
     color: #263238;
     border-color: #263238;
 }
 
-.login__form>span>input:focus{
+.register__form>span>input:focus{
     color: #263238;
     border-color: #263238;
     outline: none !important;
     box-shadow: 0 0 0 2px rgba(105, 189, 253, 0.413)
 }
 
-.login__button{
+.register__button{
     width: 100%;
     padding: 10px 15px;
     font-size: 15px;
@@ -85,17 +85,25 @@
     border: none;
 }
 
-.login__button:hover{
-    opacity: 0.9;
+.register__button:hover{
+    opacity: rgb(63, 90, 103);
     background: linear-gradient(35deg, #546e7a, #37474f);
 }
 
-.login__actions{
-    margin-top: 20px;
-    width: 100%;
+.register__actions{
+    margin-top: 15px;
     display: flex;
-    color: #546e7a;
-    justify-content: space-between;
+    justify-content: center;
+}
+
+.register__actions>a{
+    color: #426374;
+    margin-left: 3px;
+    font-weight: 600;
+}
+
+.register__actions>a:hover{
+    color: rgb(38, 60, 71);
 }
 
 .auth__options{
@@ -105,14 +113,14 @@
     align-items: center;
 }
 
-.login__options{
+.register__options{
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.login__option__logos{
+.register__option__logos{
     transition: 0.18s all ease-in-out;
     cursor: pointer;
 }

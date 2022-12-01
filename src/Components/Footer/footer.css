@@ -1,0 +1,35 @@
+.footer__body{
+    background-color: white;
+    height: 7vh;
+    display: flex;
+    justify-content: center;
+}
+
+.footer__wrapper{
+    display: flex;
+    justify-content: space-between;
+    width: 70%;
+    height: 100%;
+    align-items: center;
+}
+
+.footer__links{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+}
+
+.footer__option{
+    font-size: 12px;
+}
+
+.footer__option:hover{
+    text-decoration: underline;
+}
+
+.footer__country{
+    display: flex;
+    align-items: center;
+}
+
