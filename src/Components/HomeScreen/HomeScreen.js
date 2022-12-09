@@ -24,7 +24,7 @@ function HomeScreen() {
                         </div>
                     </div>
                     <div className='container'>
-                        <div>
+                        <div style={{ flex: '1 1' }}>
                             <img src="https://raw.githubusercontent.com/Angad-Godara/ssdc-2.0/master/public/tablet.png" className='landing__tablet' />
                         </div>
                         <div className='container__text'>

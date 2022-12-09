@@ -68,6 +68,7 @@
     height: 50px;
     object-fit: contain;
     border-radius: 50%;
+    user-select: none;
 }
 
 .landing__nav__list{
@@ -91,7 +92,17 @@
 
 .landing__tablet{
     height: 400px;
-    transform: rotate(-10deg);
+    animation-name: bounce-1;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    user-select: none;
+}
+
+@keyframes bounce-1 {
+    0%   { transform: translateY(0) rotate(-10deg);}
+    50%  { transform: translateY(-50px) rotate(-10deg);}
+    100% { transform: translateY(0) rotate(-10deg);}
 }
 
 .container{
@@ -104,7 +115,7 @@
 
 .container__text{
     height: 100%;
-    width: 50%;
+    flex: 1 1;
     text-align: center;
     display: flex;
     flex-direction: column;
