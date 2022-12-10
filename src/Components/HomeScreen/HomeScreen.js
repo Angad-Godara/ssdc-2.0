@@ -13,14 +13,15 @@ function HomeScreen() {
                     <span></span>
                     <span></span>
                 </div>
+                <div className='landing__background__rvs'></div>
                 <div className='inner'>
                     <div className="landing__nav">
                         <img className='landing__nav__logo' src="https://raw.githubusercontent.com/Angad-Godara/ssdc-web-dev/main/public/ssdcLogo.jpg" />
                         <div className="landing__nav__list">
-                            <a href="/" className='landing__nav__list__item'>Explore</a>
-                            <a href="/" className='landing__nav__list__item'>Product</a>
-                            <a href="/" className='landing__nav__list__item'>Developer</a>
-                            <a href="/" className='landing__nav__list__item'>SignIn</a>
+                            <Link to="/" className='landing__nav__list__item'>Explore</Link>
+                            <Link to="/" className='landing__nav__list__item'>Product</Link>
+                            <Link to="/" className='landing__nav__list__item'>Developer</Link>
+                            <Link to="/login" className='landing__nav__list__item'>SignIn</Link>
                         </div>
                     </div>
                     <div className='container'>

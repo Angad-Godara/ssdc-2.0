@@ -15,7 +15,7 @@ function App() {
 
     <BrowserRouter>
       <div className="App">
-        {window.location.pathname.includes('/home') ? <></> : <Navbar />}
+        <Navbar />
         <Routes>
           <Route exact path="/register" element={
             <div className='login__register'>
@@ -32,10 +32,9 @@ function App() {
           <Route path="/home" element={
             <HomeScreen />
           } />
-          <Route path="/" element={<div className='login__register'>
-            <Login />
-            <Footer />
-          </div>} />
+          <Route path="/" element={
+            <HomeScreen />
+          } />
         </Routes>
       </div >
     </BrowserRouter >

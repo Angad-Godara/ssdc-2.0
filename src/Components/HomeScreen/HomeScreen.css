@@ -13,6 +13,7 @@
 }
 
 .landing__background{
+    z-index: 5;
     position: absolute;
     height: 100%;
     width: 100%;
@@ -49,6 +50,18 @@
     background: #2e2e2e;
 }
 
+.landing__background__rvs{
+    height: 900px;
+    top: 0;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    transform: skewY(-4.5deg);
+    transform-origin: 0%;
+    background: white;
+}
+
+
 .inner{
     width: 80%;
     display: flex;
@@ -56,6 +69,7 @@
 }
 
 .landing__nav{
+    z-index: 10;
     position: relative;
     margin-top: 100px;
     background: transparent;

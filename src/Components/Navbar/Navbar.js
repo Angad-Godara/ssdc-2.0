@@ -1,6 +1,7 @@
 import React from 'react'
 import './Navbar.css'
 import { AiOutlineStar } from 'react-icons/ai'
+import { Link } from 'react-router-dom'
 
 function Navbar() {
     return (
@@ -11,16 +12,16 @@ function Navbar() {
                         <img className='nav__logo' src={'https://raw.githubusercontent.com/Angad-Godara/ssdc-web-dev/main/public/ssdcLogo.jpg'} alt='logo' />
                     </div>
                     <div className='nav__option'>
-                        <a href="/home" className="option__link">Explore</a>
+                        <Link to="/home" className="option__link">Explore</Link>
                     </div>
                     <div className='nav__option'>
-                        <a href="/" className="option__link">Team</a>
+                        <Link to="/" className="option__link">Team</Link>
                     </div>
                     <div className='nav__option'>
-                        <a href="/" className="option__link">Projects</a>
+                        <Link to="/" className="option__link">Projects</Link>
                     </div>
                     <div className='nav__option'>
-                        <a href="/" className="option__link">Alumni</a>
+                        <Link to="/" className="option__link">Alumni</Link>
                     </div>
                 </div>
                 <div className='nav__member'>
