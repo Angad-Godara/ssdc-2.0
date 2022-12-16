@@ -108,14 +108,14 @@
     height: 400px;
     animation-name: bounce-1;
     animation-timing-function: linear;
-    animation-duration: 1s;
+    animation-duration: 4s;
     animation-iteration-count: infinite;
     user-select: none;
 }
 
 @keyframes bounce-1 {
     0%   { transform: translateY(0) rotate(-10deg);}
-    50%  { transform: translateY(-50px) rotate(-10deg);}
+    50%  { transform: translateY(-30px) rotate(-10deg);}
     100% { transform: translateY(0) rotate(-10deg);}
 }
 

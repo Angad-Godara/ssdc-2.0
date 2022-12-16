@@ -72,3 +72,45 @@ a{
     text-decoration: none;
     color: inherit;
 }
+
+@media only screen and (max-width: 720px)
+{
+  .nav__container{
+    font-size: 10px;
+    height: 40px;
+  }
+  .options__container{
+    display: flex;
+    width: 100%;
+}
+.nav__member{
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.nav__member__option{
+    border: 1px solid rgb(255, 152, 0);
+    color: rgb(255, 152, 0);
+    padding: 4px 5px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 700ms;
+}
+}
+
+@media only screen and (max-width: 280px) and (max-height: 1000px){
+    .nav__member__option{
+        padding: 2px 3px;
+    }
+    .nav__container{
+        font-size: 6px;
+    }
+    .nav__member__option__link{
+        margin-left: 1px;
+    }
+    .nav__member__option{
+        border: 1.5px solid rgb(255, 152, 0);
+    }
+}
