@@ -1,5 +1,6 @@
 .landing__page{
     min-height: 100vh;
+    overflow: hidden;
 }
 
 /* setting background */

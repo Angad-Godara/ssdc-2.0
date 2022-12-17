@@ -9,22 +9,24 @@ import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer'
 import Register from './Components/Register/Register';
 import HomeScreen from './Components/HomeScreen/HomeScreen';
+import ContestScreen from './Components/ContestScreen/ContestScreen'
 
 function App() {
   return (
 
     <BrowserRouter>
       <div className="App">
-        <Navbar />
         <Routes>
           <Route exact path="/register" element={
             <div className='login__register'>
+              <Navbar />
               <Register />
               <Footer />
             </div>
           } />
           <Route exact path="/login" element={
             <div className='login__register'>
+              <Navbar />
               <Login />
               <Footer />
             </div>
@@ -34,6 +36,9 @@ function App() {
           } />
           <Route path="/" element={
             <HomeScreen />
+          } />
+          <Route path="/contests" element={
+            <ContestScreen />
           } />
         </Routes>
       </div >

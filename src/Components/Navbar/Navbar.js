@@ -1,12 +1,16 @@
 import React from 'react'
 import './Navbar.css'
+import { useEffect, useState } from 'react'
 import { AiOutlineStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 
 function Navbar() {
 
-    // console.log(window.screen.height);
-    const sw = window.screen.width;
+    const [sw, setsw] = useState(window.screen.width)
+
+    useEffect(() => {
+        setsw(window.screen.width);
+    }, [sw])
 
     return (
         <div className='nav__container'>
@@ -30,7 +34,7 @@ function Navbar() {
                 </div>
                 <div className='nav__member'>
                     <div className='nav__member__option'>
-                        <AiOutlineStar size={sw < '400px' ? '16px' : sw > '300px' ? '10px' : '7px'} />
+                        <AiOutlineStar size={sw < 400 ? '10px' : sw > 300 ? '16px' : '7px'} />
                         <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Members</span>
                     </div>
                 </div>

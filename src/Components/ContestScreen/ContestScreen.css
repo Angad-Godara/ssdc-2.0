@@ -1,0 +1,93 @@
+.ContestScreen{
+    background: white;
+}
+
+.contest__table{
+    color: black;
+    min-height: 100vh;
+    margin-bottom: 30px;
+}
+
+.list__buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active__button{
+    background: rgba(187, 191, 195, 0.422) !important;
+}
+
+.list__buttons > button{
+    margin: 10px 10px;
+    padding: 8px;
+    border-radius: 20px;
+    width: 10%;
+    color: rgba(38,38,38,.75);
+    transition: all .5s ease;
+    border: 3px solid white;
+    font-family:'Montserrat', sans-serif;
+    /* text-transform: uppercase; */
+    letter-spacing: 2px;
+    font-size: 14px;
+    background : rgba(0,10,32,.05);
+    outline: none;
+    cursor: pointer;
+}
+
+.list__buttons > button:hover{
+    background: rgba(187, 191, 195, 0.534);
+}
+
+.table__wrapper{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: center;
+    margin-top: 25px;
+}
+
+.list__row{
+    display: grid;
+    grid-template-columns: 30% auto 30% 10%;
+    height: 50px;
+}
+
+.list__row > span{
+    text-align: center;
+}
+
+.table{
+    width: 80%;
+}
+
+.list__row > a{
+    text-align: center;
+}
+
+.list__row > a:hover{
+    color: rgb(15,130,255);
+}
+
+.table > div:nth-of-type(odd){
+    background-color: rgba(81, 81, 81, 0.050);
+}
+
+.grid__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:transparent;
+    padding: 8px;    
+    transition: all .5s ease;
+    font-size: 0.9rem;
+  }
+
+  .grid__item:hover {
+    color: #000000;
+    /* background-color: rgba(206, 244, 255, 0.852); */
+}
+
+/* 
+box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+ */
