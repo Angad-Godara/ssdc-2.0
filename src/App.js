@@ -31,7 +31,6 @@ function App() {
           .collection('users')
           .doc(authUser?.uid)
           .onSnapshot(snap => {
-            console.log(snap);
             dispatch(login({
               uid: authUser?.uid,
               photoURL: snap.data().photoURL,
@@ -41,7 +40,7 @@ function App() {
           })
         history('/user')
       } else {
-        dispatch(logout)
+        dispatch(logout())
       }
     })
     return unsubscribe;

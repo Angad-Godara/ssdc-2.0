@@ -5,23 +5,22 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice'
 import { auth } from '../../firebase'
-import { logout } from '../../Features/userSlice'
 
 function HomeScreen() {
 
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const user = useSelector(selectUser)
 
-    // const Logout = (e) => {
-    //     e.preventDefault()
-    //     if (user) {
-    //     console.log(user)
-    //     auth.signOut();
-    //     dispatch(logout)
-    //     }
-    // }
+    const Logout = (e) => {
+        // e.preventDefault()
+        if (user) {
+            console.log(user)
+            auth.signOut();
+        } else {
+            navigate('/login')
+        }
+    }
 
     return (
         <div className='HomeScreen'>
@@ -41,7 +40,7 @@ function HomeScreen() {
                                 <Link to="/" className='landing__nav__list__item'>Explore</Link>
                                 <Link to="/contests" className='landing__nav__list__item'>Contests</Link>
                                 <Link to="/" className='landing__nav__list__item'>Team</Link>
-                                <Link to="/login" className='landing__nav__list__item'>SignIn</Link>
+                                <Link to={user ? "/" : "/login"} onClick={Logout} className='landing__nav__list__item'>{user ? 'LogOut' : 'SignIn'}</Link>
                             </div>
                         </div>
                         <div className='container'>

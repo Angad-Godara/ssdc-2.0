@@ -22,7 +22,7 @@ function Login() {
     const passwordRef = useRef(null);
 
     const store = (authUser) => {
-        // using db
+        // updating db
         db
             .collection('users')
             .doc(authUser?.uid)
