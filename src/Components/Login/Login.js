@@ -61,10 +61,10 @@ function Login() {
                         alt='SSDC' />
                     <form className='login__form'>
                         <span>
-                            <input ref={emailRef} type="text" placeholder='Username or E-mail' />
+                            <input ref={emailRef} type="text" placeholder='Username or E-mail' autoComplete="on" />
                         </span>
                         <span>
-                            <input ref={passwordRef} type="password" placeholder='Password' />
+                            <input ref={passwordRef} type="password" placeholder='Password' autoComplete="on" />
                         </span>
                     </form>
                     <button onClick={login} className='login__button'>Sign In</button>

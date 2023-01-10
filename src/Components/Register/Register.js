@@ -3,7 +3,7 @@ import './Register.css'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
 import { BsFacebook, BsLinkedin } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
-import { db, auth, googleProvider, githubProvider, facebookProvider, twitterProvider } from '../../firebase'
+import { auth, googleProvider, githubProvider, facebookProvider, twitterProvider } from '../../firebase'
 
 function Register() {
 
