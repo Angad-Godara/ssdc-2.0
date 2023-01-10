@@ -1,4 +1,5 @@
 import './App.css';
+import React, { useEffect } from 'react';
 import {
   BrowserRouter,
   Routes,
@@ -10,10 +11,26 @@ import Footer from './Components/Footer/Footer'
 import Register from './Components/Register/Register';
 import HomeScreen from './Components/HomeScreen/HomeScreen';
 import ContestScreen from './Components/ContestScreen/ContestScreen'
+import { auth } from './firebase';
 
 function App() {
-  return (
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+        // logged in
+        console.log(authUser)
+      } else {
+        // logged out
+      }
+    })
+
+    return unsubscribe;
+
+  }, [])
+
+
+  return (
     <BrowserRouter>
       <div className="App">
         <Routes>

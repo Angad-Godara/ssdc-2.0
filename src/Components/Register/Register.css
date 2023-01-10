@@ -91,6 +91,17 @@
     background: linear-gradient(35deg, #546e7a, #37474f);
 }
 
+.register__button__disabled{
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 15px;
+    background: linear-gradient(215deg, rgb(134, 168, 184), rgb(110, 137, 150));
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    border: none;
+}
+
 .register__actions{
     margin-top: 15px;
     display: flex;

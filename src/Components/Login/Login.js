@@ -1,10 +1,58 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import './Login.css'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
 import { BsFacebook, BsLinkedin } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
+import { auth, googleProvider, githubProvider, facebookProvider, twitterProvider } from '../../firebase';
 
 function Login() {
+
+    const emailRef = useRef(null);
+    const passwordRef = useRef(null);
+
+    const login = (e) => {
+        e.preventDefault();
+
+        auth.signInWithEmailAndPassword(
+            emailRef.current.value,
+            passwordRef.current.value
+        ).then((authUser) => {
+            console.log(authUser)
+        }).catch((error) => {
+            alert(error.message)
+        })
+
+    }
+
+    const googleLogin = () => {
+        auth.signInWithPopup(googleProvider)
+            .then((result) => console.log(result))
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
+    const githubLogin = () => {
+        auth.signInWithPopup(githubProvider)
+            .then((result) => console.log(result))
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
+    const facebookLogin = () => {
+        auth.signInWithPopup(facebookProvider)
+            .then((result) => console.log(result))
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
+    const twitterLogin = () => {
+        auth.signInWithPopup(twitterProvider)
+            .then((result) => console.log(result))
+            .catch((error) => {
+                alert(error.message)
+            })
+    }
+
     return (
         <div className='login__wrapper'>
             <div className='login__container'>
@@ -13,13 +61,13 @@ function Login() {
                         alt='SSDC' />
                     <form className='login__form'>
                         <span>
-                            <input type="text" placeholder='Username or E-mail' />
+                            <input ref={emailRef} type="text" placeholder='Username or E-mail' />
                         </span>
                         <span>
-                            <input type="password" placeholder='Password' />
+                            <input ref={passwordRef} type="password" placeholder='Password' />
                         </span>
                     </form>
-                    <button className='login__button'>Sign In</button>
+                    <button onClick={login} className='login__button'>Sign In</button>
                     <div className='login__actions'>
                         <Link to='/register'>Forgot Password?</Link>
                         <Link to='/register'>Sign Up</Link>
@@ -27,10 +75,10 @@ function Login() {
                     <div className='auth__options'>
                         <p>or you can sign in with</p>
                         <div className='login__options'>
-                            <AiFillGoogleCircle className='logo__google login__option__logos' size={'30'} />
-                            <AiFillGithub className='logo__github login__option__logos' size={'30'} />
-                            <BsLinkedin className='logo__linkedin login__option__logos' size={'25'} style={{ borderRadius: '50%' }} />
-                            <BsFacebook className='logo__facebook login__option__logos' size={'25'} />
+                            <AiFillGoogleCircle onClick={googleLogin} className='logo__google login__option__logos' size={'30'} />
+                            <AiFillGithub onClick={githubLogin} className='logo__github login__option__logos' size={'30'} />
+                            <BsLinkedin onClick={twitterLogin} className='logo__linkedin login__option__logos' size={'25'} style={{ borderRadius: '50%' }} />
+                            <BsFacebook onClick={facebookLogin} className='logo__facebook login__option__logos' size={'25'} />
                         </div>
                     </div>
                     <div className='welcome__note'>
