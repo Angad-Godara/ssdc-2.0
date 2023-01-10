@@ -11,6 +11,7 @@ function User() {
     const history = useNavigate()
     const user = useSelector(selectUser)
 
+
     return (
         <div>User
             <button onClick={() => {
@@ -18,9 +19,9 @@ function User() {
                 dispatch(logout)
                 history('/login')
             }}> Logout </button>
-            <h1>{user.username}</h1>
-            <h1>{user.email}</h1>
-            <h1>{user.uid}</h1>
+            <h1>{user?.username}</h1>
+            <h1>{user?.email}</h1>
+            <h1>{user?.uid}</h1>
             <img className="user__avatar" src={user?.photoURL} alt="" />
         </div>
     )

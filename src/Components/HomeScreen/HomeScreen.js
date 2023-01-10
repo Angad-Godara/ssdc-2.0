@@ -1,9 +1,28 @@
 import React from 'react'
 import './HomeScreen.css'
 import Footer from '../Footer/Footer'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectUser } from '../../Features/userSlice'
+import { auth } from '../../firebase'
+import { logout } from '../../Features/userSlice'
 
 function HomeScreen() {
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const user = useSelector(selectUser)
+
+    // const Logout = (e) => {
+    //     e.preventDefault()
+    //     if (user) {
+    //     console.log(user)
+    //     auth.signOut();
+    //     dispatch(logout)
+    //     }
+    // }
+
     return (
         <div className='HomeScreen'>
             <div className='landing__page'>
@@ -17,7 +36,7 @@ function HomeScreen() {
                     <div className='landing__background__rvs'></div>
                     <div className='inner'>
                         <div className="landing__nav">
-                            <img className='landing__nav__logo' alt="Loading" src="https://raw.githubusercontent.com/Angad-Godara/ssdc-web-dev/main/public/ssdcLogo.jpg" />
+                            <img className='landing__nav__logo' alt="Loading" src="https://raw.githubusercontent.com/Angad-Godara/ssdc-2.0/master/public/NewLogoColor.png" />
                             <div className="landing__nav__list">
                                 <Link to="/" className='landing__nav__list__item'>Explore</Link>
                                 <Link to="/contests" className='landing__nav__list__item'>Contests</Link>

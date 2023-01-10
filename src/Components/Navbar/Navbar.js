@@ -17,7 +17,7 @@ function Navbar() {
             <div className='options__container'>
                 <div className='nav__options'>
                     <div className='nav__option'>
-                        <img className='nav__logo' src={'https://raw.githubusercontent.com/Angad-Godara/ssdc-web-dev/main/public/ssdcLogo.jpg'} alt='logo' />
+                        <img className='nav__logo' src={'https://raw.githubusercontent.com/Angad-Godara/ssdc-2.0/master/public/NewLogoColor.png'} alt='logo' />
                     </div>
                     <div className='nav__option'>
                         <Link to="/home" className="option__link">Explore</Link>

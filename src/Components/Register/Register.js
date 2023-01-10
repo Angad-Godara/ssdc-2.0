@@ -1,21 +1,53 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import './Register.css'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
 import { BsFacebook, BsLinkedin } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
-import { auth, googleProvider, githubProvider, facebookProvider, twitterProvider } from '../../firebase'
+import { Link, useNavigate } from 'react-router-dom'
+import db, { auth, googleProvider, githubProvider, facebookProvider, twitterProvider } from '../../firebase'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../Features/userSlice'
 
 function Register() {
+    const user = useSelector(selectUser);
+    const navigate = useNavigate();
 
-    const usernameRef = useRef(null)
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [])
+
+
+    const defaultURL = process.env.REACT_APP_DEFAULT_PhotoURL;
+
     const emailRef = useRef(null);
+    const [username, setusername] = useState(null);
     const [password, setpassword] = useState(null);
     const [cnfpassword, setcnfpassword] = useState(null);
+
+    const store = (authUser) => {
+        // using db
+        db
+            .collection('users')
+            .doc(authUser?.uid)
+            .set({
+                email: authUser?.email,
+                username: authUser?.displayName,
+                photoURL: authUser?.photoURL
+            })
+    }
 
     const register = () => {
         auth.createUserWithEmailAndPassword(emailRef.current.value, cnfpassword)
             .then((authUser) => {
-                console.log(authUser)
+                db
+                    .collection('users')
+                    .doc(authUser?.user.uid)
+                    .set({
+                        email: authUser.user.email,
+                        username: username,
+                        photoURL: defaultURL
+                    })
             }).catch((error) => {
                 alert(error.message)
             })
@@ -23,28 +55,36 @@ function Register() {
 
     const googleLogin = () => {
         auth.signInWithPopup(googleProvider)
-            .then((result) => console.log(result))
+            .then((result) => {
+                store(result.user)
+            })
             .catch((error) => {
                 alert(error.message)
             })
     }
     const githubLogin = () => {
         auth.signInWithPopup(githubProvider)
-            .then((result) => console.log(result))
+            .then((result) => {
+                store(result.user)
+            })
             .catch((error) => {
                 alert(error.message)
             })
     }
     const facebookLogin = () => {
         auth.signInWithPopup(facebookProvider)
-            .then((result) => console.log(result))
+            .then((result) => {
+                store(result.user)
+            })
             .catch((error) => {
                 alert(error.message)
             })
     }
     const twitterLogin = () => {
         auth.signInWithPopup(twitterProvider)
-            .then((result) => console.log(result))
+            .then((result) => {
+                store(result.user)
+            })
             .catch((error) => {
                 alert(error.message)
             })
@@ -54,12 +94,14 @@ function Register() {
         <div className='register__wrapper'>
             <div className='register__container'>
                 <div className='register__form__wrapper'>
-                    <img className='register__logo' src={'https://raw.githubusercontent.com/Angad-Godara/ssdc-web-dev/main/public/ssdcLogo.jpg'}
+                    <img className='register__logo' src={'https://raw.githubusercontent.com/Angad-Godara/ssdc-2.0/master/public/NewLogoColor.png'}
                         alt='SSDC' />
                     <form className='register__form'>
                         <span>
                             {/* Username */}
-                            <input ref={usernameRef} type="text" placeholder='Username' />
+                            <input onChange={(e) => {
+                                setusername(e.target.value)
+                            }} type="text" placeholder='Username' />
                         </span>
                         <span>
                             {/* Password */}

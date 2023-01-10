@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Routes,
   Route,
@@ -15,6 +15,7 @@ import { auth } from './firebase';
 import { logout, login, selectUser } from './Features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import User from './Components/User/User';
+import db from './firebase';
 
 function App() {
 
@@ -25,20 +26,24 @@ function App() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        dispatch(login({
-          uid: authUser.uid,
-          photoURL: authUser.photoURL,
-          username: authUser.displayName,
-          email: authUser.email
-        }))
-        console.log(user);
+        // using db
+        db
+          .collection('users')
+          .doc(authUser?.uid)
+          .onSnapshot(snap => {
+            console.log(snap);
+            dispatch(login({
+              uid: authUser?.uid,
+              photoURL: snap.data().photoURL,
+              username: snap.data().username,
+              email: snap.data().email
+            }))
+          })
         history('/user')
       } else {
-        console.log(user);
         dispatch(logout)
       }
     })
-    console.log(user);
     return unsubscribe;
   }, [])
 

@@ -1,14 +1,37 @@
-import React, { useRef } from 'react'
+import React, { useRef, useEffect } from 'react'
 import './Login.css'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
 import { BsFacebook, BsLinkedin } from 'react-icons/bs'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { auth, googleProvider, githubProvider, facebookProvider, twitterProvider } from '../../firebase';
+import db from '../../firebase'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../Features/userSlice'
 
 function Login() {
+    const user = useSelector(selectUser);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user) {
+            navigate('/')
+        }
+    }, [])
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
+
+    const store = (authUser) => {
+        // using db
+        db
+            .collection('users')
+            .doc(authUser?.uid)
+            .set({
+                email: authUser?.email,
+                username: authUser?.displayName,
+                photoURL: authUser?.photoURL
+            })
+    }
 
     const login = (e) => {
         e.preventDefault();
@@ -17,7 +40,6 @@ function Login() {
             emailRef.current.value,
             passwordRef.current.value
         ).then((authUser) => {
-            console.log(authUser)
         }).catch((error) => {
             alert(error.message)
         })
@@ -26,28 +48,36 @@ function Login() {
 
     const googleLogin = () => {
         auth.signInWithPopup(googleProvider)
-            .then((result) => console.log(result))
+            .then((result) => {
+                store(result.user)
+            })
             .catch((error) => {
                 alert(error.message)
             })
     }
     const githubLogin = () => {
         auth.signInWithPopup(githubProvider)
-            .then((result) => console.log(result))
+            .then((result) => {
+                store(result.user)
+            })
             .catch((error) => {
                 alert(error.message)
             })
     }
     const facebookLogin = () => {
         auth.signInWithPopup(facebookProvider)
-            .then((result) => console.log(result))
+            .then((result) => {
+                store(result.user)
+            })
             .catch((error) => {
                 alert(error.message)
             })
     }
     const twitterLogin = () => {
         auth.signInWithPopup(twitterProvider)
-            .then((result) => console.log(result))
+            .then((result) => {
+                store(result.user)
+            })
             .catch((error) => {
                 alert(error.message)
             })
@@ -57,11 +87,11 @@ function Login() {
         <div className='login__wrapper'>
             <div className='login__container'>
                 <div className='login__form__wrapper'>
-                    <img className='login__logo' src={'https://raw.githubusercontent.com/Angad-Godara/ssdc-web-dev/main/public/ssdcLogo.jpg'}
+                    <img className='login__logo' src={'https://raw.githubusercontent.com/Angad-Godara/ssdc-2.0/master/public/NewLogoColor.png'}
                         alt='SSDC' />
                     <form className='login__form'>
                         <span>
-                            <input ref={emailRef} type="text" placeholder='Username or E-mail' autoComplete="on" />
+                            <input ref={emailRef} type="text" placeholder='E-mail' autoComplete="on" />
                         </span>
                         <span>
                             <input ref={passwordRef} type="password" placeholder='Password' autoComplete="on" />
