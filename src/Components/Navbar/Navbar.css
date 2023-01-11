@@ -4,7 +4,8 @@
     min-width: 100%;
     display: flex;
     justify-content: center;
-    height: 50px;
+    align-items: center;
+    height: 45px;
     background: white;
     font-size: 13.5px;
     font-weight: 450;
@@ -51,7 +52,7 @@
 .nav__member__option{
     border: 2px solid rgb(255, 152, 0);
     color: rgb(255, 152, 0);
-    padding: 4px 5px;
+    padding: 3px 4px;
     border-radius: 4px;
     display: flex;
     align-items: center;
@@ -61,6 +62,7 @@
 
 .nav__member__option__link{
     margin-left: 0.4rem;
+    font-size: 0.8rem;
 }
 
 .nav__member__option:hover{
@@ -72,6 +74,97 @@
 a{
     text-decoration: none;
     color: inherit;
+}
+
+.drop__menu__arrow{
+    background-color: transparent;
+    position: absolute;
+    top: calc(100% - 6px);
+    height: 10px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-width: 0 10px 15px;
+    border-bottom-color: white;
+    border-style: solid;
+    color: transparent;
+    z-index: 1;
+}
+
+.user{
+    margin-left: 3rem;
+    display: flex;
+    align-items: center;
+}
+
+.user > img{
+    cursor: pointer;
+    max-height: 30px;
+    border-radius: 50%;
+    user-select: none;
+}
+
+.user__menu__wrapper{
+    color: #546e7a;
+    list-style: none;
+    position:absolute;
+    top: calc(100% - 6px);
+    right: 10%;
+    border-radius: 5px;
+    width: 280px;
+    max-height: 0px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+    overflow: hidden;
+    transition: max-height 0.5s;
+    padding: 0;
+}
+
+.user__info{
+    margin-top: 5px;
+    padding: 0 15px;
+}
+
+.user__info > div{
+    display: grid;
+    grid-template-columns: 38px auto;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.65);
+    transition: all 0.5s;
+    border-bottom: 1px solid rgba(0,0,0,.2);
+    padding: 0;
+}
+
+.drop__item{
+    display: grid;
+    grid-template-columns: 38px auto;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.65);
+    padding: 0 15px;
+    transition: all 0.5s;
+}
+
+.user__info:hover{
+    color: black;
+    background: rgba(187, 191, 195, 0.534);
+}
+
+.drop__item:hover{
+    color: black;
+    background: rgba(187, 191, 195, 0.534);
+}
+
+.drop__item__logo{
+    text-align: center;
+    align-self: center;
+    max-height: 35px;
+    border-radius: 50%;
+}
+
+.drop__item__text{
+    text-align: center;
+}
+
+.open__menu{
+    max-height: 400px;
 }
 
 @media only screen and (max-width: 720px)

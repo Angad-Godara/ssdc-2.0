@@ -16,6 +16,7 @@ import { logout, login, selectUser } from './Features/userSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import User from './Components/User/User';
 import db from './firebase';
+import Explore from './Components/Explore/Explore';
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
               email: snap.data().email
             }))
           })
-        history('/user')
+        history('/explore')
       } else {
         dispatch(logout())
       }
@@ -74,6 +75,12 @@ function App() {
         } />
         <Route path="/" element={
           <HomeScreen />
+        } />
+        <Route path="/explore" element={
+          <>
+            <Navbar />
+            <Explore />
+          </>
         } />
       </Routes>
     </div >
