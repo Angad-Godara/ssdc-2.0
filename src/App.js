@@ -1,5 +1,5 @@
 import './App.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Routes,
   Route,
@@ -12,15 +12,15 @@ import Register from './Components/Register/Register';
 import HomeScreen from './Components/HomeScreen/HomeScreen';
 import ContestScreen from './Components/ContestScreen/ContestScreen'
 import { auth } from './firebase';
-import { logout, login, selectUser } from './Features/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { logout, login } from './Features/userSlice';
+import { useDispatch } from 'react-redux';
 import User from './Components/User/User';
 import db from './firebase';
 import Explore from './Components/Explore/Explore';
+import Team from './Components/Team/Team';
 
 function App() {
 
-  const user = useSelector(selectUser)
   const dispatch = useDispatch();
   const history = useNavigate();
 
@@ -39,7 +39,6 @@ function App() {
               email: snap.data().email
             }))
           })
-        history('/explore')
       } else {
         dispatch(logout())
       }
@@ -80,6 +79,12 @@ function App() {
           <>
             <Navbar />
             <Explore />
+          </>
+        } />
+        <Route path="/team" element={
+          <>
+            <Navbar />
+            <Team />
           </>
         } />
       </Routes>

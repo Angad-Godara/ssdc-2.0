@@ -2,20 +2,28 @@ import React from 'react'
 import './Navbar.css'
 import { useEffect, useState } from 'react'
 import { AiOutlineStar } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice'
+import { BiExit } from 'react-icons/bi'
+import { MdOutlinePrivacyTip } from 'react-icons/md'
+import { auth } from '../../firebase'
 
 function Navbar() {
 
     const [sw, setsw] = useState(window.screen.width)
     const user = useSelector(selectUser)
     const [userMenu, setuserMenu] = useState(false)
+    const navigate = useNavigate();
 
     useEffect(() => {
         setsw(window.screen.width);
-        console.log(userMenu)
     }, [sw, userMenu])
+
+    const Logout = (e) => {
+        auth.signOut();
+        navigate('/')
+    }
 
     return (
         <div className='nav__container'>
@@ -28,7 +36,7 @@ function Navbar() {
                         <Link to="/home" className="option__link">Explore</Link>
                     </div>
                     <div className='nav__option'>
-                        <Link to="/" className="option__link">Team</Link>
+                        <Link to="/team" className="option__link">Team</Link>
                     </div>
                     <div className='nav__option'>
                         <Link to="/" className="option__link">Projects</Link>
@@ -56,16 +64,12 @@ function Navbar() {
                                 </div>
                             </li>
                             <li className='drop__item'>
-                                <img className='drop__item__logo' src={user?.photoURL} alt='U' />
-                                <p className='drop__item__text'>{user?.username}</p>
+                                <MdOutlinePrivacyTip className='drop__item__logo' size={20} />
+                                <p className='drop__item__text'>Privacy Policy</p>
                             </li>
-                            <li className='drop__item'>
-                                <img className='drop__item__logo' src={user?.photoURL} alt='U' />
-                                <p className='drop__item__text'>{user?.username}</p>
-                            </li>
-                            <li className='drop__item'>
-                                <img className='drop__item__logo' src={user?.photoURL} alt='U' />
-                                <p className='drop__item__text'>{user?.username}</p>
+                            <li onClick={Logout} className='drop__item'>
+                                <BiExit className='drop__item__logo' size={20} />
+                                <p className='drop__item__text'>Log Out</p>
                             </li>
                         </ul>
                     </div>

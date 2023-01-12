@@ -2,7 +2,7 @@ import React from 'react'
 import './HomeScreen.css'
 import Footer from '../Footer/Footer'
 import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice'
 import { auth } from '../../firebase'
 
@@ -15,7 +15,6 @@ function HomeScreen() {
     const Logout = (e) => {
         // e.preventDefault()
         if (user) {
-            console.log(user)
             auth.signOut();
         } else {
             navigate('/login')
@@ -39,7 +38,7 @@ function HomeScreen() {
                             <div className="landing__nav__list">
                                 <Link to="/" className='landing__nav__list__item'>Explore</Link>
                                 <Link to="/contests" className='landing__nav__list__item'>Contests</Link>
-                                <Link to="/" className='landing__nav__list__item'>Team</Link>
+                                <Link to="/team" className='landing__nav__list__item'>Team</Link>
                                 <Link to={user ? "/" : "/login"} onClick={Logout} className='landing__nav__list__item'>{user ? 'LogOut' : 'SignIn'}</Link>
                             </div>
                         </div>
