@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice'
 import { auth } from '../../firebase'
+import Hometext from '../HomeText/Hometext'
 
 function HomeScreen() {
 
@@ -55,6 +56,7 @@ function HomeScreen() {
                     </div>
                 </div>
             </div>
+            <Hometext />
             <Footer />
         </div>
     )

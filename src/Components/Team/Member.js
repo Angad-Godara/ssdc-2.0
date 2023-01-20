@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-// import AirJordan from '../../src/assets/images/air-jordan-transparent.png'
-import ShoeDetails from './MemberDetail';
 import { motion, useMotionValue, useTransform } from 'framer-motion'
+import { AiFillGithub, AiFillLinkedin, AiFillMail, AiOutlineAim } from 'react-icons/ai';
 
-function Member() {
+function Member({ setopen }) {
 
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -21,7 +20,7 @@ function Member() {
                 whileTap={{ cursor: "grabbing" }}
             >
                 <TopContainer>
-                    <BgText>SSDC<SmallText>Since 2019</SmallText></BgText>
+                    <BgText>SSDC</BgText>
                     <CircleWrapper>
                         <Circle />
                     </CircleWrapper>
@@ -32,7 +31,25 @@ function Member() {
                     </MemberWrapper>
                 </TopContainer>
                 <BottomContainer>
-                    <ShoeDetails />
+                    <DetailsContainer>
+                        <SmallText>Member</SmallText>
+                        <SpacedHorizontalConatiner>
+                            <MediumText>Junior Tester</MediumText>
+                            {/* <MediumText>₹ 67,999 </MediumText> */}
+                        </SpacedHorizontalConatiner>
+                        <SpacedHorizontalConatiner style={{ marginTop: '10px' }}>
+                            <Connections>
+                                <AiFillGithub style={{ cursor: 'pointer' }} size={20} />
+                                |
+                                <AiFillLinkedin style={{ cursor: 'pointer' }} size={20} />
+                                |
+                                <AiFillMail style={{ cursor: 'pointer' }} size={20} />
+                            </Connections>
+                            <CardButton style={{ marginLeft: 'auto', marginRight: '10px' }} onClick={() => setopen(false)}>
+                                <AiOutlineAim />
+                            </CardButton>
+                        </SpacedHorizontalConatiner>
+                    </DetailsContainer >
                 </BottomContainer>
             </CardContainer >
         </CardWrapper >
@@ -49,12 +66,12 @@ const CardWrapper = styled.div`
 
 const CardContainer = styled(motion.div)`
     width: 285px;
-    height: 500px;
+    height: 370px;
     display: flex;
     flex-direction: column;
     border-radius: 25px;
     box-shadow: 0 2px 7px 1px rgba(31, 31, 31, 0.2);
-    background-color: #1d1f21;
+    background-color: rgb(24 45 72);
     color: #fff;
     position: relative;
     cursor: grab;
@@ -62,7 +79,7 @@ const CardContainer = styled(motion.div)`
 
 const SmallText = styled.div`
     font-size: 11px;
-    color: 3fff;
+    color: #fff;
     font-weight: 700;
     text-transform: uppercase;
 `
@@ -79,12 +96,12 @@ const CircleWrapper = styled.div`
 
 const Circle = styled.div`
     position: absolute;
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
     top: -4.2em;
     right: -8em;
     z-index: 5;
-    background-color: rgb(255 74 74);
+    background-color: #40ced7;
     border-radius: 50%;
 `
 
@@ -112,14 +129,14 @@ const BgText = styled.h1`
     margin-bottom: auto;
     margin-top: 0;
     z-index: 10;
-    font-size: 70px;
+    font-size: 40px;
     font-weight: 900;
 `
 
 const MemberWrapper = styled.div`
     width: 100%;
     height: 100%;
-    top: 15%;
+    top: 22%;
     position: absolute;
     display: flex;
     align-items: center;
@@ -141,5 +158,69 @@ const Profile = styled(motion.div)`
     }
 
 `
+
+const DetailsContainer = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 1.5em 6px 0 6px;
+    line-height: 1.4;
+`
+
+const MediumText = styled.div`
+    font-size: 18px;
+    color: #fff;
+    font-weight: 800;
+    text-transform: uppercase;
+`
+
+const Connections = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 50%;
+`
+
+const SpacedHorizontalConatiner = styled.div`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
+
+const CardButton = styled.button`
+    padding: 6px 8px;
+    background-color: #fbbe01;
+    color: #000;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    border: 3px solid transparent;
+    outline: pointer;
+    transition: all 290ms ease-in-out;
+    border-radius: 8px;
+    cursor: pointer;
+    display:flex;
+    align-items:center;
+
+    &:hover{
+        background-color: transparent;
+        color: #fff;
+        border: 3px solid #fbbe01;
+    }
+`
+
+const SsdcLogo = styled.div`
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: auto;
+    height: 13px;
+  }
+`;
 
 export default Member

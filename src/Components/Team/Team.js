@@ -7,14 +7,12 @@ import Member from './Member'
 function Team() {
     return (
         <TeamWrapper>
-            <Member />
-            <Member />
-            <Member />
-            <Member />
-            <Member />
-            <Member />
-            <Member />
-            <Member />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
+            <Card />
         </TeamWrapper>
     )
 }

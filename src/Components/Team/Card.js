@@ -1,19 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './Card.css'
 import Member from './Member'
+import MemberDetail from './MemberDetail'
 
 function Card() {
+
+    const [open, setopen] = useState(true)
+
     return (
-        <div className="card">
-            <div className="face face1">
-                <div className="content">
-                    <Member />
-                </div>
+        <div className={(open) ? "card" : "card open"}>
+            <div className="front-facing">
+                <Member setopen={setopen} />
             </div>
-            <div class="face face2">
-                <img className='outer' src={"https://ssdc-sliet.github.io/assets/img/Students/Bhavesh%20Soni.jpg"} alt='Profile Pic' />
+            <div className="back-facing" onClick={() => setopen(true)}>
+                <MemberDetail className="back-facing" />
             </div>
-        </div>
+        </div >
     )
 }
 
