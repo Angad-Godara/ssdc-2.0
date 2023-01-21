@@ -14,6 +14,7 @@
 }
 
 .open {
+    align-self: center;
     width: 100%;
     perspective: 2000;
     border-radius: 25px;

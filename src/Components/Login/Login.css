@@ -75,7 +75,7 @@
 }
 
 .login__button{
-    width: 100%;
+    width: 85%;
     padding: 10px 15px;
     font-size: 15px;
     background: linear-gradient(215deg, #546e7a, #37474f);

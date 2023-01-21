@@ -46,10 +46,16 @@ function Navbar() {
                     </div>
                 </div>
                 <div className='nav__member'>
-                    <div className='nav__member__option'>
-                        <AiOutlineStar size={sw < 450 ? '10px' : (sw > 300 ? '12px' : '7px')} />
-                        <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Members</span>
-                    </div>
+                    {
+                        user ?
+                            <div className='nav__member__option'>
+                                <AiOutlineStar size={sw < 450 ? '10px' : (sw > 300 ? '12px' : '7px')} />
+                                <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Members</span>
+                            </div>
+                            :
+                            <></>
+                    }
+
                 </div>
                 {(user)
                     ?

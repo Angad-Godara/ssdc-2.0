@@ -1,15 +1,9 @@
 import React from 'react'
 import './Hometext.css'
-import {
-    Accordion,
-    AccordionItem,
-    AccordionItemHeading,
-    AccordionItemButton,
-    AccordionItemPanel,
-} from 'react-accessible-accordion';
-import 'react-accessible-accordion/dist/fancy-example.css';
+import Accordian from './Accordian';
 
 function Hometext() {
+
     return (
         <div className='text__container'>
             <div className='text__heading'>About Us</div>
@@ -27,48 +21,13 @@ function Hometext() {
             </div>
 
             <div className='text__heading'>We work on</div>
-            <Accordion>
-                <AccordionItem>
-                    <AccordionItemHeading>
-                        <AccordionItemButton>
-                            Competitive Programming
-                        </AccordionItemButton>
-                    </AccordionItemHeading>
-                    <AccordionItemPanel>
-                        <img className='text__work__image' src={'https://ssdc-sliet.github.io/assets/img/We_Work_On/Competitive-Programming.png'} />
-                    </AccordionItemPanel>
-                </AccordionItem>
-                <AccordionItem>
-                    <AccordionItemHeading>
-                        <AccordionItemButton>
-                            Web Development
-                        </AccordionItemButton>
-                    </AccordionItemHeading>
-                    <AccordionItemPanel>
-                        <img className='text__work__image' src={'https://ssdc-sliet.github.io/assets/img/We_Work_On/Web_Development.png'} />
-                    </AccordionItemPanel>
-                </AccordionItem>
-                <AccordionItem>
-                    <AccordionItemHeading>
-                        <AccordionItemButton>
-                            Machine Learning
-                        </AccordionItemButton>
-                    </AccordionItemHeading>
-                    <AccordionItemPanel>
-                        <img className='text__work__image' src={'https://ssdc-sliet.github.io/assets/img/We_Work_On/Competitive-Programming.png'} />
-                    </AccordionItemPanel>
-                </AccordionItem>
-                <AccordionItem>
-                    <AccordionItemHeading>
-                        <AccordionItemButton>
-                            Cybersecurity
-                        </AccordionItemButton>
-                    </AccordionItemHeading>
-                    <AccordionItemPanel>
-                        <img className='text__work__image' src={'https://ssdc-sliet.github.io/assets/img/We_Work_On/Competitive-Programming.png'} />
-                    </AccordionItemPanel>
-                </AccordionItem>
-            </Accordion>
+
+            <div className='accordian'>
+                <Accordian title={'Competitive Programming'} ico={'cp'} img={'t'} imgsrc={'https://ssdc-sliet.github.io/assets/img/We_Work_On/Competitive-Programming.png'} text={'f'} textsrc={''} />
+                <Accordian title={'Web Development'} img={'t'} ico={'webd'} imgsrc={'https://ssdc-sliet.github.io/assets/img/We_Work_On/Web_Development.png'} text={'f'} textsrc={''} />
+                <Accordian title={'Machine Learning'} img={'t'} ico={'ml'} imgsrc={'https://ssdc-sliet.github.io/assets/img/We_Work_On/Competitive-Programming.png'} text={'f'} textsrc={''} />
+                <Accordian title={'Cybersecurity'} img={'t'} ico={'cs'} imgsrc={'https://ssdc-sliet.github.io/assets/img/We_Work_On/Competitive-Programming.png'} text={'f'} textsrc={''} />
+            </div>
 
             <div className='text__heading'>Activities</div>
 
@@ -115,7 +74,6 @@ function Hometext() {
                     </div>
                 </div>
             </div>
-
         </div>
     )
 }

@@ -18,11 +18,12 @@ import User from './Components/User/User';
 import db from './firebase';
 import Explore from './Components/Explore/Explore';
 import Team from './Components/Team/Team';
+import Form from './Components/Form/Form';
 
 function App() {
 
   const dispatch = useDispatch();
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -39,6 +40,7 @@ function App() {
               email: snap.data().email
             }))
           })
+        navigate('/')
       } else {
         dispatch(logout())
       }
@@ -87,6 +89,7 @@ function App() {
             <Team />
           </>
         } />
+        <Route exact path='/form' element={<Form />} />
       </Routes>
     </div >
   );

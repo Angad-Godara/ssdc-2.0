@@ -3,11 +3,17 @@ import { useState, useEffect } from 'react'
 import './ContestScreen.css'
 // import Navbar from '../Navbar/Navbar'
 import './ContestScreen.css'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import moment from "moment/moment";
 import Footer from '../Footer/Footer'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../Features/userSlice'
+import { auth } from '../../firebase'
 
 function ContestScreen() {
+
+    const user = useSelector(selectUser)
+    const navigate = useNavigate();
 
     const [contests, setContests] = useState([]);
     const [query, setquery] = useState('all')
@@ -29,6 +35,15 @@ function ContestScreen() {
         };
         getContests(query);
     }, [query]);
+
+    const Logout = (e) => {
+        // e.preventDefault()
+        if (user) {
+            auth.signOut();
+        } else {
+            navigate('/login')
+        }
+    }
 
     function secondsToHms(d) {
         d = Number(d);
@@ -57,8 +72,8 @@ function ContestScreen() {
                         <div className="landing__nav__list">
                             <Link to="/" className='landing__nav__list__item'>Explore</Link>
                             <Link to="/contests" className='landing__nav__list__item'>Contests</Link>
-                            <Link to="/" className='landing__nav__list__item'>Team</Link>
-                            <Link to="/login" className='landing__nav__list__item'>SignIn</Link>
+                            <Link to="/team" className='landing__nav__list__item'>Team</Link>
+                            <Link to={user ? "/" : "/login"} onClick={Logout} className='landing__nav__list__item'>{user ? 'LogOut' : 'SignIn'}</Link>
                         </div>
                     </div>
                 </div>

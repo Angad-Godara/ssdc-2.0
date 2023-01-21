@@ -6,6 +6,8 @@ import { useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice'
 import { auth } from '../../firebase'
 import Hometext from '../HomeText/Hometext'
+import { TypeAnimation } from 'react-type-animation';
+import { MdFastfood } from 'react-icons/md'
 
 function HomeScreen() {
 
@@ -35,7 +37,7 @@ function HomeScreen() {
                     <div className='landing__background__rvs'></div>
                     <div className='inner'>
                         <div className="landing__nav">
-                            <img className='landing__nav__logo' alt="Loading" src="https://raw.githubusercontent.com/Angad-Godara/ssdc-2.0/master/public/NewLogoColor.png" />
+                            <img className='landing__nav__logo' alt="Loading" src="https://raw.githubusercontent.com/Angad-Godara/ssdc-web-dev/main/public/ssdcLogo.jpg" />
                             <div className="landing__nav__list">
                                 <Link to="/" className='landing__nav__list__item'>Explore</Link>
                                 <Link to="/contests" className='landing__nav__list__item'>Contests</Link>
@@ -52,6 +54,26 @@ function HomeScreen() {
                                 <p>Our Club is the only coding club of Sant Longowal Institute of Engineering and Technology. We welcomes you to our website.</p>
                                 <Link to='/register' className='container__button'>Create Account {'>'}</Link>
                             </div>
+                        </div>
+                        <div className='welcome__text__animation'>
+                            <TypeAnimation
+                                sequence={[
+                                    `We Code </>`, // Types 'One'
+                                    1000, // Waits 1s
+                                    'We Eat!'
+                                    ,
+                                    2000,
+                                    'We Sleep!',
+                                    3000,
+                                    'We Repeat!',
+                                    4000,
+                                ]}
+                                wrapper='h1'
+                                cursor={true}
+                                repeat={Infinity}
+                                speed="20"
+                                style={{ fontSize: '3em' }}
+                            />
                         </div>
                     </div>
                 </div>

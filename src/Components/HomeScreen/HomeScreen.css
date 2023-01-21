@@ -1,6 +1,5 @@
 .landing__page{
     min-height: 100vh;
-    overflow: hidden;
 }
 
 /* setting background */
@@ -59,7 +58,7 @@
     width: 100%;
     transform: skewY(-4.5deg);
     transform-origin: 0%;
-    background: white;
+    background: rgb(243, 240, 240);
 }
 
 
@@ -112,6 +111,26 @@
     animation-duration: 4s;
     animation-iteration-count: infinite;
     user-select: none;
+}
+
+/* welcome text animation */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,400;1,100&family=Roboto:wght@100;400&family=Unbounded:wght@600&display=swap');
+
+.welcome__text__animation{
+    height: 150px;
+    z-index: 11;
+    color: black;
+    font-family: 'Unbounded', cursive;
+
+}
+
+.welcome__text__animation >h1{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s;
+    font-weight: 300;
+    letter-spacing: 2px;
 }
 
 @keyframes bounce-1 {
