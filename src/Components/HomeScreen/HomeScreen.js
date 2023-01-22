@@ -7,7 +7,6 @@ import { selectUser } from '../../Features/userSlice'
 import { auth } from '../../firebase'
 import Hometext from '../HomeText/Hometext'
 import { TypeAnimation } from 'react-type-animation';
-import { MdFastfood } from 'react-icons/md'
 
 function HomeScreen() {
 
@@ -52,7 +51,7 @@ function HomeScreen() {
                             <div className='container__text'>
                                 <h1>SSDC Welcome You</h1>
                                 <p>Our Club is the only coding club of Sant Longowal Institute of Engineering and Technology. We welcomes you to our website.</p>
-                                <Link to='/register' className='container__button'>Create Account {'>'}</Link>
+                                {!user ? <Link to='/register' className='container__button'>Create Account {'>'}</Link> : <></>}
                             </div>
                         </div>
                         <div className='welcome__text__animation'>

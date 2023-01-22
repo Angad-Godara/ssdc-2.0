@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { MdOutlineNavigateBefore } from 'react-icons/md';
 import './Accordian.css'
 import { FaCode } from 'react-icons/fa' // CP
@@ -12,7 +12,7 @@ function Accordian({ title, ico, img, imgsrc, text, textsrc }) {
 
     return (
         <div className='item'>
-            <h4>
+            <h4 className='acc__title' onClick={() => setopen(!open)}>
                 <div>
                     {ico === 'cp' ? <FaCode /> : (ico === 'webd' ? <FaLaptopCode /> : (ico === 'ml' ? <GiGears /> : <MdSecurity />))}
                 </div>
@@ -20,8 +20,9 @@ function Accordian({ title, ico, img, imgsrc, text, textsrc }) {
                     {title}
                 </div>
                 <span className={open ? 'openarr' : 'closedarr'}>
-                    <MdOutlineNavigateBefore onClick={() => setopen(!open)} />
-                </span></h4>
+                    <MdOutlineNavigateBefore />
+                </span>
+            </h4>
             <div className={open ? 'accordcontent openacc' : 'accordcontent'}>
                 {text == 't' ? <p>{textsrc}</p> : <></>}
                 {img == 't' ? <img className='text__work__image' src={imgsrc} alt={title} /> : <></>}

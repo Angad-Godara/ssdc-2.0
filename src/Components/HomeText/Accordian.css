@@ -6,6 +6,15 @@
     padding: 20px;
 }
 
+.acc__title:active{
+    cursor: grabbing;
+}
+
+.acc__title{
+    color: rgb(86, 86, 86);
+    cursor: grab;
+}
+
 .item > h4{
     width: 100%;
     padding-bottom: 10px;
@@ -43,6 +52,8 @@
     overflow: hidden;
     max-height: 0px;
     transition: max-height 0.2s;
+    display: flex;
+    align-items: center;
 }
 
 .accordcontent > img{

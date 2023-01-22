@@ -1,3 +1,7 @@
+.HomeScreen{
+    background-color: rgb(247,249,252);
+}
+
 .landing__page{
     min-height: 100vh;
 }
@@ -58,7 +62,7 @@
     width: 100%;
     transform: skewY(-4.5deg);
     transform-origin: 0%;
-    background: rgb(243, 240, 240);
+    background-color: #fff;
 }
 
 
