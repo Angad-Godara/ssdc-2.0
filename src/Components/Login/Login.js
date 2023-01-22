@@ -16,7 +16,7 @@ function Login() {
         if (user) {
             navigate('/')
         }
-    }, [])
+    }, [user])
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);

@@ -134,6 +134,10 @@
     color: rgb(11,121,233)
 }
 
+.logo__mail:hover{
+    color: rgb(255, 29, 29);
+}
+
 .welcome__note{
     width: 100%;
     margin-top: 0.8rem;

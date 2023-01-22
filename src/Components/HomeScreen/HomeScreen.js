@@ -38,7 +38,7 @@ function HomeScreen() {
                         <div className="landing__nav">
                             <img className='landing__nav__logo' alt="Loading" src="https://raw.githubusercontent.com/Angad-Godara/ssdc-web-dev/main/public/ssdcLogo.jpg" />
                             <div className="landing__nav__list">
-                                <Link to="/" className='landing__nav__list__item'>Explore</Link>
+                                <Link to="/home" className='landing__nav__list__item'>Explore</Link>
                                 <Link to="/contests" className='landing__nav__list__item'>Contests</Link>
                                 <Link to="/team" className='landing__nav__list__item'>Team</Link>
                                 <Link to={user ? "/" : "/login"} onClick={Logout} className='landing__nav__list__item'>{user ? 'LogOut' : 'SignIn'}</Link>

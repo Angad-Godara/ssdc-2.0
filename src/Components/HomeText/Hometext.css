@@ -12,6 +12,11 @@
     text-align: center;
     margin-bottom: 30px;
 }
+
+.text__heading__title{
+  font-family: 'Rubik', serif;
+}
+
 .about{
   color: rgb(58,174,245);
 }

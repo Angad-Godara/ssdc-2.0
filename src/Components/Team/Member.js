@@ -39,11 +39,11 @@ function Member({ setopen }) {
                         </SpacedHorizontalConatiner>
                         <SpacedHorizontalConatiner style={{ marginTop: '10px' }}>
                             <Connections>
-                                <AiFillGithub style={{ cursor: 'pointer' }} size={20} />
+                                <AiFillGithub className='logo__github' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
                                 |
-                                <AiFillLinkedin style={{ cursor: 'pointer' }} size={20} />
+                                <AiFillLinkedin className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
                                 |
-                                <AiFillMail style={{ cursor: 'pointer' }} size={20} />
+                                <AiFillMail className='logo__mail' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
                             </Connections>
                             <CardButton style={{ marginLeft: 'auto', marginRight: '10px' }} onClick={() => setopen(false)}>
                                 <AiOutlineAim />
@@ -71,7 +71,7 @@ const CardContainer = styled(motion.div)`
     flex-direction: column;
     border-radius: 25px;
     box-shadow: 0 2px 7px 1px rgba(31, 31, 31, 0.2);
-    background-color: rgb(24 45 72);
+    background-color: rgb(30 43 59);
     color: #fff;
     position: relative;
     cursor: grab;
@@ -101,7 +101,7 @@ const Circle = styled.div`
     top: -4.2em;
     right: -8em;
     z-index: 5;
-    background-color: #40ced7;
+    background-color: rgb(255 74 74);
     border-radius: 50%;
 `
 
@@ -210,17 +210,5 @@ const CardButton = styled.button`
         border: 3px solid #fbbe01;
     }
 `
-
-const SsdcLogo = styled.div`
-  width: 100%;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  img {
-    width: auto;
-    height: 13px;
-  }
-`;
 
 export default Member

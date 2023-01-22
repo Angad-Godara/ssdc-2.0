@@ -1,33 +1,38 @@
 import React from 'react'
 import './Team.css'
-import styled from 'styled-components'
 import Card from './Card'
-import Member from './Member'
 
 function Team() {
     return (
-        <TeamWrapper>
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-            <Card />
-        </TeamWrapper>
+        <div className='teamContainer'>
+            <div className='team__core'>
+                <h2 className='team__title'>Core Team</h2>
+                <p>A core team is a group of individuals who are responsible for the success of a specific project or organization. These individuals typically have a specific set of skills and experience that make them well-suited for their roles.The core team is responsible for making key decisions and ensuring that the project or organization is on track to meet its goals.</p>
+                <div className='teamWrapper'>
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                </div>
+            </div>
+            <div className='team__members'>
+                <h2 className='team__title'>Members</h2>
+                <p>A member refers to an individual who belongs to a specific group, organization, or association. Members may also have certain responsibilities within the organization, such as participating in meetings or events, and may be eligible to hold leadership positions or vote on important decisions.</p>
+                <div className='teamWrapper'>
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                    <Card />
+                </div>
+            </div>
+        </div>
     )
 }
-
-const TeamWrapper = styled.div`
-    margin-top: 45px;
-    max-width: 100vw;
-    background-color: white;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-column-gap: 40px;
-    grid-row-gap: 60px;
-    margin-left: auto;
-    margin-right: auto;
-    padding: 40px 0;
-`;
 
 export default Team

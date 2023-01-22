@@ -15,7 +15,7 @@ function Register() {
         if (user) {
             navigate('/')
         }
-    }, [])
+    }, [user])
 
 
     const defaultURL = process.env.REACT_APP_DEFAULT_PhotoURL;
