@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { AiFillGithub, AiFillLinkedin, AiFillMail, AiOutlineAim } from 'react-icons/ai';
+import { AiFillGithub, AiFillLinkedin, AiFillMail, AiOutlineAim, AiOutlineLink } from 'react-icons/ai';
 
-function Member({ setopen }) {
+function Member({ setopen, fac }) {
 
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -39,11 +39,24 @@ function Member({ setopen }) {
                         </SpacedHorizontalConatiner>
                         <SpacedHorizontalConatiner style={{ marginTop: '10px' }}>
                             <Connections>
-                                <AiFillGithub className='logo__github' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
-                                |
-                                <AiFillLinkedin className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
-                                |
-                                <AiFillMail className='logo__mail' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
+                                {(fac)
+                                    ?
+                                    <div style={{ display: 'flex', alignItems: 'center', width: '100px', justifyContent: 'space-between' }}>
+                                        <AiFillMail className='logo__mail' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
+                                        <span>
+                                            |
+                                        </span>
+                                        <AiOutlineLink className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
+                                    </div>
+                                    :
+                                    <>
+                                        < AiFillGithub className='logo__github' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
+                                        |
+                                        <AiFillLinkedin className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
+                                        |
+                                        <AiFillMail className='logo__mail' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
+                                    </>
+                                }
                             </Connections>
                             <CardButton style={{ marginLeft: 'auto', marginRight: '10px' }} onClick={() => setopen(false)}>
                                 <AiOutlineAim />

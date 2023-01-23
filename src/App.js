@@ -107,11 +107,11 @@ function App() {
           <Route path='/user' element={
             <User />
           } />
-          <Route path="/home" element={
-            <HomeScreen />
-          } />
           <Route path="/" element={
-            <HomeScreen />
+            <>
+              <Navbar />
+              <Explore />
+            </>
           } />
           <Route path="/explore" element={
             <>

@@ -3,7 +3,7 @@ import './Card.css'
 import Member from './Member'
 import MemberDetail from './MemberDetail'
 
-function Card() {
+function Card({ fac }) {
 
     const [open, setopen] = useState(true)
 
@@ -11,7 +11,7 @@ function Card() {
         <div style={{ display: 'flex', justifyContent: 'center' }}>
             <div className={(open) ? "card" : "card open"}>
                 <div className="front-facing">
-                    <Member setopen={setopen} />
+                    <Member setopen={setopen} fac={fac} />
                 </div>
                 <div className="back-facing" onClick={() => setopen(true)}>
                     <MemberDetail className="back-facing" />

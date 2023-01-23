@@ -7,6 +7,7 @@
 
 .teamWrapper{
     margin-top: 25px;
+    margin-bottom: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
     grid-column-gap: 30px;
@@ -30,13 +31,13 @@
     letter-spacing: 2px;
     font-weight: 700;
     word-spacing: 2px;
-    margin-top: 30px;
+    padding-top: 30px;
     color: rgb(58,174,245);
 }
 
 .team__core > p, .team__members > p{
     margin-top: 15px;
-    padding: 0 20px 0 20px;
+    padding: 0 40px 0 40px;
     font-size: 14px;
     text-align: center;
     color: rgb(167,168,170)

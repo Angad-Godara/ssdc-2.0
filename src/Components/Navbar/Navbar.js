@@ -33,7 +33,7 @@ function Navbar() {
                         <img className='nav__logo' src={'https://raw.githubusercontent.com/Angad-Godara/ssdc-2.0/master/public/NewLogoColor.png'} alt='logo' />
                     </div>
                     <div className='nav__option'>
-                        <Link to="/home" className="option__link">Explore</Link>
+                        <Link to={user ? "/explore" : '/home'} className="option__link">Explore</Link>
                     </div>
                     <div className='nav__option'>
                         <Link to="/team" className="option__link">Team</Link>
