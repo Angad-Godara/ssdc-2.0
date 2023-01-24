@@ -63,12 +63,14 @@ function Navbar() {
                         <img onClick={() => setuserMenu(!userMenu)} src={user?.photoURL} alt='U' />
                         <div className={userMenu ? 'drop__menu__arrow' : 'hide__arrow'}></div>
                         <ul className={userMenu ? 'user__menu__wrapper open__menu' : ' user__menu__wrapper'}>
-                            <li className='user__info'>
-                                <div>
-                                    <img className='drop__item__logo' src={user?.photoURL} alt='U' />
-                                    <p className='drop__item__text'>{user?.username}</p>
-                                </div>
-                            </li>
+                            <Link to='/user'>
+                                <li className='user__info'>
+                                    <div>
+                                        <img className='drop__item__logo' src={user?.photoURL} alt='U' />
+                                        <p className='drop__item__text'>{user?.username}</p>
+                                    </div>
+                                </li>
+                            </Link>
                             <li className='drop__item'>
                                 <MdOutlinePrivacyTip className='drop__item__logo' size={20} />
                                 <p className='drop__item__text'>Privacy Policy</p>

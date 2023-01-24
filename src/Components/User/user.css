@@ -1,3 +1,125 @@
+.profile__pg__container{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+/* profile__header */
+.profile__header{
+    margin-top: 40px;
+    width: 100%;
+    height: 275px;
+}
+
+.bg__wrapper{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 387px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.bg__wrapper>div{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(-150deg, #222222 15%, #373737 70%, #3c4859 94%)
+}
+
+.profile__upper{
+    padding-top: 65px;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    align-items: center;
+}
+
+.avatar__wrapper{
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.avatar__wrapper>img{
+    height: 130px;
+    width: 130px;
+    border: 5px solid white;
+    border-radius: 15px
+}
+
+.avatar__wrapper>div{
+    width: 100%;
+}
+
+.edit__btn{
+    padding: 3px 8px 3px 8px;
+    border: #e3e2e2 1px solid;
+    border-radius: 6px;
+    position: relative;
+    bottom: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.edit__btn:hover{
+    color: white;
+    background-color: #3c4859;
+    border: #e3e2e2 1px solid;
+}
+
+.profile__upper>h3{
+    padding: 30px;
+    font-size: 24px;
+    color: #fff;
+    text-align: center;
+    margin-top: 0;
+}
+
+.profile__upper{
+    position: relative;
+    width: 750px;
+}
+
 .user__avatar{
     border-radius: 50%;
+    height: 140px;
+}
+
+/* profile__main */
+
+.profile__main{
+    position: relative;
+    z-index: 1;
+    height: 700px;
+    display: flex;
+    align-items: center;
+}
+
+.profile__left{
+    width: 27%;
+    height: 700px;
+}
+
+.profile__right{
+    width: 73%;
+    height: 100%
+}
+
+@media (max-width: 768px){
+    .profile__upper{
+        flex-direction: column;
+        width: 400px;
+    }
+
+    .profile__upper>h3{
+        padding-top: 0px;
+    }
 }

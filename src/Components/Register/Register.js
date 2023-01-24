@@ -26,14 +26,26 @@ function Register() {
     const [cnfpassword, setcnfpassword] = useState(null);
 
     const store = (authUser) => {
-        // using db
+        // pending checkblocks 
+
+        // if user exists previously
         db
             .collection('users')
             .doc(authUser?.uid)
-            .set({
-                email: authUser?.email,
-                username: authUser?.displayName,
-                photoURL: authUser?.photoURL
+            .onSnapshot(snap => {
+                if (snap.data()) {
+                    return;
+                } else {
+                    // updating db
+                    db
+                        .collection('users')
+                        .doc(authUser?.uid)
+                        .set({
+                            email: authUser?.email,
+                            username: authUser?.displayName,
+                            photoURL: authUser?.photoURL
+                        })
+                }
             })
     }
 

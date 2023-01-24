@@ -30,16 +30,16 @@ function App() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // using db
+        // fetching user from db
         db
           .collection('users')
           .doc(authUser?.uid)
           .onSnapshot(snap => {
             dispatch(login({
               uid: authUser?.uid,
-              photoURL: snap.data().photoURL,
-              username: snap.data().username,
-              email: snap.data().email
+              photoURL: snap.data()?.photoURL,
+              username: snap.data()?.username,
+              email: snap.data()?.email
             }))
           })
       } else {
@@ -105,7 +105,10 @@ function App() {
             <ContestScreen />
           } />
           <Route path='/user' element={
-            <User />
+            <>
+              <Navbar />
+              <User />
+            </>
           } />
           <Route path="/" element={
             <>

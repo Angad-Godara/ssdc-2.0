@@ -1,0 +1,15 @@
+.ProfileUpdateForm{
+    min-width: 504px;
+    max-width: 855px;
+    min-height: 600px;
+    background: white;
+    border-radius: 5px;
+    margin-bottom: 50px;
+    font-size: 14px;
+    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 8%);
+    transition: box-shadow 0.4s;
+}
+
+.ProfileUpdateForm:hover{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
