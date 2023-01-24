@@ -87,7 +87,7 @@ function Login() {
         <div className='login__wrapper'>
             <div className='login__container'>
                 <div className='login__form__wrapper'>
-                    <img className='login__logo' src={'https://raw.githubusercontent.com/Angad-Godara/ssdc-2.0/master/public/NewLogoColor.png'}
+                    <img className='login__logo' src={'./NewLogoColor.png'}
                         alt='SSDC' />
                     <form className='login__form'>
                         <span>

@@ -94,7 +94,7 @@ function Register() {
         <div className='register__wrapper'>
             <div className='register__container'>
                 <div className='register__form__wrapper'>
-                    <img className='register__logo' src={'https://raw.githubusercontent.com/Angad-Godara/ssdc-2.0/master/public/NewLogoColor.png'}
+                    <img className='register__logo' src={'./NewLogoColor.png'}
                         alt='SSDC' />
                     <form className='register__form'>
                         <span>

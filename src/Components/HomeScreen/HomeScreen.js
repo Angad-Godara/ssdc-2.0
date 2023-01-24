@@ -46,7 +46,7 @@ function HomeScreen() {
                         </div>
                         <div className='container'>
                             <div style={{ flex: '1 1' }}>
-                                <img alt="Loading" src="https://raw.githubusercontent.com/Angad-Godara/ssdc-2.0/master/public/tablet.png" className='landing__tablet' />
+                                <img alt="Loading" src="./tablet.png" className='landing__tablet' />
                             </div>
                             <div className='container__text'>
                                 <h1>SSDC Welcome You</h1>
