@@ -19,12 +19,12 @@ import db from './firebase';
 import Explore from './Components/Explore/Explore';
 import Team from './Components/Team/Team';
 import Form from './Components/Form/Form';
+import { selectUserMenu, close } from './Features/userMenu'
 
 function App() {
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
-
+  const userMenu = useSelector(selectUserMenu)
   const user = useSelector(selectUser)
 
   useEffect(() => {
@@ -50,7 +50,10 @@ function App() {
   }, [])
 
   return (
-    <div className="App">
+    <div onClick={() => {
+      if (userMenu)
+        dispatch(close())
+    }} className="App">
       {(!user)
         ?
         <Routes>
@@ -128,7 +131,12 @@ function App() {
               <Team />
             </>
           } />
-          <Route exact path='/form' element={<Form />} />
+          <Route exact path='/form' element={
+            <>
+              <Navbar />
+              <Form />
+            </>
+          } />
         </Routes>
       }
     </div >

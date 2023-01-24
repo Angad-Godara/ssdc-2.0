@@ -1,144 +1,107 @@
-/* 
-    .main-block h1, h2 {
-    text-transform: uppercase;
-    font-weight: 400;
-    }
-    .main-block {
-    margin: 0 0 0 8px;
-    }
-    .main-block {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding: 25px;
-    background: rgba(0, 0, 0, 0.5); 
-    }
-    .left-part, form {
-    padding: 25px;
-    }
-    .left-part {
+.form__body{
+    background: linear-gradient(to bottom right,rgb(236,236,236),rgba(203, rgb(73, 73, 73)7, 0.933),rgb(61, 61, 61));
+    /* height: 100vh; */
+}
+
+.form__container{
+    width: 60vh;
+    height: 90vh;
+    background-color: azure;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5) , 0 6px 20px 0 rgba(0,0,0,0.5);
+    border-radius: 5px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 2rem;
+}
+.form__title{
+    padding: 2rem;
+    color: #80669d;
     text-align: center;
-    }
-    .fa-graduation-cap {
-    font-size: 72px;
-    }
-    form {
-    background: rgba(0, 0, 0, 0.7); 
-    }
-    .title {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    }
-    .info {
+}
+.form__panel{
     display: flex;
     flex-direction: column;
-    color: white;
-    }
-    input, select {
-    padding: 5px;
-    margin-bottom: 30px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #eee;
-    }
-    input::placeholder {
-    color: #eee;
-    }
-    option:focus {
-    border: none;
-    }
-    option {
-    background: black; 
-    border: none;
-    }
-    .checkbox input {
-    margin: 0 10px 0 0;
-    vertical-align: middle;
-    }
-    .checkbox a {
-    color: #26a9e0;
-    }
-    .checkbox a:hover {
-    color: #85d6de;
-    }
-    .btn-item, button {
-    padding: 10px 5px;
-    margin-top: 20px;
-    border-radius: 5px; 
-    border: none;
-    background: #26a9e0; 
-    text-decoration: none;
-    font-size: 15px;
-    font-weight: 400;
-    color: #fff;
-    }
-    .btn-item {
-    display: inline-block;
-    margin: 20px 5px 0;
-    }
-    button {
+    gap: 1rem;
+}
+.form__panel > input{
+    padding: 0.5rem;
+    border: 1px solid transparent;
+    border-bottom: 1px solid gray;
+    background-color: transparent;
+    outline: none;
+}
+::placeholder{
+    color: rgb(84,110,122);
+}
+.form__panel > input:hover{
+    border: 1px solid black;
+    border-radius: 0.4rem;
+}
+
+.upload_img input{
     width: 100%;
-    }
-    button:hover, .btn-item:hover {
-    background: #85d6de;
-    }
-    @media (min-width: 568px) {
-    html, body {
-    height: 100%;
-    }
-    .main-block {
-    flex-direction: row;
-    height: calc(100% - 50px);
-    }
-    .left-part, form {
-    flex: 1;
-    height: auto;
-    }
-} */
+    overflow-x: hidden;
+    padding-right: 0;
+}
+.upload_img{
+    padding: 0.4rem;
+    line-height: 2rem;
+}
+.member_type p{
+    padding: 0.4rem;
+}
+.member_type{
+    
+    line-height: 2rem;
+}
+select{
+    padding: 0.4rem;
+    width: 100%;
+    border: transparent;
+    border-bottom: 1px solid black;
+    background-color: transparent;
+} 
 
-/* .form__container{
+.buttons{
+    padding: 0.3rem;
+    padding-top: 1rem;
     display: flex;
-    flex-direction: row;
+    gap: 1rem;
     justify-content: center;
-    align-items: center;
-    height: 100%;
-    padding: 25px;
-    background: rgba(0, 0, 0, 0.5);
 }
-
-.form__left, form {
-    padding: 25px;
-}
-.form__left {
-    text-align: center;
-}
-.form__right{
+.btn{
+    padding: 0.5rem;
     width: 50%;
+    border-radius: 0.3rem;
+    border: 1px solid transparent;
+    background-color: #80669d;
+    color: #ffff;
+    font-weight: 600;
+    letter-spacing: 0.1rem;
 }
-.form__right > input select{
-    padding: 5px;
-    margin-bottom: 30px;
-    background: transparent;
-    border: none;
-    border-bottom: 1px solid #eee;
+.btn:hover{
+    background-color: #7f679eee;
+    border: 2px solid #80669d;
+    box-shadow: 0 3px 2px rgba(0,0,0,0.2);
+    transform: scale(1.005);
 }
 
-.form__info {
-    display: flex;
-    flex-direction: column;
-    color: white;
+@media (max-width:600px){
+    .container{
+        width: 40vh;
+        height: 70vh;
+    }
+    .title h1{
+        font-size: 2rem;
+    }
 }
-
-.checkbox input {
-    margin: 0 10px 0 0;
-    vertical-align: middle;
+@media (max-width:400px){
+    .container{
+        width: 50vh;
+        height: 90vh;
+    }
+    .title h1{
+        font-size: 1.6rem;
+    }
 }
-.checkbox a {
-    color: #26a9e0;
-}
-.checkbox a:hover {
-    color: #85d6de;
-} */

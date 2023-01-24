@@ -3,18 +3,20 @@ import './Navbar.css'
 import { useEffect, useState } from 'react'
 import { AiOutlineStar } from 'react-icons/ai'
 import { Link, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice'
 import { BiExit } from 'react-icons/bi'
 import { MdOutlinePrivacyTip } from 'react-icons/md'
 import { auth } from '../../firebase'
+import { selectUserMenu, open } from '../../Features/userMenu'
 
 function Navbar() {
 
     const [sw, setsw] = useState(window.screen.width)
     const user = useSelector(selectUser)
-    const [userMenu, setuserMenu] = useState(false)
+    const userMenu = useSelector(selectUserMenu)
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         setsw(window.screen.width);
@@ -48,10 +50,10 @@ function Navbar() {
                 <div className='nav__member'>
                     {
                         user ?
-                            <div className='nav__member__option'>
+                            <Link to='/form' className='nav__member__option'>
                                 <AiOutlineStar size={sw < 450 ? '10px' : (sw > 300 ? '12px' : '7px')} />
                                 <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Members</span>
-                            </div>
+                            </Link>
                             :
                             <></>
                     }
@@ -60,7 +62,7 @@ function Navbar() {
                 {(user)
                     ?
                     <div className='user'>
-                        <img onClick={() => setuserMenu(!userMenu)} src={user?.photoURL} alt='U' />
+                        <img onClick={() => dispatch(open(!userMenu))} src={user?.photoURL} alt='U' />
                         <div className={userMenu ? 'drop__menu__arrow' : 'hide__arrow'}></div>
                         <ul className={userMenu ? 'user__menu__wrapper open__menu' : ' user__menu__wrapper'}>
                             <Link to='/user'>
