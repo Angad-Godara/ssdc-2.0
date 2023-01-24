@@ -1,22 +1,25 @@
 .form__body{
     background: linear-gradient(to bottom right,rgb(236,236,236),rgba(203, rgb(73, 73, 73)7, 0.933),rgb(61, 61, 61));
-    /* height: 100vh; */
+    height: 100vh;
+    margin-top: 45px;
+    display: flex;
 }
 
 .form__container{
     width: 60vh;
-    height: 90vh;
+    height: 93vh;
     background-color: azure;
     border: 2px solid transparent;
     box-shadow: 0 4px 8px rgba(0,0,0,0.5) , 0 6px 20px 0 rgba(0,0,0,0.5);
     border-radius: 5px;
     padding: 10px;
     margin: auto;
-    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
 }
 .form__title{
     padding: 2rem;
-    color: #80669d;
+    color: rgb(84,110,122);
     text-align: center;
 }
 .form__panel{
@@ -34,74 +37,94 @@
 ::placeholder{
     color: rgb(84,110,122);
 }
-.form__panel > input:hover{
-    border: 1px solid black;
-    border-radius: 0.4rem;
+
+.form__upload_img input[type=file]::file-selector-button {
+    margin-right: 20px;
+    border: none;
+    background: rgb(79, 79, 79);
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #fff;
+    cursor: pointer;
+    transition: background .2s ease-in-out;
+  }
+  
+input[type=file]::file-selector-button:hover {
+   background: rgba(118, 118, 118, 0.933);
 }
 
-.upload_img input{
-    width: 100%;
-    overflow-x: hidden;
-    padding-right: 0;
-}
-.upload_img{
+.form__upload_img{
     padding: 0.4rem;
     line-height: 2rem;
 }
-.member_type p{
+
+.member_type > p{
     padding: 0.4rem;
 }
+
 .member_type{
-    
     line-height: 2rem;
 }
-select{
+
+.position{
     padding: 0.4rem;
     width: 100%;
     border: transparent;
     border-bottom: 1px solid black;
     background-color: transparent;
+    outline: none;
 } 
 
-.buttons{
+.form__select__option{
+    padding: 10px;
+    font-size: medium;
+}
+
+.form__buttons{
     padding: 0.3rem;
     padding-top: 1rem;
     display: flex;
     gap: 1rem;
     justify-content: center;
 }
-.btn{
+
+.form__btn{
     padding: 0.5rem;
     width: 50%;
     border-radius: 0.3rem;
     border: 1px solid transparent;
-    background-color: #80669d;
+    background-color: rgb(79, 79, 79);
     color: #ffff;
     font-weight: 600;
     letter-spacing: 0.1rem;
 }
-.btn:hover{
-    background-color: #7f679eee;
-    border: 2px solid #80669d;
+
+.disabledbtn{
+    background-color: rgba(118, 118, 118, 0.933);
+}
+
+.form__btn:hover{
+    background-color: rgba(118, 118, 118, 0.933);
     box-shadow: 0 3px 2px rgba(0,0,0,0.2);
     transform: scale(1.005);
+    cursor: pointer;
 }
 
 @media (max-width:600px){
-    .container{
+    .form__container{
         width: 40vh;
         height: 70vh;
     }
-    .title h1{
+    .form__title h1{
         font-size: 2rem;
     }
 }
 @media (max-width:400px){
-    .container{
+    .form__container{
         width: 50vh;
         height: 90vh;
     }
-    .title h1{
+    .form__title h1{
         font-size: 1.6rem;
     }
 }

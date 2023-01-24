@@ -7,13 +7,16 @@ import db, { auth, storage } from '../../firebase';
 import { FiEdit2 } from 'react-icons/fi'
 import './user.css'
 import ProfileUpdateForm from './ProfileUpdate/ProfileUpdateForm';
+import PreviewImg from './ProfileUpdate/PreviewImg';
 
 function User() {
 
     const history = useNavigate()
     const user = useSelector(selectUser)
 
+    const [open, setopen] = useState(false)
     const [file, setfile] = useState(null);
+    const [preveiw, setPreveiw] = useState(null)
 
     const checkFile = (e) => {
         if (e.target.files[0].size / (1048576) >= 2) {
@@ -21,13 +24,32 @@ function User() {
             e.target.value = null
             return;
         }
+        setPreveiw(URL.createObjectURL(e.target.files[0]))
         setfile(e.target.files[0])
     }
 
-    const upload = () => {
-        // pending catches
+    const closeit = () => {
+        if (open) {
+            setopen(false);
+            return;
+        }
+        return;
+    }
 
-        const imageRef = ref(storage, `members/${user.email}`)
+    const resetImg = () => {
+        setfile(null);
+        setPreveiw(null);
+    }
+
+    const upload = () => {
+
+        if (!file) {
+            alert('Invalid upload');
+            return;
+        }
+
+        // pending catches
+        const imageRef = ref(storage, `members/${user?.email}`)
         uploadBytes(imageRef, file)
             .then((result) => {
                 getDownloadURL(result.ref).then(url => {
@@ -40,6 +62,7 @@ function User() {
                         .catch((err) => alert(err))
                 })
                 alert('uploaded')
+                closeit();
             })
             .catch(err => {
                 alert('Please try again later!')
@@ -49,6 +72,12 @@ function User() {
 
     return (
         <div className='profile__wrapper'>
+            <div className={(open) ? 'dialog__wrapper' : 'dialog__wrapper closeprev'}>
+                <div className='dialog__container'>
+                    <PreviewImg checkFile={checkFile} preveiw={preveiw} upload={upload} resetImg={resetImg} dft={user?.photoURL} closeit={closeit} />
+                </div>
+            </div>
+
             <div className='profile__header'>
                 <div className='bg__wrapper'>
                     <div></div>
@@ -57,7 +86,7 @@ function User() {
                     <div className='avatar__wrapper'>
                         <img src={user?.photoURL} alt='USER' />
                         <div>
-                            <div className='edit__btn'> <FiEdit2 size={'12px'} /> Edit</div>
+                            <div className='edit__btn' onClick={() => setopen(true)}> <FiEdit2 size={'12px'} /> Edit</div>
                         </div>
                     </div>
                     <h3>{user?.username}</h3>
@@ -80,6 +109,7 @@ function User() {
                 <h1>{user?.uid}</h1>
                 <img className="user__avatar" src={user?.photoURL} alt="" />
                 <input type={'file'} onChange={checkFile} />
+                {file && <img src={preveiw} />}
                 <button disabled={!file} onClick={upload}>upload</button>
             </div> */}
         </div>

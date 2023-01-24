@@ -135,6 +135,7 @@ function App() {
             <>
               <Navbar />
               <Form />
+              <Footer />
             </>
           } />
         </Routes>

@@ -113,6 +113,28 @@
     height: 100%
 }
 
+/* dialog__wrapper */
+
+.dialog__wrapper{
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    height: 100%;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(55, 55, 55, 0.6);
+}
+
+.closeprev{
+    z-index: -1;
+    width: 0;
+    height: 0;
+}
+
 @media (max-width: 768px){
     .profile__upper{
         flex-direction: column;

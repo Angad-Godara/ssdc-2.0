@@ -164,10 +164,10 @@ const Profile = styled(motion.div)`
     margin: auto;
 
     img{
-        width: auto;
-        height: 100%;
+        height: 150px;
+        width: 150px;
         user-select: none;
-        border-radius: 47%;
+        border-radius: 50%;
     }
 
 `

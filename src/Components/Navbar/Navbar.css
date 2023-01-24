@@ -99,7 +99,8 @@ a{
 
 .user > img{
     cursor: pointer;
-    max-height: 30px;
+    height: 30px;
+    width: 30px;
     border-radius: 50%;
     user-select: none;
 }
@@ -155,6 +156,11 @@ a{
 .drop__item:hover{
     color: black;
     background: rgba(187, 191, 195, 0.534);
+}
+
+.user__info>div>img{
+    height: 35px;
+    width: 35px;
 }
 
 .drop__item__logo{
