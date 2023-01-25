@@ -1,8 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import './ContestScreen.css'
-// import Navbar from '../Navbar/Navbar'
-import './ContestScreen.css'
 import { Link, useNavigate } from 'react-router-dom'
 import moment from "moment/moment";
 import Footer from '../Footer/Footer'

@@ -1,0 +1,17 @@
+.policy__container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    width: 50%;
+    margin: auto;
+}
+
+.policy__container > h2{
+    text-align: center;
+}
+
+.policy__para{
+    text-align: justify;
+    text-justify: inter-word;
+}

@@ -15,7 +15,6 @@ function HomeScreen() {
     const user = useSelector(selectUser)
 
     const Logout = (e) => {
-        // e.preventDefault()
         if (user) {
             auth.signOut();
         } else {

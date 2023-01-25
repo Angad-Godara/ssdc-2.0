@@ -19,7 +19,7 @@ function PreviewImg({ checkFile, preveiw, upload, resetImg, dft, closeit }) {
           <AiOutlineFileImage />
           &nbsp; Choose Avatar
         </label>
-        <input onChange={checkFile} id='avatar_uploader' type={'file'} />
+        <input accept="image/*" onChange={checkFile} id='avatar_uploader' type={'file'} />
       </ChooseWrap>
       <ActionBtnWrap>
         <SaveBtn onClick={upload}><AiOutlineSave /> Save</SaveBtn>

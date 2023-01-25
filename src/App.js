@@ -21,6 +21,7 @@ import Team from './Components/Team/Team';
 import Form from './Components/Form/Form';
 import { selectUserMenu, close } from './Features/userMenu'
 import VerifyEmail from './Components/Register/VerifyEmail';
+import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
 
 function App() {
 
@@ -43,14 +44,12 @@ function App() {
               photoURL: snap.data()?.photoURL,
               username: snap.data()?.username,
               email: snap.data()?.email,
-              isMember: snap.data()?.isMember,
-              appliedMembership: snap.data()?.appliedMembership,
+              mstatus: snap.data()?.mstatus,
             }))
           })
 
       } else {
         dispatch(logout())
-        navigate('/')
       }
     })
     return unsubscribe;
@@ -85,7 +84,6 @@ function App() {
             <>
               <Navbar />
               <Team />
-              <Footer />
             </>
           } />
           <Route path="/contests" element={
@@ -93,6 +91,11 @@ function App() {
           } />
           <Route path="/" element={
             <HomeScreen />
+          } />
+          <Route path="/privacy" element={
+            <>
+              <PrivacyPolicy />
+            </>
           } />
         </Routes>
         :
@@ -148,10 +151,20 @@ function App() {
                 <Footer />
               </>
             } />
+            <Route path="/privacy" element={
+              <>
+                <PrivacyPolicy />
+              </>
+            } />
           </Routes>
           :
           <Routes>
-            <Route exact path='/register' element={
+            <Route path='/register' element={
+              <>
+                <VerifyEmail />
+              </>
+            } />
+            <Route path='/' element={
               <>
                 <VerifyEmail />
               </>

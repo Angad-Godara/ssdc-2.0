@@ -131,7 +131,7 @@
 .right__upd>textarea{
     padding: 10px;
     min-height: 100px;
-    min-width: 300px;
+    width: 300px;
 }
 
 .skills{

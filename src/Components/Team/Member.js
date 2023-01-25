@@ -35,7 +35,6 @@ function Member({ setopen, fac }) {
                         <SmallText>Member</SmallText>
                         <SpacedHorizontalConatiner>
                             <MediumText>Junior Tester</MediumText>
-                            {/* <MediumText>₹ 67,999 </MediumText> */}
                         </SpacedHorizontalConatiner>
                         <SpacedHorizontalConatiner style={{ marginTop: '10px' }}>
                             <Connections>

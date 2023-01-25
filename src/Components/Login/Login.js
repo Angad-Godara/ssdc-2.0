@@ -41,8 +41,7 @@ function Login() {
                             email: authUser?.email,
                             username: authUser?.displayName,
                             photoURL: authUser?.photoURL,
-                            isMember: false,
-                            appliedMembership: false,
+                            mstatus: 'NA',
                         })
                 }
             })
@@ -136,6 +135,3 @@ function Login() {
 }
 
 export default Login
-
-// <AiFillGoogleCircle />  Google icon
-// <AiFillGithub /> Github

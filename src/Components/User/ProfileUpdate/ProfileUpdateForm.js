@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../../Features/userSlice'
 import './ProfileUpdateForm.css'
-import { CgAdd } from 'react-icons/cg'
 
 function ProfileUpdateForm() {
 
@@ -252,7 +251,7 @@ function ProfileUpdateForm() {
                             <option value={'GEC'} >GEC</option>
                             <option value={'GEE'} >GEE</option>
                             <option value={'GIN'} >GIN</option>
-                            <option value={'GCH'} >GCH</option>
+                            <option value={'GCH'} >GCT</option>
                             <option value={'GFT'} >GFT</option>
                             <option value={'GME'} >GME</option>
                         </select>

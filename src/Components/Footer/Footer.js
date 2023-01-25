@@ -1,5 +1,6 @@
 import React from 'react'
 import './footer.css'
+import { Link } from 'react-router-dom'
 
 function Footer() {
     return (
@@ -7,22 +8,22 @@ function Footer() {
             <div className='footer__wrapper'>
                 <div className='footer__links'>
                     <div className='footer__option'>
-                        Copyright &copy; SSDC
+                        Copyright &copy; 2023
                     </div>
                     <div className='footer__option'>
-                        <a href="/" className="option__link">Explore</a>
+                        <Link to="/" className="option__link">Explore</Link>
                     </div>
                     <div className='footer__option'>
-                        <a href="/" className="option__link">Team</a>
+                        <Link to="/team" className="option__link">Team</Link>
                     </div>
                     <div className='footer__option'>
-                        <a href="/" className="option__link">Projects</a>
+                        <Link to="/" className="option__link">Projects</Link>
                     </div>
                     <div className='footer__option'>
-                        <a href="/" className="option__link">Alumni</a>
+                        <Link to="/" className="option__link">Alumni</Link>
                     </div>
                     <div className='footer__option'>
-                        <a href="/" className="option__link">Privacy Policy</a>
+                        <Link to="/privacy" className="option__link">Privacy Policy</Link>
                     </div>
                 </div>
                 <div className='footer__country'>
