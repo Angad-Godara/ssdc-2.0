@@ -99,12 +99,15 @@
     position: relative;
     z-index: 1;
     display: flex;
-    align-items: center;
 }
 
 .profile__left{
     width: 27%;
-    height: 700px;
+    padding: 20px;
+    padding-top: 70px;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
 }
 
 .profile__right{
@@ -132,6 +135,14 @@
     z-index: -1;
     width: 0;
     height: 0;
+}
+
+.upd__menu__item{
+    padding: 10px;
+    background-color: #64b9f9;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
 }
 
 @media (max-width: 768px){

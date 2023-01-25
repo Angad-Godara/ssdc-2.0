@@ -94,25 +94,15 @@ function User() {
                 </div>
             </div>
             <div className='profile__main profile__pg__container'>
-                <div className='profile__left'></div>
+                <div className='profile__left'>
+                    <div className='upd__menu__item'>
+                        Basic Info
+                    </div>
+                </div>
                 <div className='profile__right'>
                     <ProfileUpdateForm />
                 </div>
             </div>
-
-            {/* <div>User
-                <button onClick={() => {
-                    auth.signOut();
-                    history('/')
-                }}> Logout </button>
-                <h1>{user?.username}</h1>
-                <h1>{user?.email}</h1>
-                <h1>{user?.uid}</h1>
-                <img className="user__avatar" src={user?.photoURL} alt="" />
-                <input type={'file'} onChange={checkFile} />
-                {file && <img src={preveiw} />}
-                <button disabled={!file} onClick={upload}>upload</button>
-            </div> */}
             <Footer />
         </div>
     )
