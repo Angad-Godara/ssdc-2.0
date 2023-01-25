@@ -40,7 +40,9 @@ function Login() {
                         .set({
                             email: authUser?.email,
                             username: authUser?.displayName,
-                            photoURL: authUser?.photoURL
+                            photoURL: authUser?.photoURL,
+                            isMember: false,
+                            appliedMembership: false,
                         })
                 }
             })

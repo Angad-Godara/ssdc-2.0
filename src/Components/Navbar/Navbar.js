@@ -49,7 +49,8 @@ function Navbar() {
                 </div>
                 <div className='nav__member'>
                     {
-                        user ?
+                        (!user?.isMember)
+                            ?
                             <Link to='/form' className='nav__member__option'>
                                 <AiOutlineStar size={sw < 450 ? '10px' : (sw > 300 ? '12px' : '7px')} />
                                 <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Members</span>

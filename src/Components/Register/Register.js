@@ -43,7 +43,9 @@ function Register() {
                         .set({
                             email: authUser?.email,
                             username: authUser?.displayName,
-                            photoURL: authUser?.photoURL
+                            photoURL: authUser?.photoURL,
+                            isMember: false,
+                            appliedMembership: false,
                         })
                 }
             })
@@ -58,7 +60,10 @@ function Register() {
                     .set({
                         email: authUser.user.email,
                         username: username,
-                        photoURL: defaultURL
+                        photoURL: defaultURL,
+                        isMember: false,
+                        appliedMembership: false,
+                        isVerified: authUser.user.emailVerified,
                     })
             }).catch((error) => {
                 alert(error.message)
