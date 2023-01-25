@@ -98,7 +98,6 @@
 .profile__main{
     position: relative;
     z-index: 1;
-    height: 700px;
     display: flex;
     align-items: center;
 }

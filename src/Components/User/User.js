@@ -8,6 +8,7 @@ import { FiEdit2 } from 'react-icons/fi'
 import './user.css'
 import ProfileUpdateForm from './ProfileUpdate/ProfileUpdateForm';
 import PreviewImg from './ProfileUpdate/PreviewImg';
+import Footer from '../Footer/Footer';
 
 function User() {
 
@@ -112,6 +113,7 @@ function User() {
                 {file && <img src={preveiw} />}
                 <button disabled={!file} onClick={upload}>upload</button>
             </div> */}
+            <Footer />
         </div>
     )
 }
