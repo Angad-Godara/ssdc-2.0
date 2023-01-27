@@ -5,8 +5,6 @@ import { MdCancel } from 'react-icons/md'
 
 function PreviewImg({ checkFile, preveiw, upload, resetImg, dft, closeit }) {
 
-
-
   return (
     <PrevContainer>
       <PreveiwHeader><h4 className='upload-heading'>Upload your new avatar</h4><span className='cancelbtn' onClick={closeit}><MdCancel /></span></PreveiwHeader>

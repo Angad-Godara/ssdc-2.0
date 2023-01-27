@@ -1,9 +1,8 @@
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom';
 import { selectUser } from '../../Features/userSlice';
-import db, { auth, storage } from '../../firebase';
+import db, { storage } from '../../firebase';
 import { FiEdit2 } from 'react-icons/fi'
 import './user.css'
 import ProfileUpdateForm from './ProfileUpdate/ProfileUpdateForm';
@@ -12,7 +11,6 @@ import Footer from '../Footer/Footer';
 
 function User() {
 
-    const history = useNavigate()
     const user = useSelector(selectUser)
 
     const [open, setopen] = useState(false)

@@ -24,6 +24,7 @@ function Register() {
     const [aim, setaim] = useState(null)
     const [post, setpost] = useState('member')
     const [check, setcheck] = useState(false)
+    const [gender, setgender] = useState('male')
 
     const [fileE, setfileE] = useState(null);
 
@@ -108,6 +109,7 @@ function Register() {
     const [branchE, setbranchE] = useState(null)
     const [aimE, setaimE] = useState(null)
     const [postE, setpostE] = useState(null)
+    const [genderE, setgenderE] = useState(null)
 
 
     const handleValidation = (evnt) => {
@@ -156,6 +158,11 @@ function Register() {
                 setaimE(errMsg)
             else
                 setaimE(null)
+        } else if (FieldName === 'gender') {
+            if (errMsg !== "")
+                setgenderE(errMsg)
+            else
+                setgenderE(null)
         }
     }
 
@@ -182,6 +189,15 @@ function Register() {
                         <textarea onKeyUp={(e) => handleValidation(e)} onChange={(e) => setaim(e.target.value)} name="aim" required placeholder="Tell us about yourself (interests, experience, etc.)"></textarea>
                         {(aimE) ? <p className='input__errors'>{aimE}</p> : <div className='input__errors'></div>}
 
+                        <div className="member_type mem">
+                            <label htmlFor="position1"><p>Gender*</p></label>
+                            <select defaultValue="male" name='gender' required onChange={(e) => setgender(e.target.value)} className='position1' type={'text'}>
+                                <option value="male" className='form__select__option' >male</option>
+                                <option value="female" className='form__select__option' >female</option>
+                                <option value="other" className='form__select__option' >other</option>
+                            </select>
+                            {(genderE) ? <p className='input__errors'>{genderE}</p> : <div className='input__errors'></div>}
+                        </div>
                         <div className="member_type mem">
                             <label htmlFor="position1"><p>Branch*</p></label>
                             <select defaultValue="GCS" name='branch' required onChange={(e) => setbranch(e.target.value)} className='position1' type={'text'}>
@@ -210,7 +226,7 @@ function Register() {
                                 <AiOutlineFileImage />
                                 &nbsp; Choose Avatar
                             </label>
-                            <input required onKeyUp={(e) => handleValidation(e)} onChange={checkFile} id='avatar_uploader' type={'file'} />
+                            <input accept='image/*' required onKeyUp={(e) => handleValidation(e)} onChange={checkFile} id='avatar_uploader' type={'file'} />
                             <div onClick={upload}><BsUpload size={'15px'} /> Upload</div>
                         </div>
                         {(fileE) ? <p className='input__errors'>{fileE}</p> : <div className='input__errors'></div>}

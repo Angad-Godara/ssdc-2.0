@@ -50,6 +50,11 @@
     overflow-wrap: break-word;
 }
 
+.right__upd>a:hover{
+    color: #21a9ed;
+    transition: all 0.3s;
+}
+
 .right__corner__wrapper{
     flex: 1 1 20%;
     text-align: right;
@@ -169,4 +174,34 @@
 .add__skill{
     cursor: pointer;
     margin-left: auto;
+}
+
+.button__wrapper{
+    margin: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button__wrapper>button{
+    width: 30%;
+    padding: 10px 15px;
+    font-size: 15px;
+    background: linear-gradient(215deg, #546e7a, #37474f);
+    color: white;
+    border-radius: 3px;
+    transition: 0.3s all ease-in-out;
+    cursor: pointer;
+    border: none;
+}
+
+.button__wrapper>button:hover{
+    opacity: 0.9;
+    background: linear-gradient(35deg, #546e7a, #37474f);
+}
+
+.nochange{
+    width: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
 }

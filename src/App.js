@@ -3,7 +3,6 @@ import React, { useEffect } from 'react';
 import {
   Routes,
   Route,
-  useNavigate,
 } from "react-router-dom";
 import Login from './Components/Login/Login';
 import Navbar from './Components/Navbar/Navbar';
@@ -22,13 +21,13 @@ import Form from './Components/Form/Form';
 import { selectUserMenu, close } from './Features/userMenu'
 import VerifyEmail from './Components/Register/VerifyEmail';
 import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
+import { setMember } from './Features/isMemberSlice';
 
 function App() {
 
   const dispatch = useDispatch();
   const userMenu = useSelector(selectUserMenu)
   const user = useSelector(selectUser)
-  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
@@ -46,6 +45,31 @@ function App() {
               email: snap.data()?.email,
               mstatus: snap.data()?.mstatus,
             }))
+
+            if (snap.data()?.mstatus === 'verified') {
+              db
+                .collection('members')
+                .doc(authUser?.uid)
+                .onSnapshot(snap => {
+                  dispatch(setMember({
+                    aim: snap.data()?.aim,
+                    branch: snap.data()?.branch,
+                    email: snap.data()?.email,
+                    gender: snap.data()?.gender,
+                    github: snap.data()?.github,
+                    linkedin: snap.data()?.linkedin,
+                    name: snap.data()?.name,
+                    photoURL: snap.data()?.photoURL,
+                    post: snap.data()?.post,
+                    regd: snap.data()?.regd,
+                    web: snap.data()?.web,
+                    leetcode: snap.data().leetcode,
+                    codechef: snap.data().codechef,
+                    codeforces: snap.data().codeforces,
+                  }))
+                })
+            }
+
           })
 
       } else {

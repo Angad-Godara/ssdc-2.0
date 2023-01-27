@@ -2,7 +2,7 @@ import React from 'react'
 import './Navbar.css'
 import { useEffect, useState } from 'react'
 import { AiOutlineStar } from 'react-icons/ai'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice'
 import { BiExit } from 'react-icons/bi'
@@ -15,7 +15,6 @@ function Navbar() {
     const [sw, setsw] = useState(window.screen.width)
     const user = useSelector(selectUser)
     const userMenu = useSelector(selectUserMenu)
-    const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -48,7 +47,7 @@ function Navbar() {
                 </div>
                 <div className='nav__member'>
                     {
-                        (user?.mstatus === 'Applied' || user?.mstatus === 'Verified')
+                        (user?.mstatus === 'Applied' || user?.mstatus === 'verified')
                             ?
                             <></>
                             :
