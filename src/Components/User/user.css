@@ -139,10 +139,16 @@
 
 .upd__menu__item{
     padding: 10px;
+    cursor: pointer;
+    color: black;
+    border-radius: 6px;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.addblue{
     background-color: #64b9f9;
     color: white;
-    border-radius: 6px;
-    cursor: pointer;
 }
 
 @media (max-width: 768px){

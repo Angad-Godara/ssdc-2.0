@@ -9,11 +9,13 @@ import { BiExit } from 'react-icons/bi'
 import { MdOutlinePrivacyTip } from 'react-icons/md'
 import { auth } from '../../firebase'
 import { selectUserMenu, open } from '../../Features/userMenu'
+import { selectMember } from '../../Features/isMemberSlice'
 
 function Navbar() {
 
     const [sw, setsw] = useState(window.screen.width)
     const user = useSelector(selectUser)
+    const member = useSelector(selectMember)
     const userMenu = useSelector(selectUserMenu)
     const dispatch = useDispatch();
 
@@ -39,7 +41,7 @@ function Navbar() {
                         <Link to="/team" className="option__link">Team</Link>
                     </div>
                     <div className='nav__option'>
-                        <Link to="/" className="option__link">Projects</Link>
+                        <Link to="/projects" className="option__link">Projects</Link>
                     </div>
                     <div className='nav__option'>
                         <Link to="/" className="option__link">Alumni</Link>
@@ -68,14 +70,16 @@ function Navbar() {
                                 <li className='user__info'>
                                     <div>
                                         <img className='drop__item__logo' src={user?.photoURL} alt='U' />
-                                        <p className='drop__item__text'>{user?.username}</p>
+                                        <p className='drop__item__text'>{member ? member?.name : user?.username}</p>
                                     </div>
                                 </li>
                             </Link>
-                            <li className='drop__item'>
-                                <MdOutlinePrivacyTip className='drop__item__logo' size={20} />
-                                <p className='drop__item__text'>Privacy Policy</p>
-                            </li>
+                            <Link to='/privacy'>
+                                <li className='drop__item'>
+                                    <MdOutlinePrivacyTip className='drop__item__logo' size={20} />
+                                    <p className='drop__item__text'>Privacy Policy</p>
+                                </li>
+                            </Link>
                             <li onClick={Logout} className='drop__item'>
                                 <BiExit className='drop__item__logo' size={20} />
                                 <p className='drop__item__text'>Log Out</p>

@@ -25,6 +25,7 @@ import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
 import { setMember } from './Features/isMemberSlice';
 import { setCore, setMembers, setFaculties, setMentors } from './Features/teamSlice';
 import ForgotPassword from './Components/Login/ForgotPassword';
+import Projects from './Components/Projects/Projects';
 
 function App() {
 
@@ -181,6 +182,11 @@ function App() {
               <PrivacyPolicy />
             </>
           } />
+          <Route path="/projects" element={
+            <>
+              <Projects />
+            </>
+          } />
           <Route path='/forgotpassword' element={
             <>
               <Navbar />
@@ -236,6 +242,12 @@ function App() {
               path="*"
               element={<Navigate to="/" />}
             />
+            <Route path="/projects" element={
+              <>
+                <Navbar />
+                <Projects />
+              </>
+            } />
           </Routes>
           :
           <Routes>

@@ -8,14 +8,17 @@ import './user.css'
 import ProfileUpdateForm from './ProfileUpdate/ProfileUpdateForm';
 import PreviewImg from './ProfileUpdate/PreviewImg';
 import Footer from '../Footer/Footer';
+import { selectMember } from '../../Features/isMemberSlice';
+import ContributeForm from './Contribute/ContributeForm';
 
 function User() {
 
     const user = useSelector(selectUser)
-
+    const member = useSelector(selectMember)
     const [open, setopen] = useState(false)
     const [file, setfile] = useState(null);
     const [preveiw, setPreveiw] = useState(null)
+    const [left, setleft] = useState('basicInfo')
 
     const checkFile = (e) => {
         if (e.target.files[0].size / (1048576) >= 2) {
@@ -88,17 +91,22 @@ function User() {
                             <div className='edit__btn' onClick={() => setopen(true)}> <FiEdit2 size={'12px'} /> Edit</div>
                         </div>
                     </div>
-                    <h3>{user?.username}</h3>
+                    <h3>{member ? member.name : user?.username}</h3>
                 </div>
             </div>
             <div className='profile__main profile__pg__container'>
                 <div className='profile__left'>
-                    <div className='upd__menu__item'>
+                    <div onClick={() => setleft('basicInfo')} className={left === 'basicInfo' ? 'upd__menu__item addblue' : 'upd__menu__item'}>
                         Basic Info
+                    </div>
+                    <div onClick={() => setleft('contribute')} className={left === 'contribute' ? 'upd__menu__item addblue' : 'upd__menu__item'}>
+                        Contribute
                     </div>
                 </div>
                 <div className='profile__right'>
-                    <ProfileUpdateForm />
+                    {left === 'basicInfo' && <ProfileUpdateForm />}
+                    {left === 'contribute' && <ContributeForm />}
+
                 </div>
             </div>
             <Footer />

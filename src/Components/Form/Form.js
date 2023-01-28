@@ -26,7 +26,7 @@ function Register() {
     const [post, setpost] = useState('member')
     const [check, setcheck] = useState(false)
     const [gender, setgender] = useState('male')
-
+    const [headPost, setheadPost] = useState('Coordinator')
     const [fileE, setfileE] = useState(null);
 
     const navigate = useNavigate()
@@ -92,6 +92,7 @@ function Register() {
                 web: web,
                 aim: aim,
                 gender: gender,
+                headPost: (post !== 'member' ? headPost : null),
             }).catch(err => console.log(err))
 
         db
@@ -222,6 +223,22 @@ function Register() {
                             </select>
                             {(postE) ? <p className='input__errors'>{postE}</p> : <div className='input__errors'></div>}
                         </div>
+
+                        {(post === 'core') &&
+                            <div className="member_type mem">
+                                <label htmlFor="position"><p>Field*</p></label>
+                                <select defaultValue="Coordinator" className='position' onChange={(e) => setheadPost(e.target.value)} name="position" id="position">
+                                    <option className='form__select__option' value="Coordinator">Coordinator</option>
+                                    <option className='form__select__option' value="Co-Cordinator">Co-cordinator</option>
+                                    <option className='form__select__option' value="Social Media Head">Social Media Head</option>
+                                    <option className='form__select__option' value="Programming Head">Programming Head</option>
+                                    <option className='form__select__option' value="Development Head">Development Head</option>
+                                    <option className='form__select__option' value="CyberSecurity Head">CyberSecurity Head</option>
+                                    <option className='form__select__option' value="Machine Learning Head">Machine Learning Head</option>
+                                </select>
+                                {(postE) ? <p className='input__errors'>{postE}</p> : <div className='input__errors'></div>}
+                            </div>
+                        }
 
                         <div className={url ? 'form__upload_img uploaded' : "form__upload_img"}>
                             <label htmlFor='avatar_uploader'>

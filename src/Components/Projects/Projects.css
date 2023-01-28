@@ -1,0 +1,14 @@
+.projects{
+    background: white;
+}
+
+.projects__container{
+    margin-top: 75px;
+    margin-right: 30px;
+    margin-left: 30px;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+}
