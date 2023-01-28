@@ -39,9 +39,9 @@ function ProfileUpdateForm() {
                 post: member?.post,
                 regd: member?.regd,
                 web: member?.web,
-                codechef: member?.codechef,
-                leetcode: member?.leetcode,
-                codeforces: member?.codeforces,
+                codechef: (member?.codechef ? member?.codechef : ''),
+                leetcode: (member?.leetcode ? member?.leetcode : ''),
+                codeforces: (member?.codeforces ? member?.codeforces : ''),
             })
             .then(() => alert('Updated Successfully'))
             .catch(error => console.log(error))

@@ -47,7 +47,7 @@ function Navbar() {
                 </div>
                 <div className='nav__member'>
                     {
-                        (user?.mstatus === 'Applied' || user?.mstatus === 'verified')
+                        (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified')
                             ?
                             <></>
                             :

@@ -2,8 +2,9 @@ import React from 'react'
 import styled from 'styled-components'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { AiFillGithub, AiFillLinkedin, AiFillMail, AiOutlineAim, AiOutlineLink } from 'react-icons/ai';
+import { IoIosCall } from 'react-icons/io'
 
-function Member({ setopen, fac }) {
+function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, web, contact }) {
 
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -26,34 +27,34 @@ function Member({ setopen, fac }) {
                     </CircleWrapper>
                     <MemberWrapper>
                         <Profile>
-                            <img src={"https://ssdc-sliet.github.io/assets/img/Students/Bhavesh%20Soni.jpg"} alt='Profile Pic' />
+                            <img src={photoURL} alt='Profile Pic' />
                         </Profile>
                     </MemberWrapper>
                 </TopContainer>
                 <BottomContainer>
                     <DetailsContainer>
-                        <SmallText>Member</SmallText>
+                        <SmallText>{post}</SmallText>
                         <SpacedHorizontalConatiner>
-                            <MediumText>Junior Tester</MediumText>
+                            <MediumText>{name}</MediumText>
                         </SpacedHorizontalConatiner>
                         <SpacedHorizontalConatiner style={{ marginTop: '10px' }}>
                             <Connections>
                                 {(fac)
                                     ?
-                                    <div style={{ display: 'flex', alignItems: 'center', width: '100px', justifyContent: 'space-between' }}>
-                                        <AiFillMail className='logo__mail' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
-                                        <span>
-                                            |
-                                        </span>
-                                        <AiOutlineLink className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
-                                    </div>
+                                    <>
+                                        <a target={'_blank'} href={`mailto:${email}`}><AiFillMail className='logo__mail' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
+                                        |
+                                        <a target={'_blank'} href={web}><AiOutlineLink className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
+                                        |
+                                        <a href={`tel:${contact}`}><IoIosCall className='logo__google' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
+                                    </>
                                     :
                                     <>
-                                        < AiFillGithub className='logo__github' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
+                                        <a target={'_blank'} href={github}>< AiFillGithub className='logo__github' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
                                         |
-                                        <AiFillLinkedin className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
+                                        <a target={'_blank'} href={linkedin}><AiFillLinkedin className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
                                         |
-                                        <AiFillMail className='logo__mail' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} />
+                                        <a target={'_blank'} href={`mailto:${email}`}><AiFillMail className='logo__mail' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
                                     </>
                                 }
                             </Connections>
@@ -192,6 +193,9 @@ const Connections = styled.div`
     align-items: center;
     justify-content: space-between;
     width: 50%;
+    &>a>svg{
+        margin-top: 8px;
+    }
 `
 
 const SpacedHorizontalConatiner = styled.div`

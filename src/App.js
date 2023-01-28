@@ -1,8 +1,9 @@
 import './App.css';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Routes,
   Route,
+  Navigate,
 } from "react-router-dom";
 import Login from './Components/Login/Login';
 import Navbar from './Components/Navbar/Navbar';
@@ -22,6 +23,7 @@ import { selectUserMenu, close } from './Features/userMenu'
 import VerifyEmail from './Components/Register/VerifyEmail';
 import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
 import { setMember } from './Features/isMemberSlice';
+import { setCore, setMembers, setFaculties, setMentors } from './Features/teamSlice';
 
 function App() {
 
@@ -76,7 +78,63 @@ function App() {
         dispatch(logout())
       }
     })
-    return unsubscribe;
+
+    const fetchTeam = () => {
+      db
+        .collection('core')
+        .onSnapshot(snapshot => {
+          dispatch(setCore(snapshot.docs.map((snap) => ({
+            aim: snap.data().aim,
+            github: snap.data().github,
+            linkedin: snap.data().linkedin,
+            email: snap.data().email,
+            name: snap.data().name,
+            photoURL: snap.data().photoURL,
+          }))))
+        })
+
+      db
+        .collection('member')
+        .onSnapshot(snapshot => {
+          dispatch(setMembers(snapshot.docs.map((snap) => ({
+            aim: snap.data().aim,
+            github: snap.data().github,
+            linkedin: snap.data().linkedin,
+            email: snap.data().email,
+            name: snap.data().name,
+            photoURL: snap.data().photoURL,
+          }))))
+        })
+
+      db
+        .collection('faculties')
+        .onSnapshot(snapshot => {
+          dispatch(setFaculties(snapshot.docs.map((snap) => ({
+            aim: snap.data().aim,
+            contact: snap.data().contact,
+            web: snap.data().web,
+            email: snap.data().email,
+            name: snap.data().name,
+            post: snap.data().post,
+            photoURL: snap.data().photoURL,
+          }))))
+        })
+
+      db
+        .collection('faculties')
+        .onSnapshot(snapshot => {
+          dispatch(setMentors(snapshot.docs.map((snap) => ({
+            aim: snap.data().aim,
+            github: snap.data().github,
+            linkedin: snap.data().linkedin,
+            email: snap.data().email,
+            name: snap.data().name,
+            photoURL: snap.data().photoURL,
+          }))))
+        })
+    }
+
+    return unsubscribe, fetchTeam;
   }, [])
 
   return (
@@ -113,9 +171,10 @@ function App() {
           <Route path="/contests" element={
             <ContestScreen />
           } />
-          <Route path="/" element={
-            <HomeScreen />
-          } />
+          <Route
+            path="*"
+            element={<Navigate to="/home" />}
+          />
           <Route path="/privacy" element={
             <>
               <PrivacyPolicy />
@@ -127,20 +186,6 @@ function App() {
         (auth?.currentUser?.emailVerified)
           ?
           <Routes>
-            <Route exact path="/register" element={
-              <div className='login__register'>
-                <Navbar />
-                <Register />
-                <Footer />
-              </div>
-            } />
-            <Route exact path="/login" element={
-              <div className='login__register'>
-                <Navbar />
-                <Login />
-                <Footer />
-              </div>
-            } />
             <Route path="/contests" element={
               <ContestScreen />
             } />
@@ -180,6 +225,10 @@ function App() {
                 <PrivacyPolicy />
               </>
             } />
+            <Route
+              path="*"
+              element={<Navigate to="/" />}
+            />
           </Routes>
           :
           <Routes>
@@ -188,11 +237,10 @@ function App() {
                 <VerifyEmail />
               </>
             } />
-            <Route path='/' element={
-              <>
-                <VerifyEmail />
-              </>
-            } />
+            <Route
+              path="*"
+              element={<Navigate to="/register" />}
+            />
           </Routes>
 
       }

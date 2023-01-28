@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineFileImage } from 'react-icons/ai'
 import { BsUpload } from 'react-icons/bs'
+import Footer from '../Footer/Footer';
 
 
 function Register() {
@@ -90,6 +91,7 @@ function Register() {
                 branch: branch,
                 web: web,
                 aim: aim,
+                gender: gender,
             }).catch(err => console.log(err))
 
         db
@@ -241,9 +243,11 @@ function Register() {
                     </div>
                 </form>
                 :
-                <h3>
-                    Already Applied
-                </h3>
+                <div className='already__applied'>
+                    <h3>
+                        Already Applied
+                    </h3>
+                </div>
             }
         </div >
     );

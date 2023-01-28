@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 
-function MemberDetail() {
+function MemberDetail({ aim }) {
 
     const x = useMotionValue(0);
     const y = useMotionValue(0);
@@ -21,8 +21,9 @@ function MemberDetail() {
                 <TopContainer>
                     <MediumText style={{ marginTop: '10px' }}>Objective</MediumText>
                     <Objective>
-                        <SmallText>I seek challenging opportunities and want to succeed in that environment. I want to excel in my field and want a highly rewarding
-                            career. I want to use my skills and knowledge for personal and professional growth</SmallText>
+                        <SmallText>
+                            {aim}
+                        </SmallText>
                         <BackButton>Profile</BackButton>
                     </Objective>
                 </TopContainer>
