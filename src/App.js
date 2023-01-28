@@ -24,6 +24,7 @@ import VerifyEmail from './Components/Register/VerifyEmail';
 import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
 import { setMember } from './Features/isMemberSlice';
 import { setCore, setMembers, setFaculties, setMentors } from './Features/teamSlice';
+import ForgotPassword from './Components/Login/ForgotPassword';
 
 function App() {
 
@@ -178,6 +179,12 @@ function App() {
           <Route path="/privacy" element={
             <>
               <PrivacyPolicy />
+            </>
+          } />
+          <Route path='/forgotpassword' element={
+            <>
+              <Navbar />
+              <ForgotPassword />
             </>
           } />
         </Routes>

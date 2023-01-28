@@ -10,13 +10,6 @@ import { selectUser } from '../../Features/userSlice'
 
 function Login() {
     const user = useSelector(selectUser);
-    const navigate = useNavigate();
-
-    useEffect(() => {
-        if (user) {
-            navigate('/')
-        }
-    }, [user])
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
@@ -113,7 +106,7 @@ function Login() {
                     </form>
                     <button onClick={login} className='login__button'>Sign In</button>
                     <div className='login__actions'>
-                        <Link to='/register'>Forgot Password?</Link>
+                        <Link to='/forgotpassword'>Forgot Password?</Link>
                         <Link to='/register'>Sign Up</Link>
                     </div>
                     <div className='auth__options'>
