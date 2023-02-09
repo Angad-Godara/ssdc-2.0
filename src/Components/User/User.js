@@ -1,8 +1,8 @@
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import React, { useState } from 'react'
-import { useSelector } from 'react-redux'
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice';
-import db, { storage } from '../../firebase';
+import db, { auth, storage } from '../../firebase';
 import { FiEdit2 } from 'react-icons/fi'
 import './user.css'
 import ProfileUpdateForm from './ProfileUpdate/ProfileUpdateForm';
@@ -10,8 +10,11 @@ import PreviewImg from './ProfileUpdate/PreviewImg';
 import Footer from '../Footer/Footer';
 import { selectMember } from '../../Features/isMemberSlice';
 import ContributeForm from './Contribute/ContributeForm';
+import { loadContributions } from '../../Features/ContributeSlice';
 
 function User() {
+
+    const dispatch = useDispatch();
 
     const user = useSelector(selectUser)
     const member = useSelector(selectMember)
@@ -72,6 +75,24 @@ function User() {
             })
     }
 
+
+    useEffect(() => {
+        const fetchContirbutions = () => {
+            db
+                .collection('members')
+                .doc(auth.currentUser.uid)
+                .collection('projects__contributions')
+                .onSnapshot(snapshot => {
+                    dispatch(loadContributions(snapshot.docs.map((snap) => ({
+                        owner: snap.data().owner,
+                        repo: snap.data().repo,
+                        status: snap.data().status,
+                    }))))
+                })
+        }
+        return fetchContirbutions
+    }, [user])
+
     return (
         <div className='profile__wrapper'>
             <div className={(open) ? 'dialog__wrapper' : 'dialog__wrapper closeprev'}>
@@ -106,7 +127,6 @@ function User() {
                 <div className='profile__right'>
                     {left === 'basicInfo' && <ProfileUpdateForm />}
                     {left === 'contribute' && <ContributeForm />}
-
                 </div>
             </div>
             <Footer />

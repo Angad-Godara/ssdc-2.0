@@ -95,8 +95,10 @@ function App() {
           }))))
         })
 
+
+      //  change this to 'member for card changes into admin hands else leave it
       db
-        .collection('member')
+        .collection('members')
         .onSnapshot(snapshot => {
           dispatch(setMembers(snapshot.docs.map((snap) => ({
             aim: snap.data().aim,
