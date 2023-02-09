@@ -3,7 +3,8 @@ import userReducer from '../Features/userSlice'
 import userMenuReducer from "../Features/userMenu";
 import memberReducer from "../Features/isMemberSlice";
 import teamReducer from '../Features/teamSlice';
-import ContributionReducer from '../Features/ContributeSlice'
+import contributionReducer from '../Features/contributeSlice'
+import projectsReducer from '../Features/projectsSlice'
 
 export const store = configureStore({
     reducer: {
@@ -11,6 +12,7 @@ export const store = configureStore({
         userMenu: userMenuReducer,
         member: memberReducer,
         team: teamReducer,
-        contribute: ContributionReducer,
+        contribute: contributionReducer,
+        projects: projectsReducer,
     },
 });

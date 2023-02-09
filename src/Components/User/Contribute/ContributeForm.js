@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectContributions, setCurrentContribution } from '../../../Features/ContributeSlice'
+import { selectContributions, setCurrentContribution } from '../../../Features/contributeSlice'
 import { selectMember } from '../../../Features/isMemberSlice'
 import db, { auth } from '../../../firebase'
 import './ContributeForm.css'
@@ -63,6 +63,7 @@ function ContributeForm() {
                         repo: contributions.currentContribution?.repo,
                         ssdcContri: contributions.currentContribution.ssdcContri,
                         uid: auth.currentUser.uid,
+                        status: 'requested',
                         count: (member?.project__count ? member.project__count : 0)
                     })
                     .then(res => {

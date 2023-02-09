@@ -1,6 +1,7 @@
 .projectcard{
     padding: 14px;
     max-width: 400px;
+    max-height: 150px;
     background-color: white;
     border-radius: 6px;
     box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
@@ -14,7 +15,8 @@
 .project__wrapper{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:center;
+    height: 100%;
 }
 
 .project__link{
@@ -22,8 +24,9 @@
     align-items: center;
 }
 
-.project__link>h4{
+.project__link>a{
     margin-top: 7px;
+    font-weight: 700;
     margin-bottom: 7px;
     margin-left: 10px;
     color: #0969da;
@@ -31,7 +34,7 @@
     cursor: pointer;
 }
 
-.project__link>h4:hover{
+.project__link>a:hover{
     text-decoration: underline;
 }
 

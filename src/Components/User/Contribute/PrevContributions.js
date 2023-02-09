@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { selectContributions } from '../../../Features/ContributeSlice'
+import { selectContributions } from '../../../Features/contributeSlice'
 import './PrevContributions.css'
 
 function PrevContributions() {
@@ -17,11 +17,11 @@ function PrevContributions() {
                     <span>Status</span>
                 </div>
                 <div className='contri__row__wrapper'>
-                    {contributions?.prevContributions?.map((contri, i) => {
+                    {contributions.prevContributions?.map((contri, i) => {
                         return (
                             <div key={i} className='contri__row'>
-                                <span>{contri?.repo}</span>
                                 <span>{contri?.owner}</span>
+                                <span>{contri?.repo}</span>
                                 <span>{contri?.status}</span>
                             </div>
                         )

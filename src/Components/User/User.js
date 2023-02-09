@@ -10,7 +10,7 @@ import PreviewImg from './ProfileUpdate/PreviewImg';
 import Footer from '../Footer/Footer';
 import { selectMember } from '../../Features/isMemberSlice';
 import ContributeForm from './Contribute/ContributeForm';
-import { loadContributions } from '../../Features/ContributeSlice';
+import { loadContributions } from '../../Features/contributeSlice';
 
 function User() {
 

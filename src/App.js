@@ -26,60 +26,16 @@ import { setMember } from './Features/isMemberSlice';
 import { setCore, setMembers, setFaculties, setMentors } from './Features/teamSlice';
 import ForgotPassword from './Components/Login/ForgotPassword';
 import Projects from './Components/Projects/Projects';
+import { selectProjects, setProjects } from './Features/projectsSlice';
 
 function App() {
 
   const dispatch = useDispatch();
   const userMenu = useSelector(selectUserMenu)
   const user = useSelector(selectUser)
+  const projects = useSelector(selectProjects)
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      if (authUser) {
-
-        // fetching user from db
-        db
-          .collection('users')
-          .doc(authUser?.uid)
-          .onSnapshot(snap => {
-            dispatch(login({
-              uid: authUser?.uid,
-              photoURL: snap.data()?.photoURL,
-              username: snap.data()?.username,
-              email: snap.data()?.email,
-              mstatus: snap.data()?.mstatus,
-            }))
-
-            if (snap.data()?.mstatus === 'verified') {
-              db
-                .collection('members')
-                .doc(authUser?.uid)
-                .onSnapshot(snap => {
-                  dispatch(setMember({
-                    aim: snap.data()?.aim,
-                    branch: snap.data()?.branch,
-                    email: snap.data()?.email,
-                    gender: snap.data()?.gender,
-                    github: snap.data()?.github,
-                    linkedin: snap.data()?.linkedin,
-                    name: snap.data()?.name,
-                    photoURL: snap.data()?.photoURL,
-                    post: snap.data()?.post,
-                    regd: snap.data()?.regd,
-                    web: snap.data()?.web,
-                    leetcode: snap.data().leetcode,
-                    codechef: snap.data().codechef,
-                    codeforces: snap.data().codeforces,
-                  }))
-                })
-            }
-
-          })
-
-      } else {
-        dispatch(logout())
-      }
-    })
 
     const fetchTeam = () => {
       db
@@ -138,7 +94,68 @@ function App() {
         })
     }
 
-    return unsubscribe, fetchTeam;
+    const fetchProjects = () => {
+      db
+        .collection('projects')
+        .onSnapshot(snapshot => {
+          dispatch(setProjects(snapshot.docs.map((snap) => ({
+            owner: snap.data().owner,
+            repo: snap.data().repo,
+          }))))
+        })
+    }
+
+    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      if (authUser) {
+
+        fetchTeam();
+        fetchProjects();
+
+        // fetching user from db
+        db
+          .collection('users')
+          .doc(authUser?.uid)
+          .onSnapshot(snap => {
+            dispatch(login({
+              uid: authUser?.uid,
+              photoURL: snap.data()?.photoURL,
+              username: snap.data()?.username,
+              email: snap.data()?.email,
+              mstatus: snap.data()?.mstatus,
+            }))
+
+            if (snap.data()?.mstatus === 'verified') {
+              db
+                .collection('members')
+                .doc(authUser?.uid)
+                .onSnapshot(snap => {
+                  dispatch(setMember({
+                    aim: snap.data()?.aim,
+                    branch: snap.data()?.branch,
+                    email: snap.data()?.email,
+                    gender: snap.data()?.gender,
+                    github: snap.data()?.github,
+                    linkedin: snap.data()?.linkedin,
+                    name: snap.data()?.name,
+                    photoURL: snap.data()?.photoURL,
+                    post: snap.data()?.post,
+                    regd: snap.data()?.regd,
+                    web: snap.data()?.web,
+                    leetcode: snap.data().leetcode,
+                    codechef: snap.data().codechef,
+                    codeforces: snap.data().codeforces,
+                  }))
+                })
+            }
+
+          })
+
+      } else {
+        dispatch(logout())
+      }
+    })
+
+    return unsubscribe
   }, [])
 
   return (
