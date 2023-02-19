@@ -26,6 +26,7 @@ import { setMember } from './Features/isMemberSlice';
 import { setCore, setMembers, setFaculties, setMentors } from './Features/teamSlice';
 import ForgotPassword from './Components/Login/ForgotPassword';
 import Projects from './Components/Projects/Projects';
+import Alumni from './Components/Team/Alumni';
 
 function App() {
 
@@ -170,6 +171,12 @@ function App() {
             <>
               <Navbar />
               <Team />
+            </>
+          } />
+          <Route path="/alumni" element={
+            <>
+              <Navbar />
+              <Alumni />
             </>
           } />
           <Route path="/contests" element={
