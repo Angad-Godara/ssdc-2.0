@@ -44,7 +44,7 @@ function Navbar() {
                         <Link to="/projects" className="option__link">Projects</Link>
                     </div>
                     <div className='nav__option'>
-                        <Link to="/" className="option__link">Alumni</Link>
+                        <Link to="/alumni" className="option__link">Alumni</Link>
                     </div>
                 </div>
                 <div className='nav__member'>
