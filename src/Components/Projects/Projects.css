@@ -2,7 +2,7 @@
     background: white;
 }
 
-.projects__container{
+.projects__container>div{
     margin-top: 75px;
     margin-right: 30px;
     margin-left: 30px;
@@ -11,4 +11,8 @@
     grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
     grid-column-gap: 30px;
     grid-row-gap: 30px;
+}
+
+.projects__container{
+    min-height: 80vh;
 }

@@ -7,6 +7,7 @@ export const teamSlice = createSlice({
         coreTeam: null,
         members: null,
         mentors: null,
+        alumni: null,
     },
     reducers: {
         setCore: (state, action) => {
@@ -20,7 +21,10 @@ export const teamSlice = createSlice({
         },
         setMentors: (state, action) => {
             state.mentors = action.payload
-        }
+        },
+        // setAlumni: (state, action) => {
+        //     state.alumni = action.payload
+        // },
     }
 })
 

@@ -28,6 +28,7 @@ import ForgotPassword from './Components/Login/ForgotPassword';
 import Projects from './Components/Projects/Projects';
 import { selectProjects, setProjects } from './Features/projectsSlice';
 import Alumni from './Components/Team/Alumni';
+import { setAlumni } from './Features/alumniSlice';
 
 function App() {
 
@@ -93,6 +94,21 @@ function App() {
             photoURL: snap.data().photoURL,
           }))))
         })
+
+
+      db
+        .collection('members')
+        .onSnapshot(snapshot => {
+          dispatch(setAlumni(snapshot.docs.map((snap) => ({
+            aim: snap.data().aim,
+            github: snap.data().github,
+            linkedin: snap.data().linkedin,
+            email: snap.data().email,
+            name: snap.data().name,
+            photoURL: snap.data().photoURL,
+          }))))
+        })
+
     }
 
     const fetchProjects = () => {
@@ -250,6 +266,12 @@ function App() {
               <>
                 <Navbar />
                 <Team />
+              </>
+            } />
+            <Route path="/alumni" element={
+              <>
+                <Navbar />
+                <Alumni />
               </>
             } />
             <Route exact path='/form' element={

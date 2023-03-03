@@ -16,10 +16,11 @@
     margin-right: 20px;
 }
 
-.team__core .team__members{
+.team__core, .team__members{
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: 80vh;
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Rubik:wght@700&display=swap');
