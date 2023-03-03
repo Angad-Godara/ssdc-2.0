@@ -26,11 +26,8 @@ import { setMember } from './Features/isMemberSlice';
 import { setCore, setMembers, setFaculties, setMentors } from './Features/teamSlice';
 import ForgotPassword from './Components/Login/ForgotPassword';
 import Projects from './Components/Projects/Projects';
-<<<<<<< HEAD
 import { selectProjects, setProjects } from './Features/projectsSlice';
-=======
 import Alumni from './Components/Team/Alumni';
->>>>>>> 812c6aa59b3daf5d35532567c7d9115ef3287a86
 
 function App() {
 
