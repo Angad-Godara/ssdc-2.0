@@ -17,10 +17,10 @@ function Footer() {
                         <Link to="/team" className="option__link">Team</Link>
                     </div>
                     <div className='footer__option'>
-                        <Link to="/" className="option__link">Projects</Link>
+                        <Link to="/projects" className="option__link">Projects</Link>
                     </div>
                     <div className='footer__option'>
-                        <Link to="/" className="option__link">Alumni</Link>
+                        <Link to="/alumni" className="option__link">Alumni</Link>
                     </div>
                     <div className='footer__option'>
                         <Link to="/privacy" className="option__link">Privacy Policy</Link>
