@@ -5,6 +5,7 @@ import memberReducer from "../Features/isMemberSlice";
 import teamReducer from '../Features/teamSlice';
 import contributionReducer from '../Features/contributeSlice'
 import projectsReducer from '../Features/projectsSlice'
+import alumniReducer from '../Features/alumniSlice'
 
 export const store = configureStore({
     reducer: {
@@ -14,5 +15,6 @@ export const store = configureStore({
         team: teamReducer,
         contribute: contributionReducer,
         projects: projectsReducer,
+        alumni: alumniReducer,
     },
 });
