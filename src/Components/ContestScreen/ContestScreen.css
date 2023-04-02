@@ -5,7 +5,6 @@
 .contest__table{
     color: black;
     min-height: 100vh;
-    margin-bottom: 30px;
     margin-top: -40px;
 }
 
@@ -21,6 +20,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-left: 1%;
 }
 
 .active__button{
@@ -31,7 +31,6 @@
     margin: 10px 10px;
     padding: 8px;
     border-radius: 20px;
-    width: 10%;
     color: rgba(38,38,38,.75);
     transition: all .5s ease;
     border: 3px solid white;
@@ -59,16 +58,16 @@
 .list__row{
     display: grid;
     grid-template-columns: 30% auto 30% 10%;
-    height: 50px;
+    padding: 1em;
+    width: 100%;
+    
 }
 
 .list__row > span{
     text-align: center;
 }
 
-.table{
-    width: 80%;
-}
+
 
 .list__row > a{
     text-align: center;
@@ -87,7 +86,7 @@
     align-items: center;
     justify-content: center;
     background-color:transparent;
-    padding: 8px;    
+    padding: 3%;    
     transition: all .5s ease;
     font-size: 0.9rem;
   }
