@@ -29,7 +29,7 @@ import Projects from './Components/Projects/Projects';
 import { selectProjects, setProjects } from './Features/projectsSlice';
 import Alumni from './Components/Team/Alumni';
 import { setAlumni } from './Features/alumniSlice';
-import LoadingSpinner from './Components/Spinner/LoadingSpinner';
+import { SyncLoader } from 'react-spinners';
 
 function App() {
 
@@ -187,7 +187,9 @@ function App() {
       {
         loading
           ?
-          <LoadingSpinner />
+          <div className='spinner__wrapper'>
+            <SyncLoader color="#37474f" />
+          </div>
           :
           (!user)
             ?
@@ -319,7 +321,6 @@ function App() {
                   element={<Navigate to="/register" />}
                 />
               </Routes>
-
       }
     </div >
   );

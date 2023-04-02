@@ -9,6 +9,14 @@
     margin-top: -40px;
 }
 
+.contest__spinner__wrapper{
+  display: flex;
+  height: 400px;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
 .list__buttons{
     display: flex;
     justify-content: center;

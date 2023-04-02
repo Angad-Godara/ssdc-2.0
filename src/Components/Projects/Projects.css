@@ -2,7 +2,7 @@
     background: white;
 }
 
-.projects__container>div{
+.projectCard__container{
     margin-top: 75px;
     margin-right: 30px;
     margin-left: 30px;
@@ -15,4 +15,12 @@
 
 .projects__container{
     min-height: 80vh;
+}
+
+.projects__spinner__wrapper{
+  display: flex;
+  height: 90vh;
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
 }

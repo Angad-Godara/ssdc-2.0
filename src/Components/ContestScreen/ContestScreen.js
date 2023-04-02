@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice'
 import { auth } from '../../firebase'
 import ImageSlider from '../Carousel/ImageSlider';
-import LoadingSpinner from '../Spinner/LoadingSpinner';
+import { RingLoader } from 'react-spinners'
 
 function ContestScreen() {
 
@@ -92,7 +92,9 @@ function ContestScreen() {
                 </div>
                 <div className='table__wrapper'>
                     {loading ?
-                        <LoadingSpinner />
+                        <div className='contest__spinner__wrapper'>
+                            <RingLoader color="#37474f" />
+                        </div>
                         :
                         <div className="table">
                             {contests.map(({ name, link, start_time, duration, status }, i) => {

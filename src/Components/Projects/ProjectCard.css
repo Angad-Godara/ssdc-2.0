@@ -43,15 +43,15 @@
 }
 
 .project__desc{
-    margin-top: 7px;
-    margin-bottom: 7px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     font-size: 12px;
     letter-spacing: 1px;
+    height: 30px;
 }
 
 .stack__and__all{
-    margin-top: 7px;
-    margin-bottom: 7px;
+    margin-top: 10px;
     display: flex;
     align-items: center;
     width: 60%;
