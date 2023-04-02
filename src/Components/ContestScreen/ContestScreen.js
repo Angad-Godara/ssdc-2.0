@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./ContestScreen.css";
 import { Link, useNavigate } from "react-router-dom";
 import moment from "moment/moment";
@@ -19,6 +19,8 @@ function ContestScreen() {
   const [query, setquery] = useState("all");
   const [contestFilter, setcontestFilter] = useState("All Contests");
   const [filterMenuOpen, setFilterMenuOpen] = useState(0);
+  const filterMenuRef = useRef();
+
   useEffect(() => {
     const getContests = async (siteName) => {
       setloading(true);
@@ -38,6 +40,12 @@ function ContestScreen() {
         .catch((error) => console.log(error));
       setloading(false);
     };
+    let closeFilterOnOutSideClick = (e) => {
+        if (!filterMenuRef.current.contains(e.target)) {
+            setFilterMenuOpen(0);
+        }
+    };
+    document.addEventListener("mousedown", closeFilterOnOutSideClick)
     getContests(query);
   }, [query]);
 
@@ -101,9 +109,20 @@ function ContestScreen() {
         </div>
       </div>
       <div className="contest__table">
-        <div className="dropdown">
-          <button className="dropbtn" onClick={()=> setFilterMenuOpen(!filterMenuOpen)}>{contestFilter} <span className="ham"></span></button>
-          <div className="dropdown-content" style={{display:filterMenuOpen?'block':'none'}}>
+        <div className="dropdown" 
+        // onMouseLeave={() => setFilterMenuOpen(0)}
+        ref={filterMenuRef}
+        >
+          <button
+            className="dropbtn"
+            onClick={() => setFilterMenuOpen(!filterMenuOpen)}
+          >
+            {contestFilter} <span className="ham"></span>
+          </button>
+          <div
+            className="dropdown-content"
+            style={{ display: filterMenuOpen ? "block" : "none" }}
+          >
             <button
               className={query === `all` ? `active__button` : ""}
               onClick={() => {
@@ -156,7 +175,6 @@ function ContestScreen() {
             </button>
           </div>
         </div>
-        
 
         <div className="table__wrapper">
           {loading ? (
