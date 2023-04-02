@@ -29,9 +29,11 @@ import Projects from './Components/Projects/Projects';
 import { selectProjects, setProjects } from './Features/projectsSlice';
 import Alumni from './Components/Team/Alumni';
 import { setAlumni } from './Features/alumniSlice';
+import LoadingSpinner from './Components/Spinner/LoadingSpinner';
 
 function App() {
 
+  const [loading, setloading] = useState(true);
   const dispatch = useDispatch();
   const userMenu = useSelector(selectUserMenu)
   const user = useSelector(selectUser)
@@ -123,11 +125,11 @@ function App() {
     }
 
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
+      fetchTeam();
+      fetchProjects();
+
       if (authUser) {
-
-        fetchTeam();
-        fetchProjects();
-
+        setloading(true);
         // fetching user from db
         db
           .collection('users')
@@ -170,6 +172,7 @@ function App() {
       } else {
         dispatch(logout())
       }
+      setloading(false)
     })
 
     return unsubscribe
@@ -180,135 +183,142 @@ function App() {
       if (userMenu)
         dispatch(close())
     }} className="App">
-      {(!user)
-        ?
-        <Routes>
-          <Route exact path="/register" element={
-            <div className='login__register'>
-              <Navbar />
-              <Register />
-              <Footer />
-            </div>
-          } />
-          <Route exact path="/login" element={
-            <div className='login__register'>
-              <Navbar />
-              <Login />
-              <Footer />
-            </div>
-          } />
-          <Route path="/home" element={
-            <HomeScreen />
-          } />
-          <Route path="/team" element={
-            <>
-              <Navbar />
-              <Team />
-            </>
-          } />
-          <Route path="/alumni" element={
-            <>
-              <Navbar />
-              <Alumni />
-            </>
-          } />
-          <Route path="/contests" element={
-            <ContestScreen />
-          } />
-          <Route
-            path="*"
-            element={<Navigate to="/home" />}
-          />
-          <Route path="/privacy" element={
-            <>
-              <PrivacyPolicy />
-            </>
-          } />
-          <Route path="/projects" element={
-            <>
-              <Projects />
-            </>
-          } />
-          <Route path='/forgotpassword' element={
-            <>
-              <Navbar />
-              <ForgotPassword />
-            </>
-          } />
-        </Routes>
-        :
 
-        (auth?.currentUser?.emailVerified)
+      {
+        loading
           ?
-          <Routes>
-            <Route path="/contests" element={
-              <ContestScreen />
-            } />
-            <Route path='/user' element={
-              <>
-                <Navbar />
-                <User />
-              </>
-            } />
-            <Route path="/" element={
-              <>
-                <Navbar />
-                <Explore />
-              </>
-            } />
-            <Route path="/explore" element={
-              <>
-                <Navbar />
-                <Explore />
-              </>
-            } />
-            <Route path="/team" element={
-              <>
-                <Navbar />
-                <Team />
-              </>
-            } />
-            <Route path="/alumni" element={
-              <>
-                <Navbar />
-                <Alumni />
-              </>
-            } />
-            <Route exact path='/form' element={
-              <>
-                <Navbar />
-                <Form />
-                <Footer />
-              </>
-            } />
-            <Route path="/privacy" element={
-              <>
-                <PrivacyPolicy />
-              </>
-            } />
-            <Route
-              path="*"
-              element={<Navigate to="/" />}
-            />
-            <Route path="/projects" element={
-              <>
-                <Navbar />
-                <Projects />
-              </>
-            } />
-          </Routes>
+          <LoadingSpinner />
           :
-          <Routes>
-            <Route path='/register' element={
-              <>
-                <VerifyEmail />
-              </>
-            } />
-            <Route
-              path="*"
-              element={<Navigate to="/register" />}
-            />
-          </Routes>
+          (!user)
+            ?
+            <Routes>
+              <Route exact path="/register" element={
+                <div className='login__register'>
+                  <Navbar />
+                  <Register />
+                  <Footer />
+                </div>
+              } />
+              <Route exact path="/login" element={
+                <div className='login__register'>
+                  <Navbar />
+                  <Login />
+                  <Footer />
+                </div>
+              } />
+              <Route path="/home" element={
+                <HomeScreen />
+              } />
+              <Route path="/team" element={
+                <>
+                  <Navbar />
+                  <Team />
+                </>
+              } />
+              <Route path="/alumni" element={
+                <>
+                  <Navbar />
+                  <Alumni />
+                </>
+              } />
+              <Route path="/contests" element={
+                <ContestScreen />
+              } />
+              <Route
+                path="*"
+                element={<Navigate to="/home" />}
+              />
+              <Route path="/privacy" element={
+                <>
+                  <PrivacyPolicy />
+                </>
+              } />
+              <Route path="/projects" element={
+                <>
+                  <Navbar />
+                  <Projects />
+                </>
+              } />
+              <Route path='/forgotpassword' element={
+                <>
+                  <Navbar />
+                  <ForgotPassword />
+                </>
+              } />
+            </Routes>
+            :
+
+            (auth?.currentUser?.emailVerified)
+              ?
+              <Routes>
+                <Route path="/contests" element={
+                  <ContestScreen />
+                } />
+                <Route path='/user' element={
+                  <>
+                    <Navbar />
+                    <User />
+                  </>
+                } />
+                <Route path="/" element={
+                  <>
+                    <Navbar />
+                    <Explore />
+                  </>
+                } />
+                <Route path="/explore" element={
+                  <>
+                    <Navbar />
+                    <Explore />
+                  </>
+                } />
+                <Route path="/team" element={
+                  <>
+                    <Navbar />
+                    <Team />
+                  </>
+                } />
+                <Route path="/alumni" element={
+                  <>
+                    <Navbar />
+                    <Alumni />
+                  </>
+                } />
+                <Route exact path='/form' element={
+                  <>
+                    <Navbar />
+                    <Form />
+                    <Footer />
+                  </>
+                } />
+                <Route path="/privacy" element={
+                  <>
+                    <PrivacyPolicy />
+                  </>
+                } />
+                <Route
+                  path="*"
+                  element={<Navigate to="/" />}
+                />
+                <Route path="/projects" element={
+                  <>
+                    <Navbar />
+                    <Projects />
+                  </>
+                } />
+              </Routes>
+              :
+              <Routes>
+                <Route path='/register' element={
+                  <>
+                    <VerifyEmail />
+                  </>
+                } />
+                <Route
+                  path="*"
+                  element={<Navigate to="/register" />}
+                />
+              </Routes>
 
       }
     </div >

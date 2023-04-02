@@ -6,7 +6,7 @@ import Slider from 'react-slick';
 
 // the slider is used from react slick
 
-function ImageSlider() {
+function ImageSlider({ use }) {
 
     let settings = {
         dots: true,
@@ -18,15 +18,15 @@ function ImageSlider() {
     }
 
     return (
-        <Container>
-            <Carousel {...settings}>
-                <Wrapper>
+        <Container use={use}>
+            <Carousel {...settings} use={use}>
+                <Wrapper use={use}>
                     <img src='./Assets/Images/slider-01.jpg' />
                 </Wrapper>
-                <Wrapper>
+                <Wrapper use={use}>
                     <img src='./Assets/Images/slider-02.jpg' />
                 </Wrapper>
-                <Wrapper>
+                <Wrapper use={use}>
                     <img src='./Assets/Images/slider-03.jpg' />
                 </Wrapper>
             </Carousel>
@@ -40,14 +40,16 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     width: 100%;
-    margin-bottom: 60px;
+    margin-bottom: ${props => props.use !== 'contest' ? '60px' : '45px'};
+    margin-top: ${props => props.use !== 'contest' ? '0' : '45px'};
+    z-index: 6;
 `
 
 // because I can easily style it myself
 const Carousel = styled(Slider)`
     margin-top: 20px;
-    min-width: 400px;
-    max-width: 450px !important;
+    min-width: ${props => props.use !== 'contest' ? '400px' : '100%'};
+    max-width: ${props => props.use !== 'contest' ? '450px !important' : '100%'};
     .slick-list {
         overflow: hidden; // enables the visibility of adjacent slides when we are at a given slide
     }
@@ -79,11 +81,11 @@ const Carousel = styled(Slider)`
 const Wrapper = styled.div`
     cursor: pointer;
     text-align: center;
-    max-width: 450px;
+    max-width: ${props => props.use !== 'contest' ? '450px' : '100%'};
     
     outline: none;
     img{
-        height: 300px;
+        height: ${props => props.use !== 'contest' ? '300px' : '500px'};
         width: auto;
         object: contain;
         border-radius: 4px;

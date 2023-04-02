@@ -7,9 +7,12 @@ import Footer from '../Footer/Footer'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice'
 import { auth } from '../../firebase'
+import ImageSlider from '../Carousel/ImageSlider';
+import LoadingSpinner from '../Spinner/LoadingSpinner';
 
 function ContestScreen() {
 
+    const [loading, setloading] = useState(true);
     const user = useSelector(selectUser)
     const navigate = useNavigate();
 
@@ -17,6 +20,7 @@ function ContestScreen() {
     const [query, setquery] = useState('all')
     useEffect(() => {
         const getContests = async (siteName) => {
+            setloading(true);
             await fetch("https://kontests.net/api/v1/" + siteName)
                 .then((response) => response.json())
                 .then((data) => {
@@ -29,7 +33,8 @@ function ContestScreen() {
                         status: contest.status,
                     }));
                     setContests(cntst);
-                });
+                }).catch(error => console.log(error));
+            setloading(false);
         };
         getContests(query);
     }, [query]);
@@ -74,6 +79,7 @@ function ContestScreen() {
                             <Link to={user ? "/" : "/login"} onClick={Logout} className='landing__nav__list__item'>{user ? 'LogOut' : 'SignIn'}</Link>
                         </div>
                     </div>
+                    <ImageSlider use={'contest'} />
                 </div>
             </div>
             <div className='contest__table'>
@@ -85,25 +91,29 @@ function ContestScreen() {
                     <button className={query === `hacker_earth` ? `active__button` : ''} onClick={() => setquery("hacker_earth")}>Hacker Earth</button>
                 </div>
                 <div className='table__wrapper'>
-                    <div className="table">
-                        {contests.map(({ name, link, start_time, duration, status }, i) => {
-                            return (
-                                <div key={link + i} className="list__row">
-                                    <span className="grid__item">{moment(start_time).format('MMMM Do YYYY, h:mm:ss a')}</span>
-                                    <a className="contest__link grid__item" href={link} target="_blank" rel="noreferrer" >
-                                        {name}
-                                    </a>
-                                    <span className="grid__item">{secondsToHms(duration)}</span>
-                                    {status === "CODING"
-                                        ?
-                                        <span className="grid__item" style={{ color: "rgb(255, 51, 0)", fontWeight: "500" }}>It's Live</span>
-                                        :
-                                        <span className="grid__item" style={{ color: "#009933", fontWeight: "500" }}>You're Early</span>
-                                    }
-                                </div>
-                            );
-                        })}
-                    </div >
+                    {loading ?
+                        <LoadingSpinner />
+                        :
+                        <div className="table">
+                            {contests.map(({ name, link, start_time, duration, status }, i) => {
+                                return (
+                                    <div key={link + i} className="list__row">
+                                        <span className="grid__item">{moment(start_time).format('MMMM Do YYYY, h:mm:ss a')}</span>
+                                        <a className="contest__link grid__item" href={link} target="_blank" rel="noreferrer" >
+                                            {name}
+                                        </a>
+                                        <span className="grid__item">{secondsToHms(duration)}</span>
+                                        {status === "CODING"
+                                            ?
+                                            <span className="grid__item" style={{ color: "rgb(255, 51, 0)", fontWeight: "500" }}>It's Live</span>
+                                            :
+                                            <span className="grid__item" style={{ color: "#009933", fontWeight: "500" }}>You're Early</span>
+                                        }
+                                    </div>
+                                );
+                            })}
+                        </div >
+                    }
                 </div>
             </div>
             <Footer />

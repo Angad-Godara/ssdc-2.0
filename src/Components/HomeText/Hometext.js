@@ -36,7 +36,7 @@ function Hometext() {
             </div>
 
             <div className='text__heading activities' style={{ marginBottom: '15px' }}><AiFillCode /><div className='text__heading__title'>Activities</div></div>
-            <ImageSlider />
+            <ImageSlider use={'home'} />
 
             <div className='text__heading faculty'><MdOutlinePersonPin /><div className='text__heading__title'>Faculty Advisors</div></div>
             <div className='text__faculty__container'>

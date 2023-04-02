@@ -42,7 +42,6 @@ function Login() {
 
     const login = (e) => {
         e.preventDefault();
-
         auth.signInWithEmailAndPassword(
             emailRef.current.value,
             passwordRef.current.value
