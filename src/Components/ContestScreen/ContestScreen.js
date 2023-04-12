@@ -27,7 +27,6 @@ function ContestScreen() {
       await fetch("https://kontests.net/api/v1/" + siteName)
         .then((response) => response.json())
         .then((data) => {
-          // console.log(data);
           const cntst = data.map((contest) => ({
             name: contest.name,
             link: contest.url,
@@ -41,16 +40,16 @@ function ContestScreen() {
       setloading(false);
     };
     let closeFilterOnOutSideClick = (e) => {
-        if (!filterMenuRef.current.contains(e.target)) {
-            setFilterMenuOpen(0);
-        }
+      if (!filterMenuRef.current.contains(e.target)) {
+        setFilterMenuOpen(0);
+      }
     };
-    document.addEventListener("mousedown", closeFilterOnOutSideClick)
+    document.addEventListener("mousedown", closeFilterOnOutSideClick);
     getContests(query);
   }, [query]);
 
   const Logout = (e) => {
-    // e.preventDefault()
+    e.preventDefault();
     if (user) {
       auth.signOut();
     } else {
@@ -109,10 +108,39 @@ function ContestScreen() {
         </div>
       </div>
       <div className="contest__table">
-        <div className="dropdown" 
-        // onMouseLeave={() => setFilterMenuOpen(0)}
-        ref={filterMenuRef}
-        >
+        <div className="list__buttons">
+          <button
+            className={query === "all" ? "active__button" : ""}
+            onClick={() => setquery("all")}
+          >
+            ALL
+          </button>
+          <button
+            className={query === "codeforces" ? "active__button" : ""}
+            onClick={() => setquery("codeforces")}
+          >
+            Codeforces
+          </button>
+          <button
+            className={query === "code_chef" ? "active__button" : ""}
+            onClick={() => setquery("code_chef")}
+          >
+            Codechef
+          </button>
+          <button
+            className={query === "leet_code" ? "active__button" : ""}
+            onClick={() => setquery("leet_code")}
+          >
+            LeetCode
+          </button>
+          <button
+            className={query === "hacker_earth" ? "active__button" : ""}
+            onClick={() => setquery("hacker_earth")}
+          >
+            Hacker Earth
+          </button>
+        </div>
+        <div className="dropdown" ref={filterMenuRef}>
           <button
             className="dropbtn"
             onClick={() => setFilterMenuOpen(!filterMenuOpen)}
