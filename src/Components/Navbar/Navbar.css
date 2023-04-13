@@ -1,12 +1,12 @@
 .nav__container{
     position: fixed;
-    z-index: 100;
+    z-index: 25;
     top: 0;
     min-width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 45px;
+    height: 49px;
     background: white;
     font-size: 13.5px;
     font-weight: 450;
@@ -177,11 +177,113 @@ a{
     max-height: 400px;
 }
 
+.open__brgr__btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+
+    /* for large screens */
+    display: none;
+}
+
+.open__brgr__btn>svg{
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+.open__brgr__btn>svg:active{
+    background-color: rgba(189, 189, 189, 0.244);
+}
+
+.brgr__wrapper{
+    position: fixed;
+    top:0;
+    bottom:0;
+    right:0;
+    background: white;
+    width:300px;
+    z-index: 30;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    transition: transform 0.2s;
+    box-shadow: 0px 1px 3px rgba(0,0,0,.04),0px 2px 8px rgba(0,0,0,.08)
+}
+
+.open__brgr{
+    transform: translateX(0);
+}
+
+.brgr__item{
+    margin: 10px 20px;
+    padding-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 1px solid rgba(0,0,0, .2);
+}
+
+.brgr__item>img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}  
+
+.brgr__item>p{
+    margin-bottom: 0;
+}
+
+.close__icon{
+    position: relative;
+    right: 0;
+    top: 20px;
+    width: 30px;
+    margin-left: auto;
+}
+
+.close__icon>svg{
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 300ms;
+}
+
+.close__icon>svg:active{
+    background-color: rgba(189, 189, 189, 0.244);
+}
+
+.onsmall{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content:space-between;
+    align-items: center;
+    padding: 0 10px;
+    display: none;
+}
+
+.onsmall__item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.onsmall__user{
+    max-height: 30px;
+    border-radius: 50%;
+}
+
+.brgr__user{
+    max-height: 45px;
+    border-radius: 50%;
+    
+}
+
 @media only screen and (max-width: 720px)
 {
   .nav__container{
     font-size: 10px;
-    height: 40px;
   }
   .options__container{
     display: flex;
@@ -216,5 +318,23 @@ a{
     }
     .nav__member__option{
         border: 1.5px solid rgb(255, 152, 0);
+    }
+}
+
+@media only screen and (max-width: 480px){
+    .nav__options{
+        display: none;
+    }
+    .options__container{
+        display: none;
+    }
+    .nav__member{
+        display: none;
+    }
+    .open__brgr__btn{
+        display: block;
+    }
+    .onsmall{
+        display: flex;
     }
 }

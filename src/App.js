@@ -19,7 +19,7 @@ import db from './firebase';
 import Explore from './Components/Explore/Explore';
 import Team from './Components/Team/Team';
 import Form from './Components/Form/Form';
-import { selectUserMenu, close } from './Features/userMenu'
+import { selectUserMenu, close, brgrClose } from './Features/userMenu'
 import VerifyEmail from './Components/Register/VerifyEmail';
 import PrivacyPolicy from './Components/PrivacyPolicy/PrivacyPolicy';
 import { setMember } from './Features/isMemberSlice';
@@ -35,7 +35,7 @@ function App() {
 
   const [loading, setloading] = useState(true);
   const dispatch = useDispatch();
-  const userMenu = useSelector(selectUserMenu)
+  const { userMenu, brgrMenu } = useSelector(selectUserMenu)
   const user = useSelector(selectUser)
   const projects = useSelector(selectProjects)
 
@@ -182,6 +182,10 @@ function App() {
     <div onClick={() => {
       if (userMenu)
         dispatch(close())
+
+      if (brgrMenu)
+        dispatch(brgrClose())
+
     }} className="App">
 
       {

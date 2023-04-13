@@ -7,16 +7,18 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice'
 import { BiExit } from 'react-icons/bi'
 import { MdOutlinePrivacyTip } from 'react-icons/md'
+import { GiHamburgerMenu } from 'react-icons/gi'
 import { auth } from '../../firebase'
-import { selectUserMenu, open } from '../../Features/userMenu'
+import { selectUserMenu, open, brgrOpen, brgrClose } from '../../Features/userMenu'
 import { selectMember } from '../../Features/isMemberSlice'
+import { AiOutlineClose } from 'react-icons/ai'
 
 function Navbar() {
 
     const [sw, setsw] = useState(window.screen.width)
     const user = useSelector(selectUser)
     const member = useSelector(selectMember)
-    const userMenu = useSelector(selectUserMenu)
+    const { userMenu, brgrMenu } = useSelector(selectUserMenu)
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -28,69 +30,139 @@ function Navbar() {
     }
 
     return (
-        <div className='nav__container'>
-            <div className='options__container'>
-                <div className='nav__options'>
-                    <div className='nav__option'>
+        <>
+            <div className='nav__container'>
+                <div className='options__container'>
+                    <div className='nav__options'>
+                        <div className='nav__option'>
+                            <img className='nav__logo' src={'./NewLogoColor.png'} alt='logo' />
+                        </div>
+                        <div className='nav__option'>
+                            <Link to={user ? "/explore" : '/home'} className="option__link">Explore</Link>
+                        </div>
+                        <div className='nav__option'>
+                            <Link to="/team" className="option__link">Team</Link>
+                        </div>
+                        <div className='nav__option'>
+                            <Link to="/projects" className="option__link">Projects</Link>
+                        </div>
+                        <div className='nav__option'>
+                            <Link to="/alumni" className="option__link">Alumni</Link>
+                        </div>
+                    </div>
+                    <div className='nav__member'>
+                        {
+                            (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified')
+                                ?
+                                <></>
+                                :
+                                <Link to='/form' className='nav__member__option'>
+                                    <AiOutlineStar size={sw < 450 ? '10px' : (sw > 300 ? '12px' : '7px')} />
+                                    <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Members</span>
+                                </Link>
+                        }
+
+                    </div>
+                    {(user)
+                        ?
+                        <div className='user'>
+                            <img onClick={() => dispatch(open(!userMenu))} src={user?.photoURL} alt='U' />
+                            <div className={userMenu ? 'drop__menu__arrow' : 'hide__arrow'}></div>
+                            <ul className={userMenu ? 'user__menu__wrapper open__menu' : ' user__menu__wrapper'}>
+                                <Link to='/user'>
+                                    <li className='user__info'>
+                                        <div>
+                                            <img className='drop__item__logo' src={user?.photoURL} alt='U' />
+                                            <p className='drop__item__text'>{member ? member?.name : user?.username}</p>
+                                        </div>
+                                    </li>
+                                </Link>
+                                <Link to='/privacy'>
+                                    <li className='drop__item'>
+                                        <MdOutlinePrivacyTip className='drop__item__logo' size={20} />
+                                        <p className='drop__item__text'>Privacy Policy</p>
+                                    </li>
+                                </Link>
+                                <li onClick={Logout} className='drop__item'>
+                                    <BiExit className='drop__item__logo' size={20} />
+                                    <p className='drop__item__text'>Log Out</p>
+                                </li>
+                            </ul>
+                        </div>
+                        :
+                        <></>
+                    }
+                </div>
+                <div className='onsmall'>
+                    <div className='onsmall__item'>
+                        {user ?
+                            <img className='onsmall__user' src={user?.photoURL} alt='U' />
+                            :
+                            <>
+                            </>
+                        }
+                    </div>
+                    <div className='onsmall__item'>
                         <img className='nav__logo' src={'./NewLogoColor.png'} alt='logo' />
                     </div>
-                    <div className='nav__option'>
-                        <Link to={user ? "/explore" : '/home'} className="option__link">Explore</Link>
-                    </div>
-                    <div className='nav__option'>
-                        <Link to="/team" className="option__link">Team</Link>
-                    </div>
-                    <div className='nav__option'>
-                        <Link to="/projects" className="option__link">Projects</Link>
-                    </div>
-                    <div className='nav__option'>
-                        <Link to="/alumni" className="option__link">Alumni</Link>
+                    <div className='open__brgr__btn'>
+                        <GiHamburgerMenu size={'20px'} onClick={() => {
+                            dispatch(brgrOpen(!brgrMenu));
+                        }} />
                     </div>
                 </div>
-                <div className='nav__member'>
-                    {
-                        (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified')
-                            ?
-                            <></>
-                            :
-                            <Link to='/form' className='nav__member__option'>
-                                <AiOutlineStar size={sw < 450 ? '10px' : (sw > 300 ? '12px' : '7px')} />
-                                <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Members</span>
-                            </Link>
-                    }
+            </div >
 
+            {/* burger nav starts here */}
+            <div className={brgrMenu ? 'brgr__wrapper open__brgr' : 'brgr__wrapper'}>
+                <div className='close__icon'>
+                    <AiOutlineClose size={'20px'} onClick={() => {
+                        dispatch(brgrClose())
+                    }} />
+                </div>
+                <div className='brgr__item'>
+                    {(user) ?
+                        <Link to='/user'>
+                            <img className='brgr__user' src={user?.photoURL} alt='U' />
+                            <p><b>{member ? member?.name : user?.username}</b></p>
+                        </Link>
+                        :
+                        <div style={{ textAlign: 'center', margin: '10px 0 10px 0' }}>
+                            <Link to='/login' className='login__button'>LogIn</Link>
+                            <p>or</p>
+                            <Link to='/register' className='login__button'>Sign Up</Link>
+                        </div>
+                    }
+                </div>
+                <div className='brgr__item'>
+                    <Link to={user ? "/explore" : '/home'} className="option__link">Explore</Link>
+                </div>
+                <div className='brgr__item'>
+                    <Link to="/contests" className="option__link">Contests</Link>
+                </div>
+                <div className='brgr__item'>
+                    <Link to="/team" className="option__link">Team</Link>
+                </div>
+                <div className='brgr__item'>
+                    <Link to="/projects" className="option__link">Projects</Link>
+                </div>
+                <div className='brgr__item'>
+                    <Link to="/alumni" className="option__link">Alumni</Link>
+                </div>
+                <div className='brgr__item'>
+                    <Link to="/privacy" className="option__link">Privacy Policy</Link>
                 </div>
                 {(user)
                     ?
-                    <div className='user'>
-                        <img onClick={() => dispatch(open(!userMenu))} src={user?.photoURL} alt='U' />
-                        <div className={userMenu ? 'drop__menu__arrow' : 'hide__arrow'}></div>
-                        <ul className={userMenu ? 'user__menu__wrapper open__menu' : ' user__menu__wrapper'}>
-                            <Link to='/user'>
-                                <li className='user__info'>
-                                    <div>
-                                        <img className='drop__item__logo' src={user?.photoURL} alt='U' />
-                                        <p className='drop__item__text'>{member ? member?.name : user?.username}</p>
-                                    </div>
-                                </li>
-                            </Link>
-                            <Link to='/privacy'>
-                                <li className='drop__item'>
-                                    <MdOutlinePrivacyTip className='drop__item__logo' size={20} />
-                                    <p className='drop__item__text'>Privacy Policy</p>
-                                </li>
-                            </Link>
-                            <li onClick={Logout} className='drop__item'>
-                                <BiExit className='drop__item__logo' size={20} />
-                                <p className='drop__item__text'>Log Out</p>
-                            </li>
-                        </ul>
+                    <div div className='brgr__item'>
+                        <Link to='#' onClick={Logout} className="option__link">Log Out</Link>
                     </div>
                     :
                     <></>
                 }
-            </div>
-        </div >
+            </div >
+
+        </>
     )
 }
 
