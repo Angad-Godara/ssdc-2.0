@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Footer from '../Footer/Footer';
 import './explore.css'
 import { GrResources } from 'react-icons/gr'
+import ResourceCard from './ResourceCard';
 
 function Explore() {
 
@@ -29,22 +30,23 @@ function Explore() {
                                 ?
                                 <div>
                                     <h3>Cp and dsa related guidance and plans</h3>
+                                    <ResourceCard />
                                 </div>
                                 :
                                 (
-                                    (active == 2)
+                                    (active === 2)
                                         ?
-                                        <div className={(active == 2) ? 'show' : ''}>
+                                        <div className={(active === 2) ? 'show' : ''}>
                                             <h3>Development related guidance plans</h3>
                                         </div>
                                         :
-                                        (active == 3)
+                                        (active === 3)
                                             ?
-                                            <div className={(active == 3) ? 'show' : ''}>
+                                            <div className={(active === 3) ? 'show' : ''}>
                                                 <h3>ml/data science related guidance plans</h3>
                                             </div>
                                             :
-                                            <div className={(active == 4) ? 'show' : ''}>
+                                            <div className={(active === 4) ? 'show' : ''}>
                                                 <h3>Cybersec related guidance plans</h3>
                                             </div>
                                 )}

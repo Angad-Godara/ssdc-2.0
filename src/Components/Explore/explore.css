@@ -42,7 +42,7 @@
 .resources__headings__wrapper{
     display: flex;   
     align-items: center;
-    border-bottom: 4px solid rgb(250, 52, 91);
+    border-bottom: 4px solid rgba(23, 27, 23, 0.881);
     width: 100%;
 }
 
@@ -65,7 +65,7 @@
 }
 
 .active__resource>div{
-    background-color: rgb(250, 52, 91);
+    background-color: rgba(23, 27, 23, 0.881);
     color: white;
 }
 
@@ -87,13 +87,21 @@
 }
 
 @media only screen and (max-width: 1060px){
-    .resources__headings>div{
-        height: 90px;
-    } 
 }
 
 @media only screen and (max-width: 900px){
     .resources__headings>div{
         font-size: small;
     } 
+}
+
+@media only screen and (max-width: 480px){
+    .resources__headings>div{
+        font-size: 10px;
+        height: 90px;
+    }
+    .resources__headings__wrapper{
+        overflow-x: scroll;
+        overflow-y: hidden;
+    }
 }

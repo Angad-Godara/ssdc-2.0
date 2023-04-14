@@ -39,7 +39,8 @@ function Projects() {
         if (projects) {
             setLoading(true);
             fetchprojects();
-            setLoading(false);
+            if (projectsData)
+                setLoading(false);
         }
     }, [projects])
 
