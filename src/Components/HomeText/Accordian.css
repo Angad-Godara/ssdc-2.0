@@ -77,3 +77,17 @@
         text-align: justify;
     }
 }
+
+@media (min-width: 481px) and (max-width: 768px){
+    .accordcontent{
+        flex-direction: column-reverse;
+        text-align: justify;
+    }
+}
+
+/* @media (min-width: 768px) and (max-width: 1024px){
+    .accordcontent{
+        flex-direction: column-reverse;
+        text-align: justify;
+    }
+} */
