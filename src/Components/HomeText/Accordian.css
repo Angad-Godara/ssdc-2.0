@@ -69,3 +69,11 @@
 .openacc > img{
     max-height: 100px !important;
 }
+
+/* Media Queries */
+@media screen and (max-width: 480px){
+    .accordcontent{
+        flex-direction: column-reverse;
+        text-align: justify;
+    }
+}

@@ -2,15 +2,20 @@ import React from 'react'
 import './HomeScreen.css'
 import Footer from '../Footer/Footer'
 import { Link, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice'
 import { auth } from '../../firebase'
 import Hometext from '../HomeText/Hometext'
 import { TypeAnimation } from 'react-type-animation';
+import { brgrOpen, brgrClose, selectUserMenu } from '../../Features/userMenu'
+import { AiOutlineClose } from 'react-icons/ai'
 
 function HomeScreen() {
 
     const navigate = useNavigate();
+
+    const dispatch = useDispatch();
+    const { brgrMenu } = useSelector(selectUserMenu)
 
     const user = useSelector(selectUser)
 
@@ -42,6 +47,7 @@ function HomeScreen() {
                                 <Link to="/team" className='landing__nav__list__item'>Team</Link>
                                 <Link to={user ? "/" : "/login"} onClick={Logout} className='landing__nav__list__item'>{user ? 'LogOut' : 'SignIn'}</Link>
                             </div>
+                            <div onClick={() => dispatch(brgrOpen(!brgrMenu))} className='landing__nav__list__item hms__brgr__open'>Menu</div>
                         </div>
                         <div className='container'>
                             <div style={{ flex: '1 1' }}>
@@ -70,11 +76,58 @@ function HomeScreen() {
                                 cursor={true}
                                 repeat={Infinity}
                                 speed="20"
-                                style={{ fontSize: '3em' }}
+                                style={{ fontSize: '1.5em' }}
                             />
                         </div>
                     </div>
                 </div>
+                {/* burger nav starts here */}
+                <div className={brgrMenu ? 'brgr__wrapper open__brgr' : 'brgr__wrapper'}>
+                    <div className='close__icon'>
+                        <AiOutlineClose size={'20px'} onClick={() => {
+                            dispatch(brgrClose())
+                        }} />
+                    </div>
+                    <div className='brgr__item'>
+                        {(user) ?
+                            <Link to='/user'>
+                                <img className='brgr__user' src={user?.photoURL} alt='U' />
+                            </Link>
+                            :
+                            <div style={{ textAlign: 'center', margin: '10px 0 10px 0' }}>
+                                <Link to='/login' className='login__button'>LogIn</Link>
+                                <p>or</p>
+                                <Link to='/register' className='login__button'>Sign Up</Link>
+                            </div>
+                        }
+                    </div>
+                    <div className='brgr__item'>
+                        <Link to={user ? "/explore" : '/home'} className="option__link">Explore</Link>
+                    </div>
+                    <div className='brgr__item'>
+                        <Link to="/contests" className="option__link">Contests</Link>
+                    </div>
+                    <div className='brgr__item'>
+                        <Link to="/team" className="option__link">Team</Link>
+                    </div>
+                    <div className='brgr__item'>
+                        <Link to="/projects" className="option__link">Projects</Link>
+                    </div>
+                    <div className='brgr__item'>
+                        <Link to="/alumni" className="option__link">Alumni</Link>
+                    </div>
+                    <div className='brgr__item'>
+                        <Link to="/privacy" className="option__link">Privacy Policy</Link>
+                    </div>
+                    {(user)
+                        ?
+                        <div div className='brgr__item'>
+                            <Link to='#' onClick={Logout} className="option__link">Log Out</Link>
+                        </div>
+                        :
+                        <></>
+                    }
+                </div >
             </div>
             <Hometext />
             <Footer />

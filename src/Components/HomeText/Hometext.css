@@ -131,3 +131,23 @@
     align-items: center;
     padding: 20px;
 }
+
+/* Media Queries */
+@media screen and (max-width: 480px){
+  .text__para{
+    text-align: justify;
+  }
+  .text__item__info{
+    text-align: center;
+  }
+  .landing__slider{
+    /* width: 50%; */
+    margin: auto;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px){
+  .text__para{
+    text-align: justify;
+  }
+}

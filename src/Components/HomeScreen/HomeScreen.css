@@ -3,12 +3,12 @@
 }
 
 .landing__page{
-    min-height: 100vh;
+    height: auto;
 }
 
 /* setting background */
 .landing__page__header{
-    height: 760px;
+    height: auto;
     position: relative;
     top: -80px;
     color: white;
@@ -100,12 +100,17 @@
 .landing__nav__list__item{
     padding: 7px 12px;
     transition: 0.4s all;
+    cursor: pointer;
 }
 
 .landing__nav__list__item:hover{
     background-color: whitesmoke;
     border-radius: 20px;
     color: black;
+}
+
+.hms__brgr__open{
+    display: none;
 }
 
 .landing__tablet{
@@ -177,4 +182,62 @@
 
 .container__button:hover{
     background-color: #1c8e8a;
+}
+
+@media only screen and (max-width: 480px){
+    .hms__brgr__open{
+        display: block
+    }
+    .landing__nav__list{
+        display: none;
+    }
+    .landing__nav{
+        justify-content: space-between;
+    }
+    .container{
+        margin-top: 5vh;
+        flex-direction: column;
+    }
+    .landing__tablet{
+        height: 250px;
+    }
+    .welcome__text__animation{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .welcome__text__animation>h1{
+        color: teal
+    }
+    .landing__page{
+        min-height: auto;
+    }
+    .text__container{
+        margin: -10px auto !important;
+    }
+}
+
+@media (min-width: 481px) and (max-width: 767px){
+    .hms__brgr__open{
+        display: block
+    }
+    .landing__nav__list{
+        display: none;
+    }
+    .landing__nav{
+        justify-content: space-between;
+    }
+    .container{
+        margin-top: 5vh;
+        flex-direction: column;
+    }
+    .landing__tablet{
+        height: 250px;
+    }
+    .welcome__text__animation{
+        display: flex;
+        /* justify-content: end; */
+        align-items: flex-end;
+    }
+    
 }

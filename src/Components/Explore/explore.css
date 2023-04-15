@@ -61,7 +61,7 @@
     height: 60px;
     font-weight: 500;
     cursor: pointer;
-    font-size: medium;
+    font-size: 0.9rem;
 }
 
 .active__resource>div{
@@ -86,20 +86,17 @@
     z-index: 2 !important;
 }
 
-@media only screen and (max-width: 1060px){
-}
-
-@media only screen and (max-width: 900px){
+@media only screen and (max-width: 1080px){
     .resources__headings>div{
         font-size: small;
-    } 
+        font-weight: 400;
+        margin-right: 25px;
+        height: 80px;
+        min-width: 130px;
+    }
 }
 
-@media only screen and (max-width: 480px){
-    .resources__headings>div{
-        font-size: 10px;
-        height: 90px;
-    }
+@media only screen and (max-width: 760px){
     .resources__headings__wrapper{
         overflow-x: scroll;
         overflow-y: hidden;

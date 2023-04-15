@@ -4,11 +4,13 @@ import "./ContestScreen.css";
 import { Link, useNavigate } from "react-router-dom";
 import moment from "moment/moment";
 import Footer from "../Footer/Footer";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectUser } from "../../Features/userSlice";
 import { auth } from "../../firebase";
 import ImageSlider from "../Carousel/ImageSlider";
 import { RingLoader } from "react-spinners";
+import { brgrOpen, brgrClose, selectUserMenu } from '../../Features/userMenu'
+import { AiOutlineClose } from 'react-icons/ai'
 
 function ContestScreen() {
   const [loading, setloading] = useState(true);
@@ -20,6 +22,8 @@ function ContestScreen() {
   const [contestFilter, setcontestFilter] = useState("All Contests");
   const [filterMenuOpen, setFilterMenuOpen] = useState(0);
   const filterMenuRef = useRef();
+  const dispatch = useDispatch();
+  const { brgrMenu } = useSelector(selectUserMenu)
 
   useEffect(() => {
     const getContests = async (siteName) => {
@@ -30,7 +34,7 @@ function ContestScreen() {
           const cntst = data.map((contest) => ({
             name: contest.name,
             link: contest.url,
-            start_time: contest.start_time,
+            start_time: contest?.start_time,
             duration: contest.duration,
             status: contest.status,
           }));
@@ -71,42 +75,92 @@ function ContestScreen() {
 
   return (
     <div className="ContestScreen">
-      <div className="landing__page__header">
-        <div className="landing__background">
-          <span></span>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div className="inner">
-          <div className="landing__nav">
-            <img
-              className="landing__nav__logo"
-              alt="Loading"
-              src="https://raw.githubusercontent.com/Angad-Godara/ssdc-web-dev/main/public/ssdcLogo.jpg"
-            />
-            <div className="landing__nav__list">
-              <Link to="/" className="landing__nav__list__item">
-                Explore
-              </Link>
-              <Link to="/contests" className="landing__nav__list__item">
-                Contests
-              </Link>
-              <Link to="/team" className="landing__nav__list__item">
-                Team
-              </Link>
-              <Link
-                to={user ? "/" : "/login"}
-                onClick={Logout}
-                className="landing__nav__list__item"
-              >
-                {user ? "LogOut" : "SignIn"}
-              </Link>
-            </div>
+      <>
+        <div className="landing__page__header">
+          <div className="landing__background">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
           </div>
-          <ImageSlider use={"contest"} />
+          <div className="inner">
+            <div className="landing__nav">
+              <img
+                className="landing__nav__logo"
+                alt="Loading"
+                src="https://raw.githubusercontent.com/Angad-Godara/ssdc-web-dev/main/public/ssdcLogo.jpg"
+              />
+              <div className="landing__nav__list">
+                <Link to="/" className="landing__nav__list__item">
+                  Explore
+                </Link>
+                <Link to="/contests" className="landing__nav__list__item">
+                  Contests
+                </Link>
+                <Link to="/team" className="landing__nav__list__item">
+                  Team
+                </Link>
+                <Link
+                  to={user ? "/" : "/login"}
+                  onClick={Logout}
+                  className="landing__nav__list__item"
+                >
+                  {user ? "LogOut" : "SignIn"}
+                </Link>
+              </div>
+              <div onClick={() => dispatch(brgrOpen(!brgrMenu))} className='landing__nav__list__item hms__brgr__open'>Menu</div>
+            </div>
+            <ImageSlider use={"contest"} />
+          </div>
         </div>
-      </div>
+        {/* burger nav starts here */}
+        <div className={brgrMenu ? 'brgr__wrapper open__brgr' : 'brgr__wrapper'}>
+          <div className='close__icon'>
+            <AiOutlineClose size={'20px'} onClick={() => {
+              dispatch(brgrClose())
+            }} />
+          </div>
+          <div className='brgr__item'>
+            {(user) ?
+              <Link to='/user'>
+                <img className='brgr__user' src={user?.photoURL} alt='U' />
+              </Link>
+              :
+              <div style={{ textAlign: 'center', margin: '10px 0 10px 0' }}>
+                <Link to='/login' className='login__button'>LogIn</Link>
+                <p>or</p>
+                <Link to='/register' className='login__button'>Sign Up</Link>
+              </div>
+            }
+          </div>
+          <div className='brgr__item'>
+            <Link to={user ? "/explore" : '/home'} className="option__link">Explore</Link>
+          </div>
+          <div className='brgr__item'>
+            <Link to="/contests" className="option__link">Contests</Link>
+          </div>
+          <div className='brgr__item'>
+            <Link to="/team" className="option__link">Team</Link>
+          </div>
+          <div className='brgr__item'>
+            <Link to="/projects" className="option__link">Projects</Link>
+          </div>
+          <div className='brgr__item'>
+            <Link to="/alumni" className="option__link">Alumni</Link>
+          </div>
+          <div className='brgr__item'>
+            <Link to="/privacy" className="option__link">Privacy Policy</Link>
+          </div>
+          {(user)
+            ?
+            <div div className='brgr__item'>
+              <Link to='#' onClick={Logout} className="option__link">Log Out</Link>
+            </div>
+            :
+            <></>
+          }
+        </div >
+      </>
       <div className="contest__table">
         <div className="list__buttons">
           <button
