@@ -2,22 +2,19 @@ import React, { useState } from 'react';
 import { ref, uploadBytes, getDownloadURL, connectStorageEmulator } from 'firebase/storage';
 import { selectUser } from '../../Features/userSlice';
 import db, { storage } from '../../firebase';
-import './Form.css';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineFileImage } from 'react-icons/ai'
 import { BsUpload } from 'react-icons/bs'
 
-
-function Register() {
-
+function AlumniForm() {
     const user = useSelector(selectUser);
     const [file, setfile] = useState(null)
     const [url, seturl] = useState(null)
     const [fn, setfn] = useState(null)
     const [sn, setsn] = useState(null)
     const [lkd, setlkd] = useState(null)
-    const [git, setgit] = useState(null)
+    const [passoutYear, setpassoutYear] = useState(null)
     const [regd, setregd] = useState(null)
     const [branch, setbranch] = useState('GCS')
     const [web, setweb] = useState(null)
@@ -39,7 +36,7 @@ function Register() {
         }
 
         // pending catches
-        const imageRef = ref(storage, `members/${user?.email}`)
+        const imageRef = ref(storage, `alumni/${user?.email}`)
         uploadBytes(imageRef, file)
             .then((result) => {
                 getDownloadURL(result.ref).then(url => {
@@ -65,7 +62,7 @@ function Register() {
 
     const checkFile = (e) => {
         e.preventDefault();
-        if (e.target.files[0].size / (1048576) >= 2) {
+        if (e.target.files[0].size / (1048576) >= 3) {
             setfileE('Size limit exceeded')
             e.target.value = null
             return;
@@ -77,21 +74,20 @@ function Register() {
     const submitform = (e) => {
         e.preventDefault();
         db
-            .collection('requests')
+            .collection('alumni__requests')
             .doc(user?.uid)
             .set({
                 email: user?.email,
                 photoURL: url,
                 name: `${fn} ${sn}`,
-                github: git,
+                passoutYear: passoutYear,
                 linkedin: lkd,
-                post: post,
+                post: 'alumni',
                 regd: regd,
                 branch: branch,
                 web: web,
                 aim: aim,
                 gender: gender,
-                headPost: (post !== 'member' ? headPost : null),
             }).catch(err => console.log(err))
 
         db
@@ -106,11 +102,9 @@ function Register() {
 
     const [fnEE, setfnE] = useState(null)
     const [lkdE, setlkdE] = useState(null)
-    const [gitE, setgitE] = useState(null)
-    const [regdE, setregdE] = useState(null)
+    const [passoutYearE, setpassoutYearE] = useState(null)
     const [branchE, setbranchE] = useState(null)
     const [aimE, setaimE] = useState(null)
-    const [postE, setpostE] = useState(null)
     const [genderE, setgenderE] = useState(null)
 
 
@@ -135,26 +129,16 @@ function Register() {
                 setlkdE(errMsg)
             else
                 setlkdE(null)
-        } else if (FieldName === 'github') {
+        } else if (FieldName === 'passoutYear') {
             if (errMsg !== "")
-                setgitE(errMsg)
+                setpassoutYearE(errMsg)
             else
-                setgitE(null)
-        } else if (FieldName === 'regd') {
-            if (errMsg !== "")
-                setregdE(errMsg)
-            else
-                setregdE(null)
+                setpassoutYearE(null)
         } else if (FieldName === 'branch') {
             if (errMsg !== "")
                 setbranchE(errMsg)
             else
                 setbranchE(null)
-        } else if (FieldName === 'post') {
-            if (errMsg !== "")
-                setpostE(errMsg)
-            else
-                setpostE(null)
         } else if (FieldName === 'aim') {
             if (errMsg !== "")
                 setaimE(errMsg)
@@ -174,7 +158,7 @@ function Register() {
                 ?
                 <form className="form__container">
                     <div className="form__title">
-                        <h2>Application Form</h2>
+                        <h2>Alumni Form</h2>
                     </div>
                     <div className="form__panel">
 
@@ -183,12 +167,12 @@ function Register() {
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setsn(e.target.value)} name="last_name" required placeholder="Last Name"></input>
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setlkd(e.target.value)} name="linkedin" required placeholder="LinkedIn Id*"></input>
                         {(lkdE) ? <p className='input__errors'>{lkdE}</p> : <div className='input__errors'></div>}
-                        <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setgit(e.target.value)} name="github" required placeholder="Github Id*"></input>
-                        {(gitE) ? <p className='input__errors'>{gitE}</p> : <div className='input__errors'></div>}
-                        <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setregd(e.target.value)} name="regd" required placeholder="Registration Number*"></input>
-                        {(regdE) ? <p className='input__errors'>{regdE}</p> : <div className='input__errors'></div>}
+                        <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setpassoutYear(e.target.value)} name="passoutYear" required placeholder="Passout Year*"></input>
+                        {(passoutYearE) ? <p className='input__errors'>{passoutYearE}</p> : <div className='input__errors'></div>}
+                        {/* <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setregd(e.target.value)} name="regd" required placeholder="Registration Number*"></input>
+                        {(regdE) ? <p className='input__errors'>{regdE}</p> : <div className='input__errors'></div>} */}
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setweb(e.target.value)} name="web" placeholder="Portfolio, Website (if any)"></input>
-                        <textarea onKeyUp={(e) => handleValidation(e)} onChange={(e) => setaim(e.target.value)} name="aim" required placeholder="Tell us about yourself (interests, experience, etc.)"></textarea>
+                        <textarea onKeyUp={(e) => handleValidation(e)} onChange={(e) => setaim(e.target.value)} name="aim" required placeholder="Something you wanna say to juniors (in 1 or 2 lines max)...We would love to hear"></textarea>
                         {(aimE) ? <p className='input__errors'>{aimE}</p> : <div className='input__errors'></div>}
 
                         <div className="member_type mem">
@@ -214,31 +198,6 @@ function Register() {
                             {(branchE) ? <p className='input__errors'>{branchE}</p> : <div className='input__errors'></div>}
                         </div>
 
-                        <div className="member_type mem">
-                            <label htmlFor="position"><p>What you are?*</p></label>
-                            <select defaultValue="member" className='position' onChange={(e) => setpost(e.target.value)} name="position" id="position">
-                                <option className='form__select__option' value="member">Member</option>
-                                <option className='form__select__option' value="core">Core Member</option>
-                            </select>
-                            {(postE) ? <p className='input__errors'>{postE}</p> : <div className='input__errors'></div>}
-                        </div>
-
-                        {(post === 'core') &&
-                            <div className="member_type mem">
-                                <label htmlFor="position"><p>Field*</p></label>
-                                <select defaultValue="Coordinator" className='position' onChange={(e) => setheadPost(e.target.value)} name="position" id="position">
-                                    <option className='form__select__option' value="Coordinator">Coordinator</option>
-                                    <option className='form__select__option' value="Co-Cordinator">Co-cordinator</option>
-                                    <option className='form__select__option' value="Social Media Head">Social Media Head</option>
-                                    <option className='form__select__option' value="Programming Head">Programming Head</option>
-                                    <option className='form__select__option' value="Development Head">Development Head</option>
-                                    <option className='form__select__option' value="CyberSecurity Head">CyberSecurity Head</option>
-                                    <option className='form__select__option' value="Machine Learning Head">Machine Learning Head</option>
-                                </select>
-                                {(postE) ? <p className='input__errors'>{postE}</p> : <div className='input__errors'></div>}
-                            </div>
-                        }
-
                         <div className={url ? 'form__upload_img uploaded' : "form__upload_img"}>
                             <label htmlFor='avatar_uploader'>
                                 <AiOutlineFileImage />
@@ -254,7 +213,7 @@ function Register() {
                         <span>I agree that all the information provided above is true.</span>
                     </label>
                     <div className="form__buttons">
-                        <button type="submit" disabled={!url || !check || fnEE || gitE || lkdE || regdE || postE || branchE || aimE} onClick={submitform} className={(!(!url || !check || fnEE || gitE || lkdE || regdE || postE || branchE || aimE)) ? "form__btn" : 'form__btn disabledbtn'}> Submit</button>
+                        <button type="submit" disabled={!url || !check || fnEE || passoutYearE || lkdE || branchE || aimE} onClick={submitform} className={(!(!url || !check || fnEE || passoutYearE || lkdE || branchE || aimE)) ? "form__btn" : 'form__btn disabledbtn'}> Submit</button>
                         <button type="reset" className="form__btn">Reset</button>
                     </div>
                 </form>
@@ -268,4 +227,5 @@ function Register() {
         </div >
     );
 }
-export default Register;
+
+export default AlumniForm

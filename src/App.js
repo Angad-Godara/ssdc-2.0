@@ -30,6 +30,7 @@ import { selectProjects, setProjects } from './Features/projectsSlice';
 import Alumni from './Components/Team/Alumni';
 import { setAlumni } from './Features/alumniSlice';
 import { SyncLoader } from 'react-spinners';
+import AlumniForm from './Components/Form/AlumniForm';
 
 function App() {
 
@@ -297,6 +298,13 @@ function App() {
                   <>
                     <Navbar />
                     <Form />
+                    <Footer />
+                  </>
+                } />
+                <Route exact path='/alumniform' element={
+                  <>
+                    <Navbar />
+                    <AlumniForm />
                     <Footer />
                   </>
                 } />

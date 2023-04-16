@@ -56,10 +56,24 @@ function Navbar() {
                                 ?
                                 <></>
                                 :
-                                <Link to='/form' className='nav__member__option'>
-                                    <AiOutlineStar size={sw < 450 ? '10px' : (sw > 300 ? '12px' : '7px')} />
-                                    <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Members</span>
-                                </Link>
+                                <div style={{ marginRight: '10px' }}>
+                                    <Link to='/alumniform' className='nav__member__option'>
+                                        <AiOutlineStar size={sw < 450 ? '10px' : (sw > 300 ? '12px' : '7px')} />
+                                        <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Alumni</span>
+                                    </Link>
+                                </div>
+                        }
+                        {
+                            (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified')
+                                ?
+                                <></>
+                                :
+                                <div style={{ marginRight: '10px' }}>
+                                    <Link to='/form' className='nav__member__option'>
+                                        <AiOutlineStar size={sw < 450 ? '10px' : (sw > 300 ? '12px' : '7px')} />
+                                        <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Members</span>
+                                    </Link>
+                                </div>
                         }
 
                     </div>
@@ -153,6 +167,19 @@ function Navbar() {
                     <Link to="/privacy" className="option__link">Privacy Policy</Link>
                 </div>
                 {
+                    (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified')
+                        ?
+                        <></>
+                        :
+                        <div className='brgr__item'>
+                            <Link to='/alumniform' className='nav__member__option'>
+                                <AiOutlineStar size={sw < 450 ? '10px' : (sw > 300 ? '12px' : '7px')} />
+                                <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Alumni</span>
+                            </Link>
+                        </div>
+                }
+                {
+
                     (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified')
                         ?
                         <></>
