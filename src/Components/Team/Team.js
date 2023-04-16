@@ -42,7 +42,7 @@ function Team() {
                             contact={obj.contact}
                             email={obj.email}
                             photoURL={obj.photoURL}
-                            post={obj.post}
+                            post={'mentor'}
                         />
                     })}
                 </div>
@@ -59,7 +59,7 @@ function Team() {
                             linkedin={obj.linkedin}
                             email={obj.email}
                             photoURL={obj.photoURL}
-                            post={'CORE'}
+                            post={'core'}
                             fac={false}
                         />
                     })}
@@ -77,7 +77,7 @@ function Team() {
                             linkedin={obj.linkedin}
                             email={obj.email}
                             photoURL={obj.photoURL}
-                            post={'MEMBER'}
+                            post={'member'}
                             fac={false}
                         />
                     })}

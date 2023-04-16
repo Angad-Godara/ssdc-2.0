@@ -3,7 +3,7 @@ import './Card.css'
 import Member from './Member'
 import MemberDetail from './MemberDetail'
 
-function Card({ fac, photoURL, aim, name, github, linkedin, email, post, contact, web }) {
+function Card({ fac, photoURL, aim, name, github, linkedin, email, post, contact, web, passoutYear }) {
 
     const [open, setopen] = useState(true)
 
@@ -14,6 +14,7 @@ function Card({ fac, photoURL, aim, name, github, linkedin, email, post, contact
                     <Member setopen={setopen} fac={fac}
                         name={name}
                         github={github}
+                        passoutYear={passoutYear}
                         linkedin={linkedin}
                         email={email}
                         photoURL={photoURL}

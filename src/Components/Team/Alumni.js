@@ -17,12 +17,15 @@ function Alumni() {
                         return <Card key={i}
                             fac={true}
                             aim={obj.aim}
+                            passoutYear={obj.passoutYear}
                             name={obj.name}
                             web={obj.web}
+                            github={obj?.github}
                             contact={obj.contact}
                             email={obj.email}
                             photoURL={obj.photoURL}
                             post={obj.post}
+                            linkedin={obj.linkedin}
                         />
                     })}
                 </div>

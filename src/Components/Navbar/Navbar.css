@@ -321,7 +321,8 @@ a{
     }
 }
 
-@media only screen and (max-width: 480px){
+/* should be written for 480px but done for a quick fix of alms */
+@media only screen and (max-width: 1030px){
     .nav__options{
         display: none;
     }
@@ -337,4 +338,5 @@ a{
     .onsmall{
         display: flex;
     }
+    
 }

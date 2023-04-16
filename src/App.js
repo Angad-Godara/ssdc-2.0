@@ -100,15 +100,17 @@ function App() {
 
 
       db
-        .collection('members')
+        .collection('alumnis')
         .onSnapshot(snapshot => {
           dispatch(setAlumni(snapshot.docs.map((snap) => ({
-            aim: snap.data().aim,
-            github: snap.data().github,
-            linkedin: snap.data().linkedin,
-            email: snap.data().email,
-            name: snap.data().name,
-            photoURL: snap.data().photoURL,
+            aim: snap.data()?.aim,
+            passoutYear: snap.data()?.passoutYear,
+            linkedin: snap.data()?.linkedin,
+            email: snap.data()?.email,
+            name: snap.data()?.name,
+            photoURL: snap.data()?.photoURL,
+            post: snap.data()?.post,
+            github: snap.data()?.github,
           }))))
         })
 
@@ -161,9 +163,33 @@ function App() {
                     post: snap.data()?.post,
                     regd: snap.data()?.regd,
                     web: snap.data()?.web,
-                    leetcode: snap.data().leetcode,
-                    codechef: snap.data().codechef,
-                    codeforces: snap.data().codeforces,
+                    leetcode: snap.data()?.leetcode,
+                    codechef: snap.data()?.codechef,
+                    codeforces: snap.data()?.codeforces,
+                  }))
+                })
+            }
+
+            if (snap.data()?.mstatus === 'alm__verified') {
+              db
+                .collection('alumnis')
+                .doc(authUser?.uid)
+                .onSnapshot(snap => {
+                  dispatch(setMember({
+                    aim: snap.data()?.aim,
+                    branch: snap.data()?.branch,
+                    email: snap.data()?.email,
+                    gender: snap.data()?.gender,
+                    github: snap.data()?.github,
+                    linkedin: snap.data()?.linkedin,
+                    name: snap.data()?.name,
+                    photoURL: snap.data()?.photoURL,
+                    post: snap.data()?.post,
+                    regd: snap.data()?.regd,
+                    web: snap.data()?.web,
+                    leetcode: snap.data()?.leetcode,
+                    codechef: snap.data()?.codechef,
+                    codeforces: snap.data()?.codeforces,
                   }))
                 })
             }

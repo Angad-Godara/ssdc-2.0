@@ -4,8 +4,7 @@ import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { AiFillGithub, AiFillLinkedin, AiFillMail, AiOutlineAim, AiOutlineLink } from 'react-icons/ai';
 import { IoIosCall } from 'react-icons/io'
 
-function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, web, contact }) {
-
+function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, web, contact, passoutYear }) {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
     const rotateX = useTransform(y, [-100, 100], [30, -30]);
@@ -33,7 +32,7 @@ function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, w
                 </TopContainer>
                 <BottomContainer>
                     <DetailsContainer>
-                        <SmallText>{post}</SmallText>
+                        <SmallText>{post} {passoutYear ? passoutYear : ''}</SmallText>
                         <SpacedHorizontalConatiner>
                             <MediumText>{name}</MediumText>
                         </SpacedHorizontalConatiner>
@@ -43,10 +42,46 @@ function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, w
                                     ?
                                     <>
                                         <a target={'_blank'} href={`mailto:${email}`}><AiFillMail className='logo__mail' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
-                                        |
-                                        <a target={'_blank'} href={web}><AiOutlineLink className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
-                                        |
-                                        <a href={`tel:${contact}`}><IoIosCall className='logo__google' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
+                                        {
+                                            (web)
+                                                ?
+                                                <>
+                                                    |
+                                                    <a target={'_blank'} href={web}><AiOutlineLink className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
+                                                </>
+                                                :
+                                                <></>
+                                        }
+                                        {
+                                            (web)
+                                                ?
+                                                <>
+                                                    |
+                                                    <a href={`tel:${contact}`}><IoIosCall className='logo__google' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
+                                                </>
+                                                :
+                                                <></>
+                                        }
+                                        {
+                                            (linkedin)
+                                                ?
+                                                <>
+                                                    |
+                                                    <a target={'_blank'} href={linkedin}><AiFillLinkedin className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
+                                                </>
+                                                :
+                                                <></>
+                                        }
+                                        {
+                                            (github)
+                                                ?
+                                                <>
+                                                    |
+                                                    <a target={'_blank'} href={github}>< AiFillGithub className='logo__github' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
+                                                </>
+                                                :
+                                                <></>
+                                        }
                                     </>
                                     :
                                     <>
