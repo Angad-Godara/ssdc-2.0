@@ -1,6 +1,7 @@
 .ProfileUpdateForm{
     min-width: 504px;
     max-width: 855px;
+    min-height: 50vh;
     background: white;
     border-radius: 5px;
     font-size: 14px;

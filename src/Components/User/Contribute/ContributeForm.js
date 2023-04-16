@@ -97,109 +97,117 @@ function ContributeForm() {
 
     return (
         <div className='ProfileUpdateForm ContributeForm'>
-            <>
-                <PrevContributions />
-            </>
-            <div className='update__form__title'>Add contributions</div>
-            {(open === 'gitname')
+            {(!member)
                 ?
-                <div className='update__form__row update__open'>
-                    <div className='left__upd'>Owner's Github</div>
-                    <div className='right__upd'>
-                        <input type={'text'} defaultValue={contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github}
-                            placeholder={"Owner's Github Account"}
-                            onChange={async (e) => {
-                                setgituser(e.target.value)
-                            }} />
-                        <div className='update__buttons'>
-                            <button onClick={async (e) => {
-                                dispatch(setCurrentContribution({
-                                    owner: gituser,
-                                }))
-                                save(e, open)
-                                if (!globalchange)
-                                    setglobalchange(true);
-                            }} className='save__upd'>Save</button>
-                            <button onClick={() => setopen(-1)}>Cancel</button>
-                        </div>
-                    </div>
-                </div>
-                :
-                <div className='update__form__row'>
-                    <div className='col1'>
-                        <div className='left__upd'>Owner's Github</div>
-                        <div className='right__upd'>{contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github}</div>
-                        <div onClick={() => setopen('gitname')} className='right__corner__wrapper'>
-                            <span className='right__corner'>Edit</span>
-                        </div>
-                    </div>
-                </div >}
 
-            {(open === 'name')
-                ?
-                <div className='update__form__row update__open'>
-                    <div className='left__upd'>Repo-Name</div>
-                    <div className='right__upd'>
-                        <input type={'text'} placeholder={'Github Repo Name'} defaultValue={contributions.currentContribution?.repo && contributions.currentContribution?.repo}
-                            onChange={async (e) => {
-                                setreponame(e.target.value)
-                                if (repoverf)
-                                    setrepoverf(false)
-                            }} />
-                        <div className='update__buttons'>
-                            <button onClick={async (e) => repoverification(e)} className='save__upd'>{repoverf ? 'Save' : 'Verify'}</button>
-                            <button onClick={() => setopen(-1)}>Cancel</button>
-                        </div>
-                    </div>
-                </div>
+                <h2>only members allowed</h2>
                 :
-                <div className='update__form__row'>
-                    <div className='col1'>
-                        <div className='left__upd'>Repo-Name</div>
-                        <div className='right__upd'>{contributions.currentContribution?.repo ? contributions.currentContribution?.repo : '🤷'}</div>
-                        <div onClick={() => setopen('name')} className='right__corner__wrapper'>
-                            <span className='right__corner'>Edit</span>
+                <>
+                    <>
+                        <PrevContributions />
+                    </>
+                    <div className='update__form__title'>Add contributions</div>
+                    {(open === 'gitname')
+                        ?
+                        <div className='update__form__row update__open'>
+                            <div className='left__upd'>Owner's Github</div>
+                            <div className='right__upd'>
+                                <input type={'text'} defaultValue={contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github}
+                                    placeholder={"Owner's Github Account"}
+                                    onChange={async (e) => {
+                                        setgituser(e.target.value)
+                                    }} />
+                                <div className='update__buttons'>
+                                    <button onClick={async (e) => {
+                                        dispatch(setCurrentContribution({
+                                            owner: gituser,
+                                        }))
+                                        save(e, open)
+                                        if (!globalchange)
+                                            setglobalchange(true);
+                                    }} className='save__upd'>Save</button>
+                                    <button onClick={() => setopen(-1)}>Cancel</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div >}
+                        :
+                        <div className='update__form__row'>
+                            <div className='col1'>
+                                <div className='left__upd'>Owner's Github</div>
+                                <div className='right__upd'>{contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github}</div>
+                                <div onClick={() => setopen('gitname')} className='right__corner__wrapper'>
+                                    <span className='right__corner'>Edit</span>
+                                </div>
+                            </div>
+                        </div >}
 
-            {/* Idea: how SSDC helped you for this? */}
-            {(open === 'help')
-                ?
-                <div className='update__form__row update__open'>
-                    <div className='left__upd'>How SSDC....</div>
-                    <div className='right__upd'>
-                        <textarea onChange={(e) => {
-                            setssdcContri(e.target.value)
-                        }} placeholder='How SSDC plays helps you doing this....(mentors, environment, culture, etc.)' defaultValue={contributions.currentContribution?.ssdcContri && contributions.currentContribution?.ssdcContri} />
-                        <div className='update__buttons'>
-                            <button onClick={(e) => {
-                                dispatch(setCurrentContribution({
-                                    ssdcContri: ssdcContri
-                                }))
-                                save(e, open)
-                                if (!globalchange)
-                                    setglobalchange(true);
-                            }} className='save__upd'>Save</button>
-                            <button onClick={() => setopen(-1)}>Cancel</button>
+                    {(open === 'name')
+                        ?
+                        <div className='update__form__row update__open'>
+                            <div className='left__upd'>Repo-Name</div>
+                            <div className='right__upd'>
+                                <input type={'text'} placeholder={'Github Repo Name'} defaultValue={contributions.currentContribution?.repo && contributions.currentContribution?.repo}
+                                    onChange={async (e) => {
+                                        setreponame(e.target.value)
+                                        if (repoverf)
+                                            setrepoverf(false)
+                                    }} />
+                                <div className='update__buttons'>
+                                    <button onClick={async (e) => repoverification(e)} className='save__upd'>{repoverf ? 'Save' : 'Verify'}</button>
+                                    <button onClick={() => setopen(-1)}>Cancel</button>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                :
-                <div className='update__form__row'>
-                    <div className='col1'>
-                        <div className='left__upd'>How SSDC...</div>
-                        <div className='right__upd'>{contributions.currentContribution?.ssdcContri ? contributions.currentContribution?.ssdcContri : '🤷'}</div>
-                        <div onClick={() => setopen('help')} className='right__corner__wrapper'>
-                            <span className='right__corner'>Edit</span>
+                        :
+                        <div className='update__form__row'>
+                            <div className='col1'>
+                                <div className='left__upd'>Repo-Name</div>
+                                <div className='right__upd'>{contributions.currentContribution?.repo ? contributions.currentContribution?.repo : '🤷'}</div>
+                                <div onClick={() => setopen('name')} className='right__corner__wrapper'>
+                                    <span className='right__corner'>Edit</span>
+                                </div>
+                            </div>
+                        </div >}
+
+                    {/* Idea: how SSDC helped you for this? */}
+                    {(open === 'help')
+                        ?
+                        <div className='update__form__row update__open'>
+                            <div className='left__upd'>How SSDC....</div>
+                            <div className='right__upd'>
+                                <textarea onChange={(e) => {
+                                    setssdcContri(e.target.value)
+                                }} placeholder='How SSDC plays helps you doing this....(mentors, environment, culture, etc.)' defaultValue={contributions.currentContribution?.ssdcContri && contributions.currentContribution?.ssdcContri} />
+                                <div className='update__buttons'>
+                                    <button onClick={(e) => {
+                                        dispatch(setCurrentContribution({
+                                            ssdcContri: ssdcContri
+                                        }))
+                                        save(e, open)
+                                        if (!globalchange)
+                                            setglobalchange(true);
+                                    }} className='save__upd'>Save</button>
+                                    <button onClick={() => setopen(-1)}>Cancel</button>
+                                </div>
+                            </div>
                         </div>
+                        :
+                        <div className='update__form__row'>
+                            <div className='col1'>
+                                <div className='left__upd'>How SSDC...</div>
+                                <div className='right__upd'>{contributions.currentContribution?.ssdcContri ? contributions.currentContribution?.ssdcContri : '🤷'}</div>
+                                <div onClick={() => setopen('help')} className='right__corner__wrapper'>
+                                    <span className='right__corner'>Edit</span>
+                                </div>
+                            </div>
+                        </div >
+                    }
+                    <div className='button__wrapper'>
+                        <button disabled={(!member?.github && !contributions.currentContribution?.owner) || !contributions.currentContribution?.repo || !contributions.currentContribution?.ssdcContri} className={(globalchange && !((!member.github && !contributions.currentContribution?.owner) || !contributions.currentContribution?.repo || !contributions.currentContribution?.ssdcContri)) ? '' : 'nochange'} onClick={globalchange ? requestContribution : undefined}>Submit Request</button>
                     </div>
-                </div >
+                </>
             }
-            <div className='button__wrapper'>
-                <button disabled={(!member?.github && !contributions.currentContribution?.owner) || !contributions.currentContribution?.repo || !contributions.currentContribution?.ssdcContri} className={(globalchange && !((!member.github && !contributions.currentContribution?.owner) || !contributions.currentContribution?.repo || !contributions.currentContribution?.ssdcContri)) ? '' : 'nochange'} onClick={globalchange ? requestContribution : undefined}>Submit Request</button>
-            </div>
-        </div >
+        </div>
     )
 }
 

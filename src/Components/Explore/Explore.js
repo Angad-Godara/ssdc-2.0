@@ -30,7 +30,30 @@ function Explore() {
                                 ?
                                 <div>
                                     <h3>Cp and dsa related guidance and plans</h3>
-                                    <ResourceCard />
+                                    <div className='resource__card__wrapper'>
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                    </div>
                                 </div>
                                 :
                                 (
@@ -38,16 +61,24 @@ function Explore() {
                                         ?
                                         <div className={(active === 2) ? 'show' : ''}>
                                             <h3>Development related guidance plans</h3>
+                                            <div className='resource__card__wrapper'>
+                                            </div>
                                         </div>
                                         :
                                         (active === 3)
                                             ?
                                             <div className={(active === 3) ? 'show' : ''}>
                                                 <h3>ml/data science related guidance plans</h3>
+                                                <div className='resource__card__wrapper'>
+                                                </div>
                                             </div>
                                             :
                                             <div className={(active === 4) ? 'show' : ''}>
-                                                <h3>Cybersec related guidance plans</h3>
+                                                <h3>Cybersecurity related resources and guidance plans</h3>
+                                                <div className='resource__card__wrapper'>
+                                                    <ResourceCard title='Linux' url='https://www.linux.org/' desc='Get all learnings and insignts about Linux Systems as Linux is the most used operating system all over the world for servers and it has also a lot of handsome job roles.' />
+                                                    <ResourceCard title='Computer Networking' url='https://www.youtube.com/playlist?list=PLPXEBNfIeLdkQGjcWUQIB7rAxqxdT91dg' desc='Get all learnings and insignts about Linux Systems as Linux is the most used operating system all over the world for servers and it has also a lot of handsome job roles.' />
+                                                </div>
                                             </div>
                                 )}
                         </div>

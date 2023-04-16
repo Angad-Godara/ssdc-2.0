@@ -6,15 +6,18 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin: auto;
 }
 
 .rsheading{
     font-weight: 700;
+    text-align: center;
 }
 
 .rssummary{
     font-size: small;
     padding-top: 8px;
+    text-align: justify;
 }
 
 .rsstart{

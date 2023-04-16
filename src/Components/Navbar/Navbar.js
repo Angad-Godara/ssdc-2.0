@@ -96,14 +96,14 @@ function Navbar() {
                 <div className='onsmall'>
                     <div className='onsmall__item'>
                         {user ?
-                            <img className='onsmall__user' src={user?.photoURL} alt='U' />
+                            <Link to='/user'><img className='onsmall__user' src={user?.photoURL} alt='U' /></Link>
                             :
                             <>
                             </>
                         }
                     </div>
                     <div className='onsmall__item'>
-                        <img className='nav__logo' src={'./NewLogoColor.png'} alt='logo' />
+                        <Link to='/'><img className='nav__logo' src={'./NewLogoColor.png'} alt='logo' /></Link>
                     </div>
                     <div className='open__brgr__btn'>
                         <GiHamburgerMenu size={'20px'} onClick={() => {
@@ -152,6 +152,19 @@ function Navbar() {
                 <div className='brgr__item'>
                     <Link to="/privacy" className="option__link">Privacy Policy</Link>
                 </div>
+                {
+                    (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified')
+                        ?
+                        <></>
+                        :
+                        <div className='brgr__item'>
+                            <Link to='/form' className='nav__member__option'>
+                                <AiOutlineStar size={sw < 450 ? '10px' : (sw > 300 ? '12px' : '7px')} />
+                                <span style={{ paddingBottom: '2px' }} className='nav__member__option__link'>Members</span>
+                            </Link>
+                        </div>
+                }
+
                 {(user)
                     ?
                     <div div className='brgr__item'>

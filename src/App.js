@@ -215,6 +215,9 @@ function App() {
               <Route path="/home" element={
                 <HomeScreen />
               } />
+              <Route path="/" element={
+                <HomeScreen />
+              } />
               <Route path="/team" element={
                 <>
                   <Navbar />
@@ -232,7 +235,7 @@ function App() {
               } />
               <Route
                 path="*"
-                element={<Navigate to="/home" />}
+                element={<Navigate to="/" />}
               />
               <Route path="/privacy" element={
                 <>

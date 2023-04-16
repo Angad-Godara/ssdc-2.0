@@ -149,3 +149,33 @@
 }
 
 /* Media Queries */
+@media only screen and (max-width: 480px){
+    .login__container{
+        width: 325px !important;
+        height: 450px;
+    }
+    .login__wrapper{
+        margin-top: 3.7vh;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 380px){
+    .login__container{
+        width: 325px !important;
+        height: 435px !important;
+    }
+    .login__wrapper{
+        margin-top: 3.7vh;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 830px){
+    .login__container{
+        width: 400px;
+        height: 500px;
+    }
+}
