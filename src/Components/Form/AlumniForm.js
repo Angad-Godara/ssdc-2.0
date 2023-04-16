@@ -15,14 +15,11 @@ function AlumniForm() {
     const [sn, setsn] = useState(null)
     const [lkd, setlkd] = useState(null)
     const [passoutYear, setpassoutYear] = useState(null)
-    const [regd, setregd] = useState(null)
     const [branch, setbranch] = useState('GCS')
     const [web, setweb] = useState(null)
     const [aim, setaim] = useState(null)
-    const [post, setpost] = useState('member')
     const [check, setcheck] = useState(false)
     const [gender, setgender] = useState('male')
-    const [headPost, setheadPost] = useState('Coordinator')
     const [fileE, setfileE] = useState(null);
 
     const navigate = useNavigate()
@@ -83,7 +80,6 @@ function AlumniForm() {
                 passoutYear: passoutYear,
                 linkedin: lkd,
                 post: 'alumni',
-                regd: regd,
                 branch: branch,
                 web: web,
                 aim: aim,
@@ -169,8 +165,6 @@ function AlumniForm() {
                         {(lkdE) ? <p className='input__errors'>{lkdE}</p> : <div className='input__errors'></div>}
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setpassoutYear(e.target.value)} name="passoutYear" required placeholder="Passout Year*"></input>
                         {(passoutYearE) ? <p className='input__errors'>{passoutYearE}</p> : <div className='input__errors'></div>}
-                        {/* <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setregd(e.target.value)} name="regd" required placeholder="Registration Number*"></input>
-                        {(regdE) ? <p className='input__errors'>{regdE}</p> : <div className='input__errors'></div>} */}
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setweb(e.target.value)} name="web" placeholder="Portfolio, Website (if any)"></input>
                         <textarea onKeyUp={(e) => handleValidation(e)} onChange={(e) => setaim(e.target.value)} name="aim" required placeholder="Something you wanna say to juniors (in 1 or 2 lines max)...We would love to hear"></textarea>
                         {(aimE) ? <p className='input__errors'>{aimE}</p> : <div className='input__errors'></div>}
