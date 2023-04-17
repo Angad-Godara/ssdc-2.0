@@ -49,6 +49,9 @@ function Navbar() {
                         <div className='nav__option'>
                             <Link to="/alumni" className="option__link">Alumni</Link>
                         </div>
+                        <div className='nav__option'>
+                            <Link to="/contests" className="option__link">Contests</Link>
+                        </div>
                     </div>
                     <div className='nav__member'>
                         {
