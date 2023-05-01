@@ -128,11 +128,9 @@ function App() {
     }
 
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
-      fetchTeam();
-      fetchProjects();
+      setloading(true);
 
       if (authUser) {
-        setloading(true);
         // fetching user from db
         db
           .collection('users')
@@ -199,6 +197,8 @@ function App() {
       } else {
         dispatch(logout())
       }
+      fetchTeam();
+      fetchProjects();
       setloading(false)
     })
 
@@ -206,107 +206,45 @@ function App() {
   }, [])
 
   return (
-    <div onClick={() => {
-      if (userMenu)
-        dispatch(close())
+    <>
+      <div onClick={() => {
+        if (userMenu)
+          dispatch(close())
 
-      if (brgrMenu)
-        dispatch(brgrClose())
+        if (brgrMenu)
+          dispatch(brgrClose())
 
-    }} className="App">
+      }} className="App">
 
-      {
-        loading
-          ?
-          <div className='spinner__wrapper'>
-            <SyncLoader color="#37474f" />
-          </div>
-          :
-          (!user)
+        {
+          loading
             ?
-            <Routes>
-              <Route exact path="/register" element={
-                <div className='login__register'>
-                  <Navbar />
-                  <Register />
-                  <Footer />
-                </div>
-              } />
-              <Route exact path="/login" element={
-                <div className='login__register'>
-                  <Navbar />
-                  <Login />
-                  <Footer />
-                </div>
-              } />
-              <Route path="/home" element={
-                <HomeScreen />
-              } />
-              <Route path="/" element={
-                <HomeScreen />
-              } />
-              <Route path="/team" element={
-                <>
-                  <Navbar />
-                  <Team />
-                </>
-              } />
-              <Route path="/alumni" element={
-                <>
-                  <Navbar />
-                  <Alumni />
-                </>
-              } />
-              <Route path="/contests" element={
-                <ContestScreen />
-              } />
-              <Route
-                path="*"
-                element={<Navigate to="/" />}
-              />
-              <Route path="/privacy" element={
-                <>
-                  <PrivacyPolicy />
-                </>
-              } />
-              <Route path="/projects" element={
-                <>
-                  <Navbar />
-                  <Projects />
-                </>
-              } />
-              <Route path='/forgotpassword' element={
-                <>
-                  <Navbar />
-                  <ForgotPassword />
-                </>
-              } />
-            </Routes>
+            <div className='spinner__wrapper'>
+              <SyncLoader color="#37474f" />
+            </div>
             :
-
-            (auth?.currentUser?.emailVerified)
+            (!user)
               ?
               <Routes>
-                <Route path="/contests" element={
-                  <ContestScreen />
-                } />
-                <Route path='/user' element={
-                  <>
+                <Route exact path="/register" element={
+                  <div className='login__register'>
                     <Navbar />
-                    <User />
-                  </>
+                    <Register />
+                    <Footer />
+                  </div>
+                } />
+                <Route exact path="/login" element={
+                  <div className='login__register'>
+                    <Navbar />
+                    <Login />
+                    <Footer />
+                  </div>
+                } />
+                <Route path="/home" element={
+                  <HomeScreen />
                 } />
                 <Route path="/" element={
-                  <>
-                    <Navbar />
-                    <Explore />
-                  </>
-                } />
-                <Route path="/explore" element={
-                  <>
-                    <Navbar />
-                    <Explore />
-                  </>
+                  <HomeScreen />
                 } />
                 <Route path="/team" element={
                   <>
@@ -320,19 +258,8 @@ function App() {
                     <Alumni />
                   </>
                 } />
-                <Route exact path='/form' element={
-                  <>
-                    <Navbar />
-                    <Form />
-                    <Footer />
-                  </>
-                } />
-                <Route exact path='/alumniform' element={
-                  <>
-                    <Navbar />
-                    <AlumniForm />
-                    <Footer />
-                  </>
+                <Route path="/contests" element={
+                  <ContestScreen />
                 } />
                 <Route path="/privacy" element={
                   <>
@@ -343,6 +270,12 @@ function App() {
                   path="*"
                   element={<Navigate to="/" />}
                 />
+                <Route path='/forgotpassword' element={
+                  <>
+                    <Navbar />
+                    <ForgotPassword />
+                  </>
+                } />
                 <Route path="/projects" element={
                   <>
                     <Navbar />
@@ -351,19 +284,88 @@ function App() {
                 } />
               </Routes>
               :
-              <Routes>
-                <Route path='/register' element={
-                  <>
-                    <VerifyEmail />
-                  </>
-                } />
-                <Route
-                  path="*"
-                  element={<Navigate to="/register" />}
-                />
-              </Routes>
-      }
-    </div >
+
+              (auth?.currentUser?.emailVerified)
+                ?
+                <Routes>
+                  <Route path="/contests" element={
+                    <ContestScreen />
+                  } />
+                  <Route path="/" element={
+                    <>
+                      <Navbar />
+                      <Explore />
+                    </>
+                  } />
+                  <Route path='/user' element={
+                    <>
+                      <Navbar />
+                      <User />
+                    </>
+                  } />
+                  <Route path="/explore" element={
+                    <>
+                      <Navbar />
+                      <Explore />
+                    </>
+                  } />
+                  <Route path="/team" element={
+                    <>
+                      <Navbar />
+                      <Team />
+                    </>
+                  } />
+                  <Route path="/alumni" element={
+                    <>
+                      <Navbar />
+                      <Alumni />
+                    </>
+                  } />
+                  <Route exact path='/form' element={
+                    <>
+                      <Navbar />
+                      <Form />
+                      <Footer />
+                    </>
+                  } />
+                  <Route exact path='/alumniform' element={
+                    <>
+                      <Navbar />
+                      <AlumniForm />
+                      <Footer />
+                    </>
+                  } />
+                  <Route path="/privacy" element={
+                    <>
+                      <PrivacyPolicy />
+                    </>
+                  } />
+                  <Route path="/projects" element={
+                    <>
+                      <Navbar />
+                      <Projects />
+                    </>
+                  } />
+                  <Route
+                    path="*"
+                    element={<Navigate to="/" />}
+                  />
+                </Routes>
+                :
+                <Routes>
+                  <Route path='/register' element={
+                    <>
+                      <VerifyEmail />
+                    </>
+                  } />
+                  <Route
+                    path="*"
+                    element={<Navigate to="/register" />}
+                  />
+                </Routes>
+        }
+      </div >
+    </>
   );
 }
 

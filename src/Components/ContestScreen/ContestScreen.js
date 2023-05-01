@@ -28,37 +28,43 @@ function ContestScreen() {
   useEffect(() => {
     const getContests = async (siteName) => {
       setloading(true);
-      await fetch("https://kontests.net/api/v1/" + siteName)
-        .then((response) => response.json())
-        .then((data) => {
-          const cntst = data.map((contest) => ({
-            name: contest.name,
-            link: contest.url,
-            start_time: contest?.start_time,
-            duration: contest.duration,
-            status: contest.status,
-          }));
-          setContests(cntst);
-        })
-        .catch((error) => console.log(error));
-      setloading(false);
+      try {
+        const response = await fetch("https://kontests.net/api/v1/" + siteName);
+        const data = await response.json();
+        const cntst = data.map((contest) => ({
+          name: contest.name,
+          link: contest.url,
+          start_time: contest?.start_time,
+          duration: contest.duration,
+          status: contest.status,
+        }));
+        setContests(cntst);
+      } catch (error) {
+        console.log(error);
+      } finally {
+        setloading(false);
+      }
     };
+
     let closeFilterOnOutSideClick = (e) => {
       if (!filterMenuRef.current.contains(e.target)) {
         setFilterMenuOpen(0);
       }
     };
     document.addEventListener("mousedown", closeFilterOnOutSideClick);
+
     getContests(query);
   }, [query]);
 
   const Logout = (e) => {
+    setloading(true);
     e.preventDefault();
     if (user) {
       auth.signOut();
     } else {
       navigate("/login");
     }
+    setloading(false);
   };
 
   function secondsToHms(d) {

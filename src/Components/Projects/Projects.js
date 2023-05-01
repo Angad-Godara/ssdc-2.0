@@ -28,20 +28,27 @@ function Projects() {
         }
 
         const fetchprojects = async () => {
-            const projectData = await Promise.all(
-                projects?.map((project) => {
-                    return fetchrepo(project.owner, project.repo);
-                })
-            );
-            dispatch(setProjectsData(projectData));
+            try {
+                setLoading(true);
+                const projectData = await Promise.all(
+                    projects?.map((project) => {
+                        return fetchrepo(project.owner, project.repo);
+                    })
+                );
+                dispatch(setProjectsData(projectData));
+            } catch (error) {
+                console.log(error);
+                setLoading(false);
+            } finally {
+                setLoading(false);
+            }
         }
 
         if (projects) {
-            setLoading(true);
             fetchprojects();
-            setLoading(false);
         }
     }, [projects])
+
 
     return (
         <div className='projects'>
