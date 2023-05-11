@@ -25,12 +25,12 @@
     text-align: center;
 }
 
-.rsstart>button{
+.rsstart > button{
     padding: 7px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: 600;
     color: white;
-    background-color:rgba(23, 27, 23, 0.881);
+    background-color: rgba(23, 27, 23, 0.881);
     border: 0.2px rgba(0, 0, 0, 0.26) solid;
 }

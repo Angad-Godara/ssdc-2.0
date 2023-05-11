@@ -19,7 +19,7 @@ function Accordian({ title, ico, img, imgsrc, text, textsrc }) {
                 <div>
                     {title}
                 </div>
-                <span className={open ? 'openarr' : 'closedarr'}>
+                <span className={open ? 'closedarr' : 'openarr'}>
                     <MdOutlineNavigateBefore />
                 </span>
             </h4>

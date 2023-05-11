@@ -35,7 +35,7 @@ function Navbar() {
                 <div className='options__container'>
                     <div className='nav__options'>
                         <div className='nav__option'>
-                            <img className='nav__logo' src={'./NewLogoColor.png'} alt='logo' />
+                            <img className='nav__logo' src={'./logo.png'} alt='logo' />
                         </div>
                         <div className='nav__option'>
                             <Link to={user ? "/explore" : '/home'} className="option__link">Explore</Link>
@@ -120,7 +120,7 @@ function Navbar() {
                         }
                     </div>
                     <div className='onsmall__item'>
-                        <Link to='/'><img className='nav__logo' src={'./NewLogoColor.png'} alt='logo' /></Link>
+                        <Link to='/'><img className='nav__logo' src={'./logo.png'} alt='logo' /></Link>
                     </div>
                     <div className='open__brgr__btn'>
                         <GiHamburgerMenu size={'20px'} onClick={() => {

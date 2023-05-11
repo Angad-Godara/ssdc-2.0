@@ -35,9 +35,6 @@ function Hometext() {
                 <Accordian title={'Cybersecurity'} img={'t'} ico={'cs'} imgsrc={'https://www.simplilearn.com/ice9/free_resources_article_thumb/Rising_Cyberattacks_on_MSPs.jpg'} text={'t'} textsrc={'Cybersecurity is the ultimate challenge, where you have to stay one step ahead of the hackers. It is a field where you can make a real difference by protecting individuals, organizations and governments from cyber threats. Cybersecurity is not just a job, it is a mission to protect the digital world and the people who depend on it.'} />
             </div>
 
-            <div className='text__heading activities' style={{ marginBottom: '15px' }}><AiFillCode /><div className='text__heading__title'>Activities</div></div>
-            <ImageSlider use={'home'} />
-
             <div className='text__heading faculty'><MdOutlinePersonPin /><div className='text__heading__title'>Faculty Advisors</div></div>
             <div className='text__faculty__container'>
                 <div className='text__faculty'>
@@ -81,6 +78,9 @@ function Hometext() {
                     </div>
                 </div>
             </div>
+
+            <div className='text__heading activities' style={{ marginBottom: '15px' }}><AiFillCode /><div className='text__heading__title'>Activities</div></div>
+            <ImageSlider use={'home'} />
         </div >
     )
 }

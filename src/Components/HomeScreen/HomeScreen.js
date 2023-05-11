@@ -55,7 +55,7 @@ function HomeScreen() {
                             </div>
                             <div className='container__text'>
                                 <h1>SSDC Welcome You</h1>
-                                <p>Our Club is the only coding club of Sant Longowal Institute of Engineering and Technology. We welcomes you to our website.</p>
+                                <p>The only coding club in our college! dedicated to Information Technology. We are a group of passionate students who are dedicated to exploring the exciting world of coding and technology.</p>
                                 {!user ? <Link to='/register' className='container__button'>Create Account {'>'}</Link> : <></>}
                             </div>
                         </div>
