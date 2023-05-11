@@ -1,18 +1,16 @@
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useState } from 'react'
 import './Login.css'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
 import { BsFacebook, BsLinkedin } from 'react-icons/bs'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { auth, googleProvider, githubProvider, facebookProvider, twitterProvider } from '../../firebase';
 import db from '../../firebase'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../Features/userSlice'
 
 function Login() {
-    const user = useSelector(selectUser);
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
+    const [error, seterror] = useState("");
 
     const store = (authUser) => {
 
@@ -47,7 +45,8 @@ function Login() {
             passwordRef.current.value
         ).then((authUser) => {
         }).catch((error) => {
-            alert(error.message)
+            seterror("Invalid Credentials")
+            // seterror(error.message)
         })
 
     }
@@ -58,7 +57,8 @@ function Login() {
                 store(result.user)
             })
             .catch((error) => {
-                alert(error.message)
+                seterror("Invalid Credentials")
+                // seterror(error.message)
             })
     }
     const githubLogin = () => {
@@ -67,7 +67,8 @@ function Login() {
                 store(result.user)
             })
             .catch((error) => {
-                alert(error.message)
+                seterror("Invalid Credentials")
+                // seterror(error.message)
             })
     }
     const facebookLogin = () => {
@@ -76,7 +77,8 @@ function Login() {
                 store(result.user)
             })
             .catch((error) => {
-                alert(error.message)
+                seterror("Invalid Credentials")
+                // seterror(error.message)
             })
     }
     const twitterLogin = () => {
@@ -85,7 +87,8 @@ function Login() {
                 store(result.user)
             })
             .catch((error) => {
-                alert(error.message)
+                seterror("Invalid Credentials")
+                // seterror(error.message)
             })
     }
 
@@ -97,11 +100,20 @@ function Login() {
                         alt='SSDC' />
                     <form className='login__form'>
                         <span>
-                            <input ref={emailRef} type="text" placeholder='E-mail' autoComplete="on" />
+                            <input onChange={() => {
+                                if (error) {
+                                    seterror("");
+                                }
+                            }} ref={emailRef} style={error ? { borderColor: "rgb(250, 17, 17)" } : {}} type="text" placeholder='E-mail' autoComplete="on" />
                         </span>
                         <span>
-                            <input ref={passwordRef} type="password" placeholder='Password' autoComplete="on" />
+                            <input onChange={() => {
+                                if (error) {
+                                    seterror("");
+                                }
+                            }} ref={passwordRef} style={error ? { borderColor: "rgb(250, 17, 17)" } : {}} type="password" placeholder='Password' autoComplete="on" />
                         </span>
+                        {error ? <p>{error}</p> : <p></p>}
                     </form>
                     <button onClick={login} className='login__button'>Sign In</button>
                     <div className='login__actions'>

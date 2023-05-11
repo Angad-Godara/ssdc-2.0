@@ -154,10 +154,20 @@
 @media (max-width: 768px){
     .profile__upper{
         flex-direction: column;
-        width: 400px;
+        width: 100vw;
     }
 
     .profile__upper>h3{
         padding-top: 0px;
+    }
+    .profile__left{
+        display: none;
+    }
+    .profile__right{
+        width: 100%;
+        padding: 0;
+    }
+    .profile__main{
+        padding: 0;
     }
 }

@@ -205,3 +205,18 @@
     padding: 0 !important;
     overflow: hidden !important;
 }
+
+@media (max-width: 750px){
+    .ProfileUpdateForm{
+        width: 100vw;
+        min-width: 0;
+        overflow: hidden;
+    }
+    
+    .left__upd{
+        width: 30%;
+    }
+    .right__upd>input[type='text']{
+        min-width: 0;
+    }
+}

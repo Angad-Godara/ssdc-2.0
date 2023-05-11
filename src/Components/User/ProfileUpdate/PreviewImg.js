@@ -28,8 +28,8 @@ function PreviewImg({ checkFile, preveiw, upload, resetImg, dft, closeit }) {
 }
 
 const PrevContainer = styled.div`
-  height: 550px;
-  width: 550px;
+  height: 65vh;
+  width: 90vw;
   position: relative;
   background-color: #fff;
   border: 1px solid #999;
