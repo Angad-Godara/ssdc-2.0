@@ -10,6 +10,13 @@ function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, w
     const rotateX = useTransform(y, [-100, 100], [30, -30]);
     const rotateY = useTransform(x, [-100, 100], [-30, 30]);
 
+    function addThreeDots(str) {
+        if (str.length > 18) {
+            return str.substring(0, 18) + "...";
+        }
+        return str;
+    }
+
     return (
         <CardWrapper>
             <CardContainer
@@ -34,7 +41,7 @@ function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, w
                     <DetailsContainer>
                         <SmallText>{post} {passoutYear ? passoutYear : ''}</SmallText>
                         <SpacedHorizontalConatiner>
-                            <MediumText>{name}</MediumText>
+                            <MediumText>{addThreeDots(name)}</MediumText>
                         </SpacedHorizontalConatiner>
                         <SpacedHorizontalConatiner style={{ marginTop: '10px' }}>
                             <Connections>
@@ -77,7 +84,7 @@ function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, w
                                                 ?
                                                 <>
                                                     |
-                                                    <a target={'_blank'} href={github}>< AiFillGithub className='logo__github' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
+                                                    <a target={'_blank'} href={`https://github.com/${github}`}>< AiFillGithub className='logo__github' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
                                                 </>
                                                 :
                                                 <></>
@@ -85,7 +92,7 @@ function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, w
                                     </>
                                     :
                                     <>
-                                        <a target={'_blank'} href={github}>< AiFillGithub className='logo__github' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
+                                        <a target={'_blank'} href={`https://github.com/${github}`}>< AiFillGithub className='logo__github' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
                                         |
                                         <a target={'_blank'} href={linkedin}><AiFillLinkedin className='logo__linkedin' style={{ cursor: 'pointer', transition: 'all 0.5s' }} size={20} /></a>
                                         |

@@ -26,7 +26,7 @@ import { setMember } from './Features/isMemberSlice';
 import { setCore, setMembers, setFaculties, setMentors } from './Features/teamSlice';
 import ForgotPassword from './Components/Login/ForgotPassword';
 import Projects from './Components/Projects/Projects';
-import { selectProjects, setProjects } from './Features/projectsSlice';
+import { setProjects } from './Features/projectsSlice';
 import Alumni from './Components/Team/Alumni';
 import { setAlumni } from './Features/alumniSlice';
 import { SyncLoader } from 'react-spinners';
@@ -38,7 +38,6 @@ function App() {
   const dispatch = useDispatch();
   const { userMenu, brgrMenu } = useSelector(selectUserMenu)
   const user = useSelector(selectUser)
-  const projects = useSelector(selectProjects)
 
   useEffect(() => {
 

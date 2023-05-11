@@ -1,36 +1,68 @@
-.contributions__wrapper{
-    border: 1px rgb(206, 206, 206) solid;
-    border-radius: 4px;
-    margin: 20px;
-    padding: 10px;
+.contributions__wrapper {
+	border: 1px rgb(206, 206, 206) solid;
+	border-radius: 4px;
+	margin: 20px;
+	padding: 10px;
 }
 
-.contri__row{
-    display: grid;
-    text-align: center;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    padding-bottom: 5px;
-    border-bottom: 1px solid rgb(236, 236, 236);
-    margin-top: 4px;
+.contri__row {
+	display: grid;
+	text-align: center;
+	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	border-bottom: 1px solid rgb(236, 236, 236);
+	margin-top: 4px;
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
-.contri__row__header{
-    display: grid;
-    text-align: center;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    margin-top: -10px;
-    margin-right: -10px;
-    margin-left: -10px;
-    padding: 7px;
-    background-color: rgb(240, 240, 240);
-
+.contri__row__header {
+	display: grid;
+	text-align: center;
+	grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+	margin-top: -10px;
+	margin-right: -10px;
+	margin-left: -10px;
+	background-color: rgb(240, 240, 240);
+	padding-top: 15px;
+	padding-bottom: 15px;
 }
 
-.contri__row__wrapper{
-    max-height: 400px;
-    overflow-y: scroll;
-    margin-right: -10px;
-    margin-bottom: -10px;
-    display: flex;
-    flex-direction: column;
+.contri__row__wrapper {
+	max-height: 400px;
+	/* overflow-y: scroll; */
+	margin-right: -10px;
+	margin-bottom: -10px;
+	display: flex;
+	flex-direction: column;
+}
+
+@media (max-width: 768px) {
+	.contributions__wrapper {
+		margin: 4px;
+	}
+	.contri__row__wrapper {
+		overflow: unset;
+		width: 100%;
+	}
+
+	.contri__row__header,
+	.contri__row {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-around;
+	}
+
+	.contri__row {
+		width: 100%;
+	}
+
+	.contri__row > span {
+		padding: 0px 10px;
+		display: block;
+		max-width: 100%;
+		overflow-wrap: break-word;
+		word-wrap: break-word;
+		word-break: break-word;
+	}
 }

@@ -1,222 +1,241 @@
-.ProfileUpdateForm{
-    min-width: 504px;
-    max-width: 855px;
-    min-height: 50vh;
-    background: white;
-    border-radius: 5px;
-    font-size: 14px;
-    box-shadow: 0 5px 15px 0 rgb(0 0 0 / 8%);
-    transition: box-shadow 0.4s;
-    color: rgba(0, 0, 0, 0.65);
-    padding:20px;
+.ProfileUpdateForm {
+	min-width: 504px;
+	max-width: 855px;
+	min-height: 50vh;
+	background: white;
+	border-radius: 5px;
+	font-size: 14px;
+	box-shadow: 0 5px 15px 0 rgb(0 0 0 / 8%);
+	transition: box-shadow 0.4s;
+	color: rgba(0, 0, 0, 0.65);
+	padding: 20px;
 }
 
-.ProfileUpdateForm:hover{
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.ProfileUpdateForm:hover {
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.update__form__title{
-    font-size: 16px;
-    font-weight: 600;
-    margin-bottom: 8px;
-    margin-left: 12px;
-    margin-top: 20px;
+.update__form__title {
+	font-size: 16px;
+	font-weight: 600;
+	margin-bottom: 8px;
+	margin-left: 12px;
+	margin-top: 20px;
 }
 
-.update__form__row{
-    display: flex;
-    width: 100%;
-    font-size: 14px;
-    padding: 12px 0;
-    padding-left: 12px;
-    padding-right: 12px;
-    border-bottom: 1px solid #eeeeee;
+.update__form__row {
+	width: 100%;
+	font-size: 14px;
+	padding: 16px 0;
+	padding-left: 12px;
+	padding-right: 12px;
+	border-bottom: 1px solid #eeeeee;
 }
 
-.col1{
-    position: relative;
-    display: flex;
-    width: 100%;
+.col1 {
+	position: relative;
+	display: flex;
+	width: 100%;
 }
 
-.left__upd{
-    width: 200px;
-    padding-right: 20px;
+.left__upd {
+	width: 200px;
+	padding-right: 20px;
 }
 
-.right__upd{
-    color: #797979;
-    width: calc(80% - 200px);
-    overflow-wrap: break-word;
+.right__upd {
+	color: #797979;
+	width: calc(80% - 200px);
+	overflow-wrap: break-word;
 }
 
-.right__upd>a:hover{
-    color: #21a9ed;
-    transition: all 0.3s;
+.right__upd > a:hover {
+	color: #21a9ed;
+	transition: all 0.3s;
 }
 
-.right__corner__wrapper{
-    flex: 1 1 20%;
-    text-align: right;
-    margin-left: auto;
-    margin-right: 10px;
-    background: white;
+.right__corner__wrapper {
+	flex: 1 1 20%;
+	text-align: right;
+	margin-left: auto;
+	margin-right: 10px;
+	background: white;
 }
 
-.right__corner{
-    cursor: pointer;
-    margin-left: 20px;
-    color: #0088cc;
+.right__corner {
+	cursor: pointer;
+	margin-left: 20px;
+	color: #0088cc;
 }
 
 /* open forms */
 
-.open__update{
-    background: rgb(246, 242, 235);
+.open__update {
+	background: rgb(246, 242, 235);
 }
 
-.update__buttons{
-    margin-top: 15px;
-    width: 40%;
-    display: flex;
-    align-items: center;
+.update__buttons {
+	margin-top: 15px;
+	width: 40%;
+	display: flex;
+	align-items: center;
 }
 
-.right__upd>input[type='text']{
-    padding: 6px 10px 6px 10px;
-    border: 1px solid rgba(212, 213, 214, 0.735);
-    border-radius: 5px;
-    min-width: 250px;
+.right__upd > input[type='text'] {
+	padding: 6px 10px 6px 10px;
+	border: 1px solid rgba(212, 213, 214, 0.735);
+	border-radius: 5px;
+	min-width: 250px;
 }
 
-.right__upd{
-    color: #797979;
+.right__upd {
+	color: #797979;
 }
 
-.update__buttons>button{
-    border: 1px rgba(212, 213, 214, 0.735) solid;
-    border-radius: 5px;
-    padding: 6px 10px 6px 10px;
-    background-color: rgba(199, 201, 202, 0.735);
-    cursor: pointer;
+.update__buttons > button {
+	border: 1px rgba(212, 213, 214, 0.735) solid;
+	border-radius: 5px;
+	padding: 6px 10px 6px 10px;
+	background-color: rgba(199, 201, 202, 0.735);
+	cursor: pointer;
 }
 
-.update__buttons>button:hover{
-    background-color: rgba(184, 184, 184, 0.735);
-    transition: all 0.2s;
+.update__buttons > button:hover {
+	background-color: rgba(184, 184, 184, 0.735);
+	transition: all 0.2s;
 }
 
-.save__upd{
-    border: 1px rgba(55, 188, 255, 0.735) solid !important;
-    border-radius: 5px;
-    color: white;
-    padding: 6px 10px 6px 10px;
-    margin-right: 10px;
-    background-color: rgba(37, 182, 255, 0.735) !important;
-    transition: all 0.2s;
+.save__upd {
+	border: 1px rgba(55, 188, 255, 0.735) solid !important;
+	border-radius: 5px;
+	color: white;
+	padding: 6px 10px 6px 10px;
+	margin-right: 10px;
+	background-color: rgba(37, 182, 255, 0.735) !important;
+	transition: all 0.2s;
 }
 
-.save__upd:hover{
-    background-color: rgba(0, 170, 255, 0.735) !important;
+.save__upd:hover {
+	background-color: rgba(0, 170, 255, 0.735) !important;
 }
 
-.right__upd>select{
-    width: 100px;
-    padding: 10px;
-    border: 1px rgb(218, 218, 218) solid;
-    border-radius: 5px;
-    outline: none;
+.right__upd > select {
+	width: 100px;
+	padding: 10px;
+	border: 1px rgb(218, 218, 218) solid;
+	border-radius: 5px;
+	outline: none;
 }
 
-.update__open{
-    background-color: #efeaea !important;
-    border-radius: 6px;
+.update__open {
+	background-color: #efeaea !important;
+	border-radius: 6px;
 }
 
-.right__upd>textarea{
-    padding: 10px;
-    min-height: 100px;
-    width: 300px;
+.right__upd > textarea {
+	padding: 10px;
+	min-height: 100px;
+	width: 300px;
 }
 
-.skills{
-    display: flex;
-    align-items: center;
+.skills {
+	display: flex;
+	align-items: center;
 }
 
-.skills>input{
-    padding: 6px 10px 6px 10px;
-    border: 1px solid rgba(212, 213, 214, 0.735);
-    border-radius: 5px;
-    width: 100px;
-    margin-right: 10px;
+.skills > input {
+	padding: 6px 10px 6px 10px;
+	border: 1px solid rgba(212, 213, 214, 0.735);
+	border-radius: 5px;
+	width: 100px;
+	margin-right: 10px;
 }
 
-.skills>select{
-    padding: 6px 10px 6px 10px;
-    border: 1px solid rgba(212, 213, 214, 0.735);
-    border-radius: 5px;
+.skills > select {
+	padding: 6px 10px 6px 10px;
+	border: 1px solid rgba(212, 213, 214, 0.735);
+	border-radius: 5px;
 }
 
-.skills>svg{
-    margin-left: auto;
+.skills > svg {
+	margin-left: auto;
 }
 
-.skills__show{
-    display: flex;
-    align-items: center;
+.skills__show {
+	display: flex;
+	align-items: center;
 }
 
-.skills__show>span{
-    margin-right: 15px;
+.skills__show > span {
+	margin-right: 15px;
 }
 
-.add__skill{
-    cursor: pointer;
-    margin-left: auto;
+.add__skill {
+	cursor: pointer;
+	margin-left: auto;
 }
 
-.button__wrapper{
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.button__wrapper {
+	margin: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-.button__wrapper>button{
-    width: 30%;
-    padding: 10px 15px;
-    font-size: 15px;
-    background: linear-gradient(215deg, #546e7a, #37474f);
-    color: white;
-    border-radius: 3px;
-    transition: 0.3s all ease-in-out;
-    cursor: pointer;
-    border: none;
+.button__wrapper > button {
+	width: 30%;
+	padding: 10px 15px;
+	font-size: 15px;
+	background: linear-gradient(215deg, #546e7a, #37474f);
+	color: white;
+	border-radius: 3px;
+	transition: 0.3s all ease-in-out;
+	cursor: pointer;
+	border: none;
 }
 
-.button__wrapper>button:hover{
-    opacity: 0.9;
-    background: linear-gradient(35deg, #546e7a, #37474f);
+.button__wrapper > button:hover {
+	opacity: 0.9;
+	background: linear-gradient(35deg, #546e7a, #37474f);
 }
 
-.nochange{
-    width: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
+.nochange {
+	width: 0 !important;
+	padding: 0 !important;
+	overflow: hidden !important;
 }
 
-@media (max-width: 750px){
-    .ProfileUpdateForm{
-        width: 100vw;
-        min-width: 0;
-        overflow: hidden;
-    }
-    
-    .left__upd{
-        width: 30%;
-    }
-    .right__upd>input[type='text']{
-        min-width: 0;
-    }
+@media (max-width: 750px) {
+	.ProfileUpdateForm {
+		width: 100vw;
+		min-width: 0;
+		overflow: hidden;
+	}
+
+	.update__form__row {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+
+	.left__upd {
+		width: 80%;
+	}
+	.right__upd > input[type='text'] {
+		min-width: 0;
+		width: 90%;
+	}
+
+	.col1 {
+		flex-direction: column;
+	}
+
+	.right__upd {
+		margin-top: 12px;
+		width: 100%;
+	}
+
+	.right__corner__wrapper {
+		position: absolute;
+		right: 0;
+	}
 }

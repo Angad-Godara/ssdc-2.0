@@ -181,9 +181,9 @@ function Register() {
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setfn(e.target.value)} name="first_name" required placeholder="First Name*"></input>
                         {(fnEE) ? <p className='input__errors'>{fnEE}</p> : <div className='input__errors'></div>}
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setsn(e.target.value)} name="last_name" required placeholder="Last Name"></input>
-                        <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setlkd(e.target.value)} name="linkedin" required placeholder="LinkedIn Id*"></input>
+                        <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setlkd(e.target.value)} name="linkedin" required placeholder="LinkedIn URL*"></input>
                         {(lkdE) ? <p className='input__errors'>{lkdE}</p> : <div className='input__errors'></div>}
-                        <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setgit(e.target.value)} name="github" required placeholder="Github Id*"></input>
+                        <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setgit(e.target.value)} name="github" required placeholder="Github Username*"></input>
                         {(gitE) ? <p className='input__errors'>{gitE}</p> : <div className='input__errors'></div>}
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setregd(e.target.value)} name="regd" required placeholder="Registration Number*"></input>
                         {(regdE) ? <p className='input__errors'>{regdE}</p> : <div className='input__errors'></div>}
