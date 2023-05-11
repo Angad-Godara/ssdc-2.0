@@ -80,7 +80,7 @@ function User() {
         const fetchContirbutions = () => {
             db
                 .collection('members')
-                .doc(auth.currentUser.uid)
+                .doc(auth?.currentUser?.uid)
                 .collection('projects__contributions')
                 .onSnapshot(snapshot => {
                     dispatch(loadContributions(snapshot.docs.map((snap) => ({

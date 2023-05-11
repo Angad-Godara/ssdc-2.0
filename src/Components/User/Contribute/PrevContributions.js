@@ -6,8 +6,6 @@ import './PrevContributions.css';
 function PrevContributions() {
 	const contributions = useSelector(selectContributions);
 
-	console.log(contributions)
-
 	return (
 		<div className="PrevContributions">
 			<div className="update__form__title">Your Contributions</div>
