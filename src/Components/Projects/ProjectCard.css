@@ -1,0 +1,76 @@
+.projectcard{
+    padding: 14px;
+    max-width: 400px;
+    max-height: 150px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.18) 0px 2px 4px;
+    transition: all 0.3s;
+}
+
+.projectcard:hover{
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.project__wrapper{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    height: 100%;
+}
+
+.project__link{
+    display: flex;
+    align-items: center;
+}
+
+.project__link>a{
+    margin-top: 7px;
+    font-weight: 700;
+    margin-bottom: 7px;
+    margin-left: 10px;
+    color: #0969da;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.project__link>a:hover{
+    text-decoration: underline;
+}
+
+.project__link>svg{
+    margin-top: 3px;
+}
+
+.project__desc{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    height: 30px;
+}
+
+.stack__and__all{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    width: 60%;
+}
+
+.stack__and__all>svg{
+    margin-left: auto;
+}
+
+.techstacks{
+    font-size: 10px;
+    display: flex;
+}
+
+.techstacks>p{
+    margin-right: 7px;
+    margin-top: 0;
+    margin-bottom: 0;
+    border-radius: 8px;
+    padding: 3px 4px 3px 4px;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+}

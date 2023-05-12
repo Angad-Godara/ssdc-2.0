@@ -1,0 +1,203 @@
+.verify__container{
+    width: 80%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.verify__container>h1{
+    text-align: center;
+}
+
+.active{
+    cursor: pointer;
+    width: 20%;
+    height: 7vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    background: linear-gradient(215deg, #546e7a, #37474f);
+    transition: 0.18s all ease-in-out;
+    padding: 5px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+.active:hover{
+    opacity: rgb(63, 90, 103);
+    background: linear-gradient(35deg, #546e7a, #37474f);
+}
+
+.inactive{
+    cursor:not-allowed;
+    width: 20%;
+    height: 7vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    background: linear-gradient(215deg, rgb(134, 168, 184), rgb(110, 137, 150));
+    padding: 5px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.alert{
+    position: fixed;
+    margin-top: 65px;
+    z-index: 10;
+}
+
+
+/* running man */
+.running {
+    --color: #98b3bc;
+    --duration: 0.8s;
+    transform: scale(var(--scale, 1));
+    margin-bottom: 30px;
+}
+.running .outer {
+    animation: outer var(--duration) linear infinite;
+}
+.running .outer .body {
+    background: var(--color);
+    height: 15px;
+    width: 8px;
+    border-radius: 4px;
+    transform-origin: 4px 11px;
+    position: relative;
+    transform: rotate(32deg);
+    animation: body var(--duration) linear infinite;
+}
+.running .outer .body:before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    bottom: 16px;
+    left: 0;
+    position: absolute;
+    background: var(--color);
+}
+.running .outer .body .arm, .running .outer .body .arm:before, .running .outer .body .leg, .running .outer .body .leg:before {
+    content: '';
+    width: var(--w, 11px);
+    height: 4px;
+    top: var(--t, 0);
+    left: var(--l, 2px);
+    border-radius: 2px;
+    transform-origin: 2px 2px;
+    position: absolute;
+    background: var(--c, var(--color));
+    transform: rotate(var(--r, 0deg));
+    animation: var(--name, arm-leg) var(--duration) linear infinite;
+}
+.running .outer .body .arm:before {
+    --l: 7px;
+    --name: arm-b;
+}
+.running .outer .body .arm.front {
+    --r: 24deg;
+    --r-to: 164deg;
+}
+.running .outer .body .arm.front:before {
+    --r: -48deg;
+    --r-to: -36deg;
+}
+.running .outer .body .arm.behind {
+    --r: 164deg;
+    --r-to: 24deg;
+}
+.running .outer .body .arm.behind:before {
+    --r: -36deg;
+    --r-to: -48deg;
+}
+.running .outer .body .leg {
+    --w: 12px;
+    --t: 11px;
+}
+.running .outer .body .leg:before {
+    --t: 0;
+    --l: 8px;
+}
+.running .outer .body .leg.front {
+    --r: 10deg;
+    --r-to: 108deg;
+}
+.running .outer .body .leg.front:before {
+    --r: 18deg;
+    --r-to: 76deg;
+}
+.running .outer .body .leg.behind {
+    --r: 108deg;
+    --r-to: 10deg;
+    --c: none;
+}
+.running .outer .body .leg.behind:before {
+    --c: var(--color);
+    --r: 76deg;
+    --r-to: 18deg;
+}
+.running .outer .body .leg.behind:after {
+    content: '';
+    top: 0;
+    right: 0;
+    height: 4px;
+    width: 6px;
+    clip-path: polygon(2px 0, 6px 0, 6px 4px, 0 4px);
+    border-radius: 0 2px 2px 0;
+    position: absolute;
+    background: var(--color);
+}
+
+@keyframes outer {
+    50% {
+        transform: translateY(0);
+   }
+    25%, 75% {
+        transform: translateY(4px);
+   }
+}
+@keyframes body {
+    50% {
+        transform: rotate(16deg);
+   }
+    25%, 75% {
+        transform: rotate(24deg);
+   }
+}
+@keyframes arm-leg {
+    50% {
+        transform: rotate(var(--r-to));
+   }
+}
+@keyframes arm-b {
+    30%, 70% {
+        transform: rotate(var(--r-to));
+   }
+}
+
+/* media queries */
+
+@media only screen and (max-width: 768px){
+    .verify__container>h1{
+        font-size: 16px;
+    }
+
+    .alert{
+        margin-top: 25px;
+    }
+    .active .inactive{
+        margin-top: 10px;
+    }
+}

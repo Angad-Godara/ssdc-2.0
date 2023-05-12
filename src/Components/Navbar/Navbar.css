@@ -1,0 +1,338 @@
+.nav__container {
+	position: fixed;
+	z-index: 25;
+	top: 0;
+	min-width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 49px;
+	background: white;
+	font-size: 13.5px;
+	font-weight: 450;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04), 0px 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.options__container {
+	display: flex;
+	width: 65%;
+}
+
+.nav__options {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.nav__logo {
+	height: 47px;
+	object-fit: contain;
+	border-radius: 35%;
+}
+
+.nav__option {
+	margin-left: 40px;
+	color: #546e7a;
+	cursor: pointer;
+}
+
+.option__link {
+	transition: cubic-bezier(0.075, 0.82, 0.165, 1) 700ms;
+}
+
+.option__link:hover {
+	color: black;
+}
+
+.nav__member {
+	margin-left: auto;
+	display: flex;
+	align-items: center;
+}
+
+.nav__member__option {
+	border: 2px solid rgb(255, 152, 0);
+	color: rgb(255, 152, 0);
+	padding: 3px 4px;
+	border-radius: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: cubic-bezier(0.075, 0.82, 0.165, 1) 700ms;
+}
+
+.nav__member__option__link {
+	margin-left: 0.4rem;
+	font-size: 0.8rem;
+}
+
+.nav__member__option:hover {
+	background-color: rgb(255, 152, 0);
+	color: white;
+	cursor: pointer;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+.drop__menu__arrow {
+	background-color: transparent;
+	position: absolute;
+	top: calc(100% - 6px);
+	height: 10px;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-width: 0 10px 15px;
+	border-bottom-color: white;
+	border-style: solid;
+	color: transparent;
+	z-index: 1;
+}
+
+.user {
+	margin-left: 3rem;
+	display: flex;
+	align-items: center;
+}
+
+.user > img {
+	cursor: pointer;
+	height: 30px;
+	width: 30px;
+	border-radius: 50%;
+	user-select: none;
+}
+
+.user__menu__wrapper {
+	color: #546e7a;
+	list-style: none;
+	position: absolute;
+	top: calc(100% - 6px);
+	right: 10%;
+	border-radius: 5px;
+	width: 260px;
+	max-height: 0px;
+	box-shadow: 0 2px 8px rgb(0 0 0 / 15%);
+	overflow: hidden;
+	transition: max-height 0.2s;
+	padding: 0;
+	background-color: rgb(255, 255, 255);
+}
+
+.user__info {
+	margin-top: 5px;
+	padding: 0 15px;
+}
+
+.user__info > div {
+	display: grid;
+	grid-template-columns: 60px auto;
+	cursor: pointer;
+	color: rgba(0, 0, 0, 0.65);
+	transition: all 0.5s;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+	padding-bottom: 5px;
+	justify-items: center;
+}
+
+.drop__item {
+	display: grid;
+	grid-template-columns: 60px auto;
+	cursor: pointer;
+	color: rgba(0, 0, 0, 0.65);
+	padding: 0 15px;
+	transition: all 0.5s;
+	justify-items: center;
+}
+
+.user__info:hover {
+	color: black;
+	background: rgba(187, 191, 195, 0.534);
+}
+
+.drop__item:hover {
+	color: black;
+	background: rgba(187, 191, 195, 0.534);
+}
+
+.user__info > div > img {
+	height: 35px;
+	width: 35px;
+}
+
+.drop__item__logo {
+	align-self: center;
+	max-height: 35px;
+	border-radius: 50%;
+}
+
+.drop__item__text {
+	text-align: center;
+}
+
+.open__menu {
+	max-height: 400px;
+}
+
+.open__brgr__btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 5px;
+
+	/* for large screens */
+	display: none;
+}
+
+.open__brgr__btn > svg {
+	border-radius: 10px;
+	cursor: pointer;
+	transition: all 300ms;
+}
+
+.open__brgr__btn > svg:active {
+	background-color: rgba(189, 189, 189, 0.244);
+}
+
+.brgr__wrapper {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background: white;
+	width: 300px;
+	z-index: 30;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	transform: translateX(100%);
+	transition: transform 0.2s;
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.04), 0px 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.open__brgr {
+	transform: translateX(0);
+}
+
+.brgr__item {
+	margin: 10px 20px;
+	padding-bottom: 10px;
+	text-transform: uppercase;
+	font-weight: 600;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.brgr__item > img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+}
+
+.brgr__item > p {
+	margin-bottom: 0;
+}
+
+.close__icon {
+	position: relative;
+	right: 0;
+	top: 20px;
+	width: 30px;
+	margin-left: auto;
+}
+
+.close__icon > svg {
+	border-radius: 20px;
+	cursor: pointer;
+	transition: all 300ms;
+}
+
+.close__icon > svg:active {
+	background-color: rgba(189, 189, 189, 0.244);
+}
+
+.onsmall {
+	display: flex;
+	width: 100vw;
+	height: 100%;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 10px;
+	display: none;
+}
+
+.onsmall__item {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.onsmall__user {
+	max-height: 30px;
+	border-radius: 50%;
+}
+
+.brgr__user {
+	max-height: 45px;
+	border-radius: 50%;
+}
+
+@media only screen and (max-width: 720px) {
+	.nav__container {
+		font-size: 10px;
+	}
+	.options__container {
+		display: flex;
+		width: 100%;
+	}
+	.nav__member {
+		margin: auto;
+		display: flex;
+		align-items: center;
+	}
+	.nav__member__option {
+		border: 1px solid rgb(255, 152, 0);
+		color: rgb(255, 152, 0);
+		padding: 4px 5px;
+		border-radius: 4px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transition: cubic-bezier(0.075, 0.82, 0.165, 1) 700ms;
+	}
+}
+
+@media only screen and (max-width: 280px) and (max-height: 1000px) {
+	.nav__member__option {
+		padding: 2px 3px;
+	}
+	.nav__container {
+		font-size: 6px;
+	}
+	.nav__member__option__link {
+		margin-left: 1px;
+	}
+	.nav__member__option {
+		border: 1.5px solid rgb(255, 152, 0);
+	}
+}
+
+/* should be written for 480px but done for a quick fix of alms */
+@media only screen and (max-width: 1190px) {
+	.nav__options {
+		display: none;
+	}
+	.options__container {
+		display: none;
+	}
+	.nav__member {
+		display: none;
+	}
+	.open__brgr__btn {
+		display: block;
+	}
+	.onsmall {
+		display: flex;
+	}
+}

@@ -1,0 +1,208 @@
+.register__wrapper{
+    color: rgba(0, 0, 0, 0.65);
+    padding-top: 40px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    font-size: 14px;
+}
+
+.register__container{
+    width: 425px;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin-top: 20px;
+    padding: 10px 20px;
+}
+
+.register__logo{
+    width: 70px;
+    object-fit: contain;
+    border-radius: 50%;
+    margin: 10px 0 20px 0;
+}
+
+.register__form__wrapper{
+    height: 100%;
+    padding: 25px 0;
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.register__form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    color: #546e7a;
+}
+
+.register__form>span{
+    margin: 10px 0;
+}
+
+.register__form>span>input{
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 4px;
+    border: 1px solid #cfd8dc;
+    transition: 0.4s all;
+    color:#546e7a;
+    transition: 0.4s all;
+    outline: none;
+}
+
+.register__form>span>input:hover{
+    color: #263238;
+    border-color: #263238;
+}
+
+.register__form>span>input:focus{
+    color: #263238;
+    border-color: #263238;
+    outline: none !important;
+    box-shadow: 0 0 0 2px rgba(105, 189, 253, 0.413)
+}
+
+.register__button{
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 15px;
+    background: linear-gradient(215deg, #546e7a, #37474f);
+    color: white;
+    border-radius: 3px;
+    transition: 0.18s all ease-in-out;
+    cursor: pointer;
+    border: none;
+}
+
+.register__button:hover{
+    opacity: rgb(63, 90, 103);
+    background: linear-gradient(35deg, #546e7a, #37474f);
+}
+
+.register__button__disabled{
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 15px;
+    background: linear-gradient(215deg, rgb(134, 168, 184), rgb(110, 137, 150));
+    color: white;
+    border-radius: 3px;
+    cursor: pointer;
+    border: none;
+}
+
+.register__actions{
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.register__actions>a{
+    color: #426374;
+    margin-left: 3px;
+    font-weight: 600;
+}
+
+.register__actions>a:hover{
+    color: rgb(38, 60, 71);
+}
+
+.auth__options{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.register__options{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.register__option__logos{
+    transition: 0.18s all ease-in-out;
+    cursor: pointer;
+    margin: 0 1vw;
+}
+
+.logo__google:hover{
+    color: rgb(255, 74, 74)
+}
+
+.logo__github:hover{
+    color: black;
+}
+
+.logo__linkedin:hover{
+    color: rgb(10,102,194);
+}
+
+.logo__facebook:hover{
+    color: rgb(11,121,233)
+}
+
+.welcome__note{
+    width: 100%;
+    margin-top: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+
+/* Adding responsiveness */
+@media only screen and (max-width: 1040px)
+{
+    .register__container{
+        height: 600px;
+        width: 500px;
+    }
+}
+@media only screen and (max-width: 1000px)
+{
+    .register__container{
+        height: 600px;
+        width: 500px;
+    }
+}
+@media only screen and (max-width: 530px)
+{
+    .register__container{
+        height: 570px;
+        width: 325px;
+    }
+}
+@media only screen and (max-width: 380px)
+{
+    .register__container{
+        height: 460px;
+        width: 300px;
+    }
+    .register__logo{
+        height: 40px;
+    }
+    .register__form__wrapper{
+        font-size: 10px;
+    }
+    .register__form>span>input{
+        padding: 3px;
+    }
+    .register__container{
+        margin-top: 60px;
+    }
+}
