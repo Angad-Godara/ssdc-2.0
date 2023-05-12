@@ -212,8 +212,8 @@ function ContestScreen() {
 						</Link>
 					</div>
 					{user ? (
-						<div div className="brgr__item">
-							<Link to="#" onClick={Logout} className="option__link">
+						<div className="brgr__item">
+							<Link to="/" onClick={Logout} className="option__link">
 								Log Out
 							</Link>
 						</div>

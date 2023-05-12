@@ -115,23 +115,23 @@ function Register() {
                             {/* Username */}
                             <input onChange={(e) => {
                                 setusername(e.target.value)
-                            }} type="text" placeholder='Username' />
+                            }} type="text" placeholder='Username' autoComplete='on' />
                         </span>
                         <span>
                             {/* Password */}
                             <input onChange={(e) => {
                                 setpassword(e.target.value)
-                            }} type={'password'} placeholder='Password' />
+                            }} type={'password'} placeholder='Password' autoComplete='on' />
                         </span>
                         <span>
                             {/* Confirm Password */}
                             <input onChange={(e) => {
                                 setcnfpassword(e.target.value)
-                            }} type={'password'} placeholder='Confirm password' />
+                            }} type={'password'} placeholder='Confirm password' autoComplete='on' />
                         </span>
                         <span>
                             {/* Email */}
-                            <input ref={emailRef} type={'email'} placeholder='E-mail' />
+                            <input ref={emailRef} type={'email'} placeholder='E-mail' autoComplete='on' />
                         </span>
                     </form>
                     <button disabled={password !== cnfpassword} onClick={register} className={(password !== cnfpassword) ? 'register__button__disabled' : 'register__button'}>Sign Up</button>
@@ -143,8 +143,8 @@ function Register() {
                         <div className='register__options'>
                             <AiFillGoogleCircle onClick={googleLogin} className='logo__google register__option__logos' size={'30'} />
                             <AiFillGithub onClick={githubLogin} className='logo__github register__option__logos' size={'30'} />
-                            <BsLinkedin onClick={twitterLogin} className='logo__linkedin register__option__logos' size={'25'} style={{ borderRadius: '50%' }} />
-                            <BsFacebook onClick={facebookLogin} className='logo__facebook register__option__logos' size={'25'} />
+                            {/* <BsLinkedin onClick={twitterLogin} className='logo__linkedin register__option__logos' size={'25'} style={{ borderRadius: '50%' }} />
+                            <BsFacebook onClick={facebookLogin} className='logo__facebook register__option__logos' size={'25'} /> */}
                         </div>
                     </div>
                     <div className='welcome__note'>

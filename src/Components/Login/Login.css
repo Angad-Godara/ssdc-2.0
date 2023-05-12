@@ -107,7 +107,6 @@
 }
 
 .login__options{
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -116,6 +115,7 @@
 .login__option__logos{
     transition: 0.18s all ease-in-out;
     cursor: pointer;
+    margin: 0 1vw;
 }
 
 .logo__google:hover{

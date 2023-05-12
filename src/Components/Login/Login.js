@@ -125,8 +125,8 @@ function Login() {
                         <div className='login__options'>
                             <AiFillGoogleCircle onClick={googleLogin} className='logo__google login__option__logos' size={'30'} />
                             <AiFillGithub onClick={githubLogin} className='logo__github login__option__logos' size={'30'} />
-                            <BsLinkedin onClick={twitterLogin} className='logo__linkedin login__option__logos' size={'25'} style={{ borderRadius: '50%' }} />
-                            <BsFacebook onClick={facebookLogin} className='logo__facebook login__option__logos' size={'25'} />
+                            {/* <BsLinkedin onClick={twitterLogin} className='logo__linkedin login__option__logos' size={'25'} style={{ borderRadius: '50%' }} />
+                            <BsFacebook onClick={facebookLogin} className='logo__facebook login__option__logos' size={'25'} /> */}
                         </div>
                     </div>
                     <div className='welcome__note'>
