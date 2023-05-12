@@ -18,7 +18,7 @@ function Register() {
     }, [user])
 
 
-    const defaultURL = process.env.REACT_APP_DEFAULT_PhotoURL;
+    const defaultURL = "https://github.com/SSDC-SLIET/ssdc-web-dev/blob/main/public/ssdcLogo.jpg";
 
     const emailRef = useRef(null);
     const [username, setusername] = useState(null);
