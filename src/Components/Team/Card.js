@@ -3,7 +3,7 @@ import './Card.css'
 import Member from './Member'
 import MemberDetail from './MemberDetail'
 
-function Card({ fac, photoURL, aim, name, github, linkedin, email, post, contact, web, passoutYear }) {
+function Card({ fac, photoURL, aim, name, github, linkedin, email, post, contact, web, passoutYear, headPost }) {
 
     const [open, setopen] = useState(true)
 
@@ -21,6 +21,7 @@ function Card({ fac, photoURL, aim, name, github, linkedin, email, post, contact
                         post={post}
                         web={web}
                         contact={contact}
+                        headPost={headPost}
                     />
                 </div>
                 <div className="back-facing" onClick={() => setopen(true)}>

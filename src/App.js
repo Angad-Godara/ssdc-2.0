@@ -52,6 +52,7 @@ function App() {
             email: snap.data().email,
             name: snap.data().name,
             photoURL: snap.data().photoURL,
+            headPost: snap.data().headPost,
           }))))
         })
 

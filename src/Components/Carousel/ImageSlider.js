@@ -24,36 +24,37 @@ function ImageSlider({ use }) {
                 <Container use={use}>
                     <Carousel {...settings} use={use}>
                         <Wrapper use={use}>
-                            <img src='./Assets/Contests/1.png' />
+                            <img src='./Assets/Contests/1.png' alt='ssdc' />
                         </Wrapper>
                         <Wrapper use={use}>
-                            <img src='./Assets/Contests/2.png' />
+                            <img src='./Assets/Contests/2.png' alt='ssdc' />
                         </Wrapper>
                         <Wrapper use={use}>
-                            <img src='./Assets/Contests/3.png' />
+                            <img src='./Assets/Contests/3.png' alt='ssdc' />
                         </Wrapper>
                         <Wrapper use={use}>
-                            <img src='./Assets/Contests/4.png' />
+                            <img src='./Assets/Contests/4.png' alt='ssdc' />
                         </Wrapper>
                         <Wrapper use={use}>
-                            <img src='./Assets/Contests/5.png' />
+                            <img src='./Assets/Contests/5.png' alt='ssdc' />
                         </Wrapper>
                         <Wrapper use={use}>
-                            <img src='./Assets/Contests/6.png' />
+                            <img src='./Assets/Contests/6.png' alt='ssdc' />
                         </Wrapper>
                     </Carousel>
                 </Container>
                 :
+                // put the links of the gallery or the club activities in here
                 <Container use={use}>
                     <Carousel {...settings} use={use}>
                         <Wrapper use={use}>
-                            <img src='./Assets/Images/slider-01.jpg' />
+                            <img src='./Assets/Images/slider-01.jpg' alt='ssdc' />
                         </Wrapper>
                         <Wrapper use={use}>
-                            <img src='./Assets/Images/slider-02.jpg' />
+                            <img src='./Assets/Images/slider-02.jpg' alt='ssdc' />
                         </Wrapper>
                         <Wrapper use={use}>
-                            <img src='./Assets/Images/slider-03.jpg' />
+                            <img src='./Assets/Images/slider-03.jpg' alt='ssdc' />
                         </Wrapper>
                     </Carousel>
                 </Container>

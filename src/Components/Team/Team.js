@@ -61,6 +61,7 @@ function Team() {
                             photoURL={obj.photoURL}
                             post={'core'}
                             fac={false}
+                            headPost={obj.headPost}
                         />
                     })}
                 </div>

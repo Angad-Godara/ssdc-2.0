@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const ContributeSlice = createSlice({
     name: 'contribute',
     initialState: {
-        currentContribution: [],
+        currentContribution: {},
         prevContributions: [],
     },
     reducers: {

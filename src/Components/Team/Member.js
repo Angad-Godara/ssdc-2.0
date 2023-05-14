@@ -4,7 +4,7 @@ import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { AiFillGithub, AiFillLinkedin, AiFillMail, AiOutlineAim, AiOutlineLink } from 'react-icons/ai';
 import { IoIosCall } from 'react-icons/io'
 
-function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, web, contact, passoutYear }) {
+function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, web, contact, passoutYear, headPost }) {
     const x = useMotionValue(0);
     const y = useMotionValue(0);
     const rotateX = useTransform(y, [-100, 100], [30, -30]);
@@ -33,7 +33,7 @@ function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, w
                     </CircleWrapper>
                     <MemberWrapper>
                         <Profile>
-                            <img src={photoURL} alt='Profile Pic' />
+                            <img draggable='false' style={{ userSelect: 'none' }} src={photoURL} alt='Profile Pic' />
                         </Profile>
                     </MemberWrapper>
                 </TopContainer>

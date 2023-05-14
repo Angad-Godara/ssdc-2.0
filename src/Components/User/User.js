@@ -90,7 +90,7 @@ function User() {
                     }))))
                 })
         }
-        return fetchContirbutions
+        fetchContirbutions();
     }, [user])
 
     return (
