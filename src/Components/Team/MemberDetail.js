@@ -19,7 +19,7 @@ function MemberDetail({ aim }) {
                 whileTap={{ cursor: "grabbing" }}
             >
                 <TopContainer>
-                    <MediumText style={{ marginTop: '10px' }}>Objective</MediumText>
+                    <MediumText style={{ marginTop: '10px' }}>About</MediumText>
                     <Objective>
                         <SmallText>
                             {aim}

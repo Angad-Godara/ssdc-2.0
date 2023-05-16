@@ -34,9 +34,9 @@ function Navbar() {
             <div className='nav__container'>
                 <div className='options__container'>
                     <div className='nav__options'>
-                        <div className='nav__option'>
+                        <Link to='/' className='nav__option'>
                             <img className='nav__logo' src={'./logo.png'} alt='logo' />
-                        </div>
+                        </Link>
                         <div className='nav__option'>
                             <Link to={user ? "/explore" : '/home'} className="option__link">Explore</Link>
                         </div>

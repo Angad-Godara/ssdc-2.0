@@ -48,13 +48,13 @@ function ImageSlider({ use }) {
                 <Container use={use}>
                     <Carousel {...settings} use={use}>
                         <Wrapper use={use}>
-                            <img src='./Assets/Images/slider-01.jpg' alt='ssdc' />
+                            <img src='./Assets/Images/101.jpeg' alt='ssdc' />
                         </Wrapper>
                         <Wrapper use={use}>
-                            <img src='./Assets/Images/slider-02.jpg' alt='ssdc' />
+                            <img src='./Assets/Images/102.jpeg' alt='ssdc' />
                         </Wrapper>
                         <Wrapper use={use}>
-                            <img src='./Assets/Images/slider-03.jpg' alt='ssdc' />
+                            <img src='./Assets/Images/103.jpg' alt='ssdc' />
                         </Wrapper>
                     </Carousel>
                 </Container>

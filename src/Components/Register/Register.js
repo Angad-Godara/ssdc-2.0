@@ -18,7 +18,7 @@ function Register() {
     }, [user])
 
 
-    const defaultURL = "https://github.com/SSDC-SLIET/ssdc-web-dev/blob/main/public/ssdcLogo.jpg";
+    const defaultURL = "https://raw.githubusercontent.com/SSDC-SLIET/ssdc-web-dev/main/public/ssdcLogo.jpg";
 
     const emailRef = useRef(null);
     const [username, setusername] = useState(null);

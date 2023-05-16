@@ -202,7 +202,7 @@ function App() {
       setloading(false)
     })
 
-    return unsubscribe
+    unsubscribe()
   }, [])
 
   return (

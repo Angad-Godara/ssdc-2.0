@@ -19,40 +19,25 @@ function Explore() {
                 <div className='explore__heading'><GrResources size={'20px'} /> <span>Resources</span></div>
                 <div className='resources__wrapper'>
                     <div className='resources__headings__wrapper'>
-                        <div onClick={() => setactive(1)} className={(active == 1) ? 'resources__headings active__resource' : 'resources__headings'}><div>DSA / Competitive Programming</div></div>
-                        <div onClick={() => setactive(2)} className={(active == 2) ? 'resources__headings active__resource' : 'resources__headings'}><div>Web Development</div></div>
-                        <div onClick={() => setactive(3)} className={(active == 3) ? 'resources__headings active__resource' : 'resources__headings'}><div>Data Science / Machine Learning</div></div>
-                        <div onClick={() => setactive(4)} className={(active == 4) ? 'resources__headings active__resource' : 'resources__headings'}><div>Cybersecurity</div></div>
+                        <div onClick={() => setactive(1)} className={(active === 1) ? 'resources__headings active__resource' : 'resources__headings'}><div>DSA / Competitive Programming</div></div>
+                        <div onClick={() => setactive(2)} className={(active === 2) ? 'resources__headings active__resource' : 'resources__headings'}><div>Application Development</div></div>
+                        <div onClick={() => setactive(3)} className={(active === 3) ? 'resources__headings active__resource' : 'resources__headings'}><div>Data Science / Machine Learning</div></div>
+                        <div onClick={() => setactive(4)} className={(active === 4) ? 'resources__headings active__resource' : 'resources__headings'}><div>Cybersecurity</div></div>
                     </div>
                     <div className='main__resource__container'>
                         <div>
-                            {(active == 1)
+                            {(active === 1)
                                 ?
                                 <div>
-                                    <h3>Cp and dsa related guidance and plans</h3>
+                                    <h3>CP and DSA related guidance and plans</h3>
                                     <div className='resource__card__wrapper'>
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
-                                        <ResourceCard title='Competitive Programming' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='Basics of CP' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
+                                        <ResourceCard title='CP Algorithms' url='https://cp-algorithms.com/' desc='Master competitive programming algorithms and unleash your coding potential with the CP Algorithms guide.' />
+                                        <ResourceCard title='USACO Guide' url='https://usaco.guide/' desc='Embrace the power of the USACO Guide to level up your problem-solving skills and excel in competitive programming.' />
+                                        <ResourceCard title="Graph's Playlist" url='https://www.youtube.com/playlist?list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn' desc='Graphs are as important as other data structures. So, here you will find the graph series by Striver. Enjoy the playing with the graphs.' />
+                                        <ResourceCard title="DP's Playlist" url='https://www.youtube.com/playlist?list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY' desc='Master dynamic programming concepts & problems with concise videos, pseudocode, and notes. Ace DP in any coding language' />
+                                        <ResourceCard title="Striver's SDE sheet" url='https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/' desc='SDE Sheet: Handpicked coding interview questions from top companies like Amazon, Microsoft, Flipkart. Covers all DSA concepts.' />
+                                        <ResourceCard title="Other Resources" url='https://docs.google.com/document/d/1sANWGH1fC-AMFhKHr0qIvTZ5f-V0wD0P64F2uQ8fGD0/edit' desc='These resources are currently under development, and ongoing research is being conducted to discover more similar content.' />
                                     </div>
                                 </div>
                                 :
@@ -62,14 +47,22 @@ function Explore() {
                                         <div className={(active === 2) ? 'show' : ''}>
                                             <h3>Development related guidance plans</h3>
                                             <div className='resource__card__wrapper'>
+                                                <ResourceCard title="Intro to dev" url='https://medium.com/javarevisited/intro-to-modern-web-development-d714563c87e' desc='Before starting something, you should know what you are going to learn. In this blog, you will get all insights about development.' />
+                                                <ResourceCard title="Start from Basics" url='https://www.w3schools.com/' desc="You just can't bypass the basics in your learning untill you have prior experience. Start from here to make your basics strong." />
+                                                <ResourceCard title="JavaScript (Beginners)" url='https://youtu.be/lI1ae4REbFM' desc="You had surely heard the term JavaScript. What it is and how to learn it? Why don't you follow this resource to get into JavaScript." />
+                                                <ResourceCard title="React-Js Playlist (Beginners)" url='https://youtube.com/playlist?list=PLu0W_9lII9agx66oZnT6IyhcMIbUMNMdt' desc="If you don't know, React is one of the most in-demand JavaScript library in the IT industry with application development perspective." />
+                                                <ResourceCard title="JavaScript (Advanced)" url='https://javascript30.com/' desc="Advance applications need advance JavaScript. If you have completed the basics of JavaScript, go for this one to excel in development." />
+                                                <ResourceCard title="React-Js (DOCS)" url='https://react.dev/learn' desc="Just on some saying or article, you can't rely. You will definitely need the documentation itself. Here's the required documentation of React-Js." />
+                                                <ResourceCard title="Other Resources" url='https://docs.google.com/document/d/1rZQN_QGfcPEwaPGoePZMnOi3n_OrHyNLFMVNAhjlwsU/edit' desc='These resources are currently under development, and ongoing research is being conducted to discover more similar content.' />
                                             </div>
                                         </div>
                                         :
                                         (active === 3)
                                             ?
                                             <div className={(active === 3) ? 'show' : ''}>
-                                                <h3>ml/data science related guidance plans</h3>
+                                                <h3>ML/Data Science related guidance plans</h3>
                                                 <div className='resource__card__wrapper'>
+                                                    <ResourceCard title="Other Resources" url='https://docs.google.com/document/d/1rZQN_QGfcPEwaPGoePZMnOi3n_OrHyNLFMVNAhjlwsU/edit' desc='These resources are currently under development, and ongoing research is being conducted to discover more similar content.' />
                                                 </div>
                                             </div>
                                             :
@@ -94,10 +87,10 @@ function Explore() {
                                 )}
                         </div>
                     </div>
-                </div>
+                </div >
             </div >
             <Footer />
-        </div>
+        </div >
     )
 }
 

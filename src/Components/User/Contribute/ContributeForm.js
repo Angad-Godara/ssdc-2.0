@@ -177,7 +177,7 @@ function ContributeForm() {
                             <div className='right__upd'>
                                 <textarea onChange={(e) => {
                                     setssdcContri(e.target.value)
-                                }} placeholder='How SSDC plays helps you doing this....(mentors, environment, culture, etc.)' defaultValue={contributions.currentContribution?.ssdcContri && contributions.currentContribution?.ssdcContri} />
+                                }} placeholder='How SSDC helps you doing this....(mentors, environment, culture, etc.)' defaultValue={contributions.currentContribution?.ssdcContri && contributions.currentContribution?.ssdcContri} />
                                 <div className='update__buttons'>
                                     <button onClick={(e) => {
                                         dispatch(setCurrentContribution({

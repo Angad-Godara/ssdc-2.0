@@ -39,7 +39,7 @@ function Hometext() {
             <div className='text__faculty__container'>
                 <div className='text__faculty'>
                     <div className='faculty__img'>
-                        <img className='faculty__img' src={'https://ssdc-sliet.github.io/assets/img/teachers/Sachan.png'} />
+                        <img className='faculty__img' src={'https://raw.githubusercontent.com/SSDC-SLIET/SSDC-SLIET.github.io/main/assets/img/teachers/SachanSirFinal.jpeg'} />
                     </div>
                     <div className='faculty__data'>
                         <span className='text__item__title'>Prof Manoj Sachan</span>
@@ -48,7 +48,7 @@ function Hometext() {
                 </div>
                 <div className='text__faculty'>
                     <div className='faculty__img'>
-                        <img className='faculty__img' src={'https://ssdc-sliet.github.io/assets/img/teachers/Rahul.png'} />
+                        <img className='faculty__img' src={'https://raw.githubusercontent.com/SSDC-SLIET/SSDC-SLIET.github.io/main/assets/img/teachers/Rahul_Sir.jpg'} />
                     </div>
                     <div className='faculty__data'>
                         <span className='text__item__title'>Er Rahul Gautam</span>
