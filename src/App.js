@@ -202,8 +202,8 @@ function App() {
       setloading(false)
     })
 
-    unsubscribe()
-  }, [])
+    return unsubscribe;
+  }, [dispatch])
 
   return (
     <>
