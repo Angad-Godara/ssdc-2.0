@@ -11,8 +11,8 @@ function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, w
     const rotateY = useTransform(x, [-100, 100], [-30, 30]);
 
     function addThreeDots(str) {
-        if (str.length > 18) {
-            return str.substring(0, 18) + "...";
+        if (str.length > 19) {
+            return str.substring(0, 19) + "..";
         }
         return str;
     }
@@ -60,7 +60,7 @@ function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, w
                                                 <></>
                                         }
                                         {
-                                            (web)
+                                            (contact)
                                                 ?
                                                 <>
                                                     |

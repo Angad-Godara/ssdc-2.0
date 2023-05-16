@@ -29,7 +29,7 @@ function Explore() {
                             {(active === 1)
                                 ?
                                 <div>
-                                    <h3>CP and DSA related guidance and plans</h3>
+                                    {/* <h3>CP and DSA related guidance and plans</h3> */}
                                     <div className='resource__card__wrapper'>
                                         <ResourceCard title='Basics of CP' url='https://www.geeksforgeeks.org/competitive-programming-a-complete-guide/' desc='Competitve Programming is quite famous among coding geeks. Here you will find a lot of resources regarding competitive programming.' />
                                         <ResourceCard title='CP Algorithms' url='https://cp-algorithms.com/' desc='Master competitive programming algorithms and unleash your coding potential with the CP Algorithms guide.' />
@@ -37,6 +37,7 @@ function Explore() {
                                         <ResourceCard title="Graph's Playlist" url='https://www.youtube.com/playlist?list=PLgUwDviBIf0oE3gA41TKO2H5bHpPd7fzn' desc='Graphs are as important as other data structures. So, here you will find the graph series by Striver. Enjoy the playing with the graphs.' />
                                         <ResourceCard title="DP's Playlist" url='https://www.youtube.com/playlist?list=PLgUwDviBIf0qUlt5H_kiKYaNSqJ81PMMY' desc='Master dynamic programming concepts & problems with concise videos, pseudocode, and notes. Ace DP in any coding language' />
                                         <ResourceCard title="Striver's SDE sheet" url='https://takeuforward.org/interviews/strivers-sde-sheet-top-coding-interview-problems/' desc='SDE Sheet: Handpicked coding interview questions from top companies like Amazon, Microsoft, Flipkart. Covers all DSA concepts.' />
+                                        <ResourceCard title="Advanced Practice" url='https://cses.fi/problemset/' desc='Embark on a coding adventure with CSES Problem Set - an exhilarating resource to enhance your problem-solving prowess through engaging challenges' />
                                         <ResourceCard title="Other Resources" url='https://docs.google.com/document/d/1sANWGH1fC-AMFhKHr0qIvTZ5f-V0wD0P64F2uQ8fGD0/edit' desc='These resources are currently under development, and ongoing research is being conducted to discover more similar content.' />
                                     </div>
                                 </div>
@@ -45,29 +46,34 @@ function Explore() {
                                     (active === 2)
                                         ?
                                         <div className={(active === 2) ? 'show' : ''}>
-                                            <h3>Development related guidance plans</h3>
+                                            {/* <h3>Development related guidance plans</h3> */}
                                             <div className='resource__card__wrapper'>
                                                 <ResourceCard title="Intro to dev" url='https://medium.com/javarevisited/intro-to-modern-web-development-d714563c87e' desc='Before starting something, you should know what you are going to learn. In this blog, you will get all insights about development.' />
                                                 <ResourceCard title="Start from Basics" url='https://www.w3schools.com/' desc="You just can't bypass the basics in your learning untill you have prior experience. Start from here to make your basics strong." />
                                                 <ResourceCard title="JavaScript (Beginners)" url='https://youtu.be/lI1ae4REbFM' desc="You had surely heard the term JavaScript. What it is and how to learn it? Why don't you follow this resource to get into JavaScript." />
                                                 <ResourceCard title="React-Js Playlist (Beginners)" url='https://youtube.com/playlist?list=PLu0W_9lII9agx66oZnT6IyhcMIbUMNMdt' desc="If you don't know, React is one of the most in-demand JavaScript library in the IT industry with application development perspective." />
+                                                <ResourceCard title="Lean with Implementation" url='https://www.freecodecamp.org/learn/2022/responsive-web-design/' desc="Unleash your web development skills with Freecodecamp's website - a captivating resource for hands-on learning and implementation." />
                                                 <ResourceCard title="JavaScript (Advanced)" url='https://javascript30.com/' desc="Advance applications need advance JavaScript. If you have completed the basics of JavaScript, go for this one to excel in development." />
                                                 <ResourceCard title="React-Js (DOCS)" url='https://react.dev/learn' desc="Just on some saying or article, you can't rely. You will definitely need the documentation itself. Here's the required documentation of React-Js." />
-                                                <ResourceCard title="Other Resources" url='https://docs.google.com/document/d/1rZQN_QGfcPEwaPGoePZMnOi3n_OrHyNLFMVNAhjlwsU/edit' desc='These resources are currently under development, and ongoing research is being conducted to discover more similar content.' />
+                                                <ResourceCard title="Other Resources" url='https://docs.google.com/document/d/1rZQN_QGfcPEwaPGoePZMnOi3n_OrHyNLFMVNAhjlwsU/' desc='These resources are currently under development, and ongoing research is being conducted to discover more similar content.' />
                                             </div>
                                         </div>
                                         :
                                         (active === 3)
                                             ?
                                             <div className={(active === 3) ? 'show' : ''}>
-                                                <h3>ML/Data Science related guidance plans</h3>
+                                                {/* <h3>ML/Data Science related guidance and plans</h3> */}
                                                 <div className='resource__card__wrapper'>
-                                                    <ResourceCard title="Other Resources" url='https://docs.google.com/document/d/1rZQN_QGfcPEwaPGoePZMnOi3n_OrHyNLFMVNAhjlwsU/edit' desc='These resources are currently under development, and ongoing research is being conducted to discover more similar content.' />
+                                                    <ResourceCard title="Stats & Probablity (CS110)" url='https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo' desc='Stats and Probability are fundamental for Machine Learning, forming the bedrock of algorithmic understanding.' />
+                                                    <ResourceCard title="Python" url='https://www.youtube.com/watch?v=LHBE6Q9XlzI' desc='These resources are currently under development, and ongoing research is being conducted to discover more similar content.' />
+                                                    <ResourceCard title="ML Full Course (CS229)" url='https://www.youtube.com/playlist?list=PLoROMvodv4rMiGQp3WXShtMGgzqpfVfbU' desc="CS229, Andrew Ng's ML course, covers fundamental ML concepts with mathematical rigor, providing a solid foundation." />
+                                                    <ResourceCard title="Deep Learning (CS230)" url='https://www.youtube.com/playlist?list=PLoROMvodv4rOABXSygHTsbvUz4G_YQhOb' desc='Why to stop after learning ML? Go for Deep Learning too. CS230 by Stanford University will help you move further in Deep Learning.' />
+                                                    <ResourceCard title="Other Resources" url='https://docs.google.com/document/d/17F12gRKaKXjir-SoSwv2P8sEnEuYmKfT8sDSiyMfC3E/' desc='These resources are currently under development, and ongoing research is being conducted to discover more similar content.' />
                                                 </div>
                                             </div>
                                             :
                                             <div className={(active === 4) ? 'show' : ''}>
-                                                <h3>Cybersecurity related resources and guidance plans</h3>
+                                                {/* <h3>Cybersecurity related resources and guidance plans</h3> */}
                                                 <div className='resource__card__wrapper'>
                                                     <ResourceCard title='Linux' url='https://www.linux.org/' desc='Get all learnings and insignts about Linux Systems as Linux is the most used operating system all over the world for servers and it has also a lot of handsome job roles.' />
                                                     <ResourceCard title='Computer Networking' url='https://www.youtube.com/playlist?list=PLPXEBNfIeLdkQGjcWUQIB7rAxqxdT91dg' desc='Computer Networking and security is important because it keeps sensitive data safe from cyber attacks and ensures the network is usable and trustworthy.' />

@@ -18,13 +18,13 @@ function Team() {
                     {faculties?.map((obj, i) => {
                         return <Card key={i}
                             fac={true}
-                            aim={obj.aim}
-                            name={obj.name}
-                            web={obj.web}
-                            contact={obj.contact}
-                            email={obj.email}
-                            photoURL={obj.photoURL}
-                            post={obj.post}
+                            aim={obj?.aim}
+                            name={obj?.name}
+                            web={obj?.web}
+                            // contact={obj?.contact}
+                            email={obj?.email}
+                            photoURL={obj?.photoURL}
+                            post={obj?.post}
                         />
                     })}
                 </div>
@@ -36,13 +36,14 @@ function Team() {
                     {mentors?.map((obj, i) => {
                         return <Card key={i}
                             fac={true}
-                            aim={obj.aim}
-                            name={obj.name}
-                            web={obj.web}
-                            contact={obj.contact}
-                            email={obj.email}
-                            photoURL={obj.photoURL}
+                            aim={obj?.aim}
+                            name={obj?.name}
+                            web={obj?.web}
+                            contact={obj?.contact}
+                            email={obj?.email}
+                            photoURL={obj?.photoURL}
                             post={'mentor'}
+                            linkedin={obj?.linkedin}
                         />
                     })}
                 </div>

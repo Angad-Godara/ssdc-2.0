@@ -86,7 +86,7 @@ function App() {
         })
 
       db
-        .collection('faculties')
+        .collection('mentors')
         .onSnapshot(snapshot => {
           dispatch(setMentors(snapshot.docs.map((snap) => ({
             aim: snap.data().aim,
