@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ref, uploadBytes, getDownloadURL, connectStorageEmulator } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { selectUser } from '../../Features/userSlice';
 import db, { storage } from '../../firebase';
 import { useSelector } from 'react-redux';
@@ -152,7 +152,7 @@ function AlumniForm() {
         <div className='form__body'>
             {(user?.mstatus === 'NA')
                 ?
-                <form className="form__container">
+                <form onSubmit={submitform} className="form__container">
                     <div className="form__title">
                         <h2>Alumni Form</h2>
                     </div>
@@ -160,7 +160,7 @@ function AlumniForm() {
 
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setfn(e.target.value)} name="first_name" required placeholder="First Name*"></input>
                         {(fnEE) ? <p className='input__errors'>{fnEE}</p> : <div className='input__errors'></div>}
-                        <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setsn(e.target.value)} name="last_name" required placeholder="Last Name"></input>
+                        <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setsn(e.target.value)} name="last_name" placeholder="Last Name"></input>
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setlkd(e.target.value)} name="linkedin" required placeholder="LinkedIn Id*"></input>
                         {(lkdE) ? <p className='input__errors'>{lkdE}</p> : <div className='input__errors'></div>}
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setpassoutYear(e.target.value)} name="passoutYear" required placeholder="Passout Year*"></input>
@@ -207,7 +207,7 @@ function AlumniForm() {
                         <span>I agree that all the information provided above is true.</span>
                     </label>
                     <div className="form__buttons">
-                        <button type="submit" disabled={!url || !check || fnEE || passoutYearE || lkdE || branchE || aimE} onClick={submitform} className={(!(!url || !check || fnEE || passoutYearE || lkdE || branchE || aimE)) ? "form__btn" : 'form__btn disabledbtn'}> Submit</button>
+                        <button type="submit" disabled={!url || !check || fnEE || passoutYearE || lkdE || branchE || aimE} className={(!(!url || !check || fnEE || passoutYearE || lkdE || branchE || aimE)) ? "form__btn" : 'form__btn disabledbtn'}> Submit</button>
                         <button type="reset" className="form__btn">Reset</button>
                     </div>
                 </form>

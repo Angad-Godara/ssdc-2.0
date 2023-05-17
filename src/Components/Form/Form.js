@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ref, uploadBytes, getDownloadURL, connectStorageEmulator } from 'firebase/storage';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { selectUser } from '../../Features/userSlice';
 import db, { storage } from '../../firebase';
 import './Form.css';
@@ -172,7 +172,7 @@ function Register() {
         <div className='form__body'>
             {(user?.mstatus === 'NA')
                 ?
-                <form className="form__container">
+                <form onSubmit={submitform} className="form__container">
                     <div className="form__title">
                         <h2>Application Form</h2>
                     </div>
@@ -180,7 +180,7 @@ function Register() {
 
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setfn(e.target.value)} name="first_name" required placeholder="First Name*"></input>
                         {(fnEE) ? <p className='input__errors'>{fnEE}</p> : <div className='input__errors'></div>}
-                        <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setsn(e.target.value)} name="last_name" required placeholder="Last Name"></input>
+                        <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setsn(e.target.value)} name="last_name" placeholder="Last Name"></input>
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setlkd(e.target.value)} name="linkedin" required placeholder="LinkedIn URL*"></input>
                         {(lkdE) ? <p className='input__errors'>{lkdE}</p> : <div className='input__errors'></div>}
                         <input onKeyUp={(e) => handleValidation(e)} type="text" onChange={(e) => setgit(e.target.value)} name="github" required placeholder="Github Username*"></input>
@@ -216,7 +216,7 @@ function Register() {
 
                         <div className="member_type mem">
                             <label htmlFor="position"><p>What you are?*</p></label>
-                            <select defaultValue="member" className='position' onChange={(e) => setpost(e.target.value)} name="position" id="position">
+                            <select defaultValue="member" required className='position' onChange={(e) => setpost(e.target.value)} name="position" id="position">
                                 <option className='form__select__option' value="member">Member</option>
                                 <option className='form__select__option' value="core">Core Member</option>
                             </select>
@@ -226,7 +226,7 @@ function Register() {
                         {(post === 'core') &&
                             <div className="member_type mem">
                                 <label htmlFor="position"><p>Field*</p></label>
-                                <select defaultValue="Coordinator" className='position' onChange={(e) => setheadPost(e.target.value)} name="position" id="position">
+                                <select defaultValue="Coordinator" required className='position' onChange={(e) => setheadPost(e.target.value)} name="position" id="position">
                                     <option className='form__select__option' value="Coordinator">Coordinator</option>
                                     <option className='form__select__option' value="Co-Cordinator">Co-cordinator</option>
                                     <option className='form__select__option' value="Social Media Head">Social Media Head</option>
@@ -254,7 +254,7 @@ function Register() {
                         <span>I agree that all the information provided above is true.</span>
                     </label>
                     <div className="form__buttons">
-                        <button type="submit" disabled={!url || !check || fnEE || gitE || lkdE || regdE || postE || branchE || aimE} onClick={submitform} className={(!(!url || !check || fnEE || gitE || lkdE || regdE || postE || branchE || aimE)) ? "form__btn" : 'form__btn disabledbtn'}> Submit</button>
+                        <button type="submit" disabled={!url || !check || fnEE || gitE || lkdE || regdE || postE || branchE || aimE} className={(!(!url || !check || fnEE || gitE || lkdE || regdE || postE || branchE || aimE)) ? "form__btn" : 'form__btn disabledbtn'}> Submit</button>
                         <button type="reset" className="form__btn">Reset</button>
                     </div>
                 </form>
