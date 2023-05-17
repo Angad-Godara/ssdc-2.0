@@ -190,7 +190,6 @@
 @media (max-width:600px){
     .form__container{
         width: 40vh;
-        height: 70vh;
     }
     .form__title>h1{
         font-size: 2rem;
@@ -199,7 +198,6 @@
 @media (max-width:400px){
     .form__container{
         width: 50vh;
-        height: 90vh;
     }
     .form__title>h1{
         font-size: 1.6rem;
