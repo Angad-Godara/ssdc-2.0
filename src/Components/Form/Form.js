@@ -82,7 +82,7 @@ function Register() {
             .set({
                 email: user?.email,
                 photoURL: url,
-                name: `${fn} ${sn}`,
+                name: `${fn} ${sn ? sn : ""}`,
                 github: git,
                 linkedin: lkd,
                 post: post,
@@ -250,7 +250,7 @@ function Register() {
                         {(fileE) ? <p className='input__errors'>{fileE}</p> : <div className='input__errors'></div>}
                     </div>
                     <label className='check' htmlFor='check'>
-                        <input accept="image/*" onKeyUp={(e) => handleValidation(e)} onChange={(e) => setcheck(e.target.checked)} name='check' type={'checkbox'} />
+                        <input accept="image/*" required onKeyUp={(e) => handleValidation(e)} onChange={(e) => setcheck(e.target.checked)} name='check' type={'checkbox'} />
                         <span>I agree that all the information provided above is true.</span>
                     </label>
                     <div className="form__buttons">
