@@ -9,6 +9,13 @@ function MemberDetail({ aim }) {
     const rotateX = useTransform(y, [-100, 100], [30, -30]);
     const rotateY = useTransform(x, [-100, 100], [-30, 30]);
 
+    function addThreeDots(str) {
+        if (str.length > 220) {
+            return str.substring(0, 220) + "..";
+        }
+        return str;
+    }
+
     return (
         <CardWrapper>
             <CardContainer
@@ -22,7 +29,7 @@ function MemberDetail({ aim }) {
                     <MediumText style={{ marginTop: '10px' }}>About</MediumText>
                     <Objective>
                         <SmallText>
-                            {aim}
+                            {addThreeDots(aim)}
                         </SmallText>
                         <BackButton>Profile</BackButton>
                     </Objective>
