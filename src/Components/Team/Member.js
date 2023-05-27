@@ -133,7 +133,7 @@ const CardContainer = styled(motion.div)`
 `;
 
 const SmallText = styled.div`
-    font-size: 11px;
+    font-size: 1.4vh;
     color: #fff;
     font-weight: 700;
     text-transform: uppercase;
@@ -224,7 +224,7 @@ const DetailsContainer = styled.div`
 `
 
 const MediumText = styled.div`
-    font-size: 18px;
+    font-size: 2vh;
     color: #fff;
     font-weight: 800;
     text-transform: uppercase;
