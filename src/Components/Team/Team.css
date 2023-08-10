@@ -1,46 +1,47 @@
-.teamContainer{
-    margin-top: 40px;
-    padding-top: 5px;
-    max-width: 100vw;
-    background-color: rgb(247,249,252);
+.teamContainer {
+  margin-top: 40px;
+  padding-top: 5px;
+  max-width: 100vw;
+  background-color: rgb(247, 249, 252);
 }
 
-.teamWrapper{
-    margin-top: 25px;
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    grid-column-gap: 30px;
-    grid-row-gap: 30px;
-    margin-left: 20px;
-    margin-right: 20px;
+.teamWrapper {
+  margin-top: 25px;
+  margin-bottom: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
-.team__core, .team__members{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 80vh;
+.team__core,
+.team__members {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 49px - 7vh - 30px);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Merriweather&family=Rubik:wght@700&display=swap');
-.team__title{
-    text-align: center;
-    font-size: xx-large;
-    text-transform: uppercase;
-    font-family: 'Rubik', serif;
-    letter-spacing: 2px;
-    font-weight: 700;
-    word-spacing: 2px;
-    padding-top: 30px;
-    color: rgb(58,174,245);
+@import url("https://fonts.googleapis.com/css2?family=Merriweather&family=Rubik:wght@700&display=swap");
+.team__title {
+  text-align: center;
+  font-size: xx-large;
+  text-transform: uppercase;
+  font-family: "Rubik", serif;
+  letter-spacing: 2px;
+  font-weight: 700;
+  word-spacing: 2px;
+  padding-top: 30px;
+  color: rgb(58, 174, 245);
 }
 
-.team__core > p, .team__members > p{
-    margin-top: 15px;
-    padding: 0 40px 0 40px;
-    font-size: 14px;
-    text-align: center;
-    color: rgb(167,168,170)
+.team__core > p,
+.team__members > p {
+  margin-top: 15px;
+  padding: 0 40px 0 40px;
+  font-size: 14px;
+  text-align: center;
+  color: rgb(167, 168, 170);
 }
-

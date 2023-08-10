@@ -52,7 +52,7 @@ function Team() {
                 <h2 className='team__title'>Core Team</h2>
                 <p>A core team is a group of individuals who are responsible for the success of a specific project or club. These individuals typically have a specific set of skills and experience that make them well-suited for their roles.The core team is responsible for making key decisions and ensuring that the club is on track to meet its goals.</p>
                 <div className='teamWrapper'>
-                    {coreTeam?.map((obj, i) => {
+                    {coreTeam && coreTeam.length > 0 && Array.from(coreTeam)?.sort((a, b) => a.name.localeCompare(b.name))?.map((obj, i) => {
                         return <Card key={i}
                             aim={obj.aim}
                             name={obj.name}
@@ -71,7 +71,7 @@ function Team() {
                 <h2 className='team__title' style={{ color: '#32d234' }}>Members</h2>
                 <p>The members are the backbone of the club. Their enthusiasm and passion for technology and coding drive the club's activities, events, and initiatives. By sharing their knowledge, skills, and creativity, club members create a supportive and collaborative community that fosters learning, growth, and innovation. With their dedication and hard work, club members can make a meaningful impact on their college, their community, and their own personal and professional development.</p>
                 <div className='teamWrapper'>
-                    {members?.map((obj, i) => {
+                    {members && members.length > 0 && Array.from(members)?.sort((a, b) => a.name.localeCompare(b.name))?.map((obj, i) => {
                         return <Card key={i}
                             aim={obj.aim}
                             name={obj.name}

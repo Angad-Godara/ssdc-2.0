@@ -1,23 +1,24 @@
-.projects{
-    background: white;
+.projects {
+  background: white;
 }
 
-.projectCard__container{
-    margin-top: 75px;
-    margin-right: 2vw;
-    margin-left: 2vw;
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-    grid-column-gap: 30px;
-    grid-row-gap: 30px;
+.projectCard__container {
+  margin-top: 49px;
+  margin-right: 2vw;
+  margin-left: 2vw;
+  margin-bottom: 20px;
+  padding: 20px 0 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
 }
 
-.projects__container{
-    min-height: 80vh;
+.projects__container {
+  min-height: calc(100vh - 49px - 7vh - 30px);
 }
 
-.projects__spinner__wrapper{
+.projects__spinner__wrapper {
   display: flex;
   height: 90vh;
   width: 100vw;

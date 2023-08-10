@@ -43,7 +43,7 @@ function Member({ setopen, fac, photoURL, name, github, linkedin, email, post, w
                         <SpacedHorizontalConatiner>
                             <MediumText>{addThreeDots(name)}</MediumText>
                         </SpacedHorizontalConatiner>
-                        <SpacedHorizontalConatiner style={{ marginTop: '10px' }}>
+                        <SpacedHorizontalConatiner style={{ margin: 'auto' }}>
                             <Connections>
                                 {(fac)
                                     ?
