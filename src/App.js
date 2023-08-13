@@ -19,17 +19,10 @@ import { selectUserMenu, close, brgrClose } from "./Features/userMenu";
 import VerifyEmail from "./Components/Register/VerifyEmail";
 import PrivacyPolicy from "./Components/PrivacyPolicy/PrivacyPolicy";
 import { setMember } from "./Features/isMemberSlice";
-import {
-  setCore,
-  setMembers,
-  setFaculties,
-  setMentors,
-} from "./Features/teamSlice";
 import ForgotPassword from "./Components/Login/ForgotPassword";
 import Projects from "./Components/Projects/Projects";
 import { setProjects } from "./Features/projectsSlice";
 import Alumni from "./Components/Team/Alumni";
-import { setAlumni } from "./Features/alumniSlice";
 import { SyncLoader } from "react-spinners";
 import AlumniForm from "./Components/Form/AlumniForm";
 
@@ -42,111 +35,111 @@ function App() {
   useEffect(() => {
 
     // To fetch Team: No login required------------------------------------------
-    const fetchTeam = async () => {
-      const getTeam = await fetch(
-        `${process.env.REACT_APP_SERVER}/open/getCore`,
-        {
-          method: "GET",
-        }
-      );
-      // Status handlling to be added later---
-      const resTeam = await getTeam.json();
-      dispatch(
-        setCore(
-          resTeam?.map((snap) => ({
-            aim: snap.aim,
-            github: snap.github,
-            linkedin: snap.linkedin,
-            email: snap.email,
-            name: snap.name,
-            photoURL: snap.photoURL,
-            headPost: snap.headPost,
-          }))
-        )
-      );
+    // const fetchTeam = async () => {
+    //   const getTeam = await fetch(
+    //     `${process.env.REACT_APP_SERVER}/open/getCore`,
+    //     {
+    //       method: "GET",
+    //     }
+    //   );
+    //   // Status handlling to be added later---
+    //   const resTeam = await getTeam.json();
+    //   dispatch(
+    //     setCore(
+    //       resTeam?.map((snap) => ({
+    //         aim: snap.aim,
+    //         github: snap.github,
+    //         linkedin: snap.linkedin,
+    //         email: snap.email,
+    //         name: snap.name,
+    //         photoURL: snap.photoURL,
+    //         headPost: snap.headPost,
+    //       }))
+    //     )
+    //   );
 
-      //  change this to 'member for card changes into admin hands else leave it
+    //   //  change this to 'member for card changes into admin hands else leave it
 
-      // To fetch Members: No login required----------------------------------------
-      const getMembers = await fetch(
-        `${process.env.REACT_APP_SERVER}/open/getMembers`,
-        {
-          method: "GET",
-        }
-      );
+    //   // To fetch Members: No login required----------------------------------------
+    //   const getMembers = await fetch(
+    //     `${process.env.REACT_APP_SERVER}/open/getMembers`,
+    //     {
+    //       method: "GET",
+    //     }
+    //   );
 
-      const resMembers = await getMembers.json();
-      dispatch(setMembers(
-        resMembers.map((snap) => ({
-          aim: snap.aim,
-          github: snap.github,
-          linkedin: snap.linkedin,
-          email: snap.email,
-          name: snap.name,
-          photoURL: snap.photoURL,
-        })))
-      )
+    //   const resMembers = await getMembers.json();
+    //   dispatch(setMembers(
+    //     resMembers.map((snap) => ({
+    //       aim: snap.aim,
+    //       github: snap.github,
+    //       linkedin: snap.linkedin,
+    //       email: snap.email,
+    //       name: snap.name,
+    //       photoURL: snap.photoURL,
+    //     })))
+    //   )
 
-        // To fetch Faculties: No login required-------------------------------------
-      const getFaculties = await fetch(`${process.env.REACT_APP_SERVER}/open/getFaculties`, {
-        method: "GET"
-      })
+    //     // To fetch Faculties: No login required-------------------------------------
+    //   const getFaculties = await fetch(`${process.env.REACT_APP_SERVER}/open/getFaculties`, {
+    //     method: "GET"
+    //   })
 
-      const resFaculties = await getFaculties.json();
-      dispatch(
-        setFaculties(
-          resFaculties.map((snap) => ({
-            aim: snap.aim,
-            contact: snap.contact,
-            web: snap.web,
-            email: snap.email,
-            name: snap.name,
-            post: snap.post,
-            photoURL: snap.photoURL,
-          }))
-        )
-      );
+    //   const resFaculties = await getFaculties.json();
+    //   dispatch(
+    //     setFaculties(
+    //       resFaculties.map((snap) => ({
+    //         aim: snap.aim,
+    //         contact: snap.contact,
+    //         web: snap.web,
+    //         email: snap.email,
+    //         name: snap.name,
+    //         post: snap.post,
+    //         photoURL: snap.photoURL,
+    //       }))
+    //     )
+    //   );
 
-        // to fetch Mentors: No login required------------------------------------------
-      const getMentors = await fetch(`${process.env.REACT_APP_SERVER}/open/getMentors`, {
-        method: "GET"
-      })
+    //     // to fetch Mentors: No login required------------------------------------------
+    //   const getMentors = await fetch(`${process.env.REACT_APP_SERVER}/open/getMentors`, {
+    //     method: "GET"
+    //   })
 
-      const resMentors = await getMentors.json();
-      dispatch(
-        setMentors(
-          resMentors.map((snap) => ({
-              aim: snap.aim,
-              github: snap.github,
-              linkedin: snap.linkedin,
-              email: snap.email,
-              name: snap.name,
-              photoURL: snap.photoURL,
-          }))
-        )
-      )
+    //   const resMentors = await getMentors.json();
+    //   dispatch(
+    //     setMentors(
+    //       resMentors.map((snap) => ({
+    //           aim: snap.aim,
+    //           github: snap.github,
+    //           linkedin: snap.linkedin,
+    //           email: snap.email,
+    //           name: snap.name,
+    //           photoURL: snap.photoURL,
+    //       }))
+    //     )
+    //   )
 
-        // To fetch Alumnis: No login required---------------------------------------
-      const getAlumnis = await fetch(`${process.env.REACT_APP_SERVER}/open/getAlumnis`, {
-        method: "GET"
-      })
+    //     // To fetch Alumnis: No login required---------------------------------------
+    //   const getAlumnis = await fetch(`${process.env.REACT_APP_SERVER}/open/getAlumnis`, {
+    //     method: "GET"
+    //   })
 
-      const resAlumnis = await getAlumnis.json();
-      dispatch(
-        setAlumni(
-          resAlumnis.map((snap) => ({
-            aim: snap.aim,
-              passoutYear: snap.passoutYear,
-              linkedin: snap.linkedin,
-              email: snap.email,
-              name: snap.name,
-              photoURL: snap.photoURL,
-              post: snap.post,
-              github: snap.github,
-          }))
-        )
-      )
-    };
+    //   const resAlumnis = await getAlumnis.json();
+    //   dispatch(
+    //     setAlumni(
+    //       resAlumnis.map((snap) => ({
+    //         aim: snap.aim,
+    //           passoutYear: snap.passoutYear,
+    //           linkedin: snap.linkedin,
+    //           email: snap.email,
+    //           name: snap.name,
+    //           photoURL: snap.photoURL,
+    //           post: snap.post,
+    //           github: snap.github,
+    //       }))
+    //     )
+    //   )
+    // };
 
       // to fetch projects: No login required---------------------------------------------
     const fetchProjects = async () => {
@@ -165,11 +158,26 @@ function App() {
       )
     };
 
-    const unsubscribe = auth.onAuthStateChanged((authUser) => {
+    const unsubscribe = auth.onAuthStateChanged( async (authUser) => {
       setloading(true);
 
       if (authUser) {
         // fetching user from db
+        if(!localStorage.getItem("jwttoken")){
+          const token = await fetch(`${process.env.REACT_APP_SERVER}/auth/login`, {
+            method: "POST",
+            headers: {
+              "content-type": "application/json"
+            },
+            body: JSON.stringify({
+              "uuid": authUser.uid
+            })
+          })
+
+          const jwtToken = await token.json();
+          localStorage.setItem("jwttoken", jwtToken.authtoken)
+          
+        }
         db.collection("users")
           .doc(authUser?.uid)
           .onSnapshot((snap) => {
@@ -233,10 +241,12 @@ function App() {
                 });
             }
           });
+
+          console.log(localStorage.getItem("jwttoken"));
       } else {
         dispatch(logout());
       }
-      fetchTeam();
+      // fetchTeam();
       fetchProjects();
       setloading(false);
     });
