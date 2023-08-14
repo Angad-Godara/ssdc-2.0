@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import HomeScreen from './Components/HomeScreen/HomeScreen';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
+test('SSDC renders on HomeScreen', () => {
+  render(<HomeScreen />);
+  const linkElement = screen.getByText(/SSDC/i);
   expect(linkElement).toBeInTheDocument();
 });
