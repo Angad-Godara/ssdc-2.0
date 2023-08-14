@@ -11,7 +11,7 @@ import { auth } from "./firebase";
 import { logout, login, selectUser } from "./Features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import User from "./Components/User/User";
-import db from "./firebase";
+// import db from "./firebase";
 import Explore from "./Components/Explore/Explore";
 import Team from "./Components/Team/Team";
 import Form from "./Components/Form/Form";
@@ -174,75 +174,84 @@ function App() {
             })
           })
 
-          const jwtToken = await token.json();
-          localStorage.setItem("jwttoken", jwtToken.authtoken)
+          const jwtTokenData = await token.json();
+          dispatch(
+            login({
+                uid: authUser?.uid,
+                photoURL: jwtTokenData?.photoURL,
+                username: jwtTokenData?.username,
+                email: jwtTokenData?.email,
+                mstatus: jwtTokenData?.mstatus,
+            }))
+          localStorage.setItem("jwttoken", jwtTokenData.authtoken)
           
         }
-        db.collection("users")
-          .doc(authUser?.uid)
-          .onSnapshot((snap) => {
-            dispatch(
-              login({
-                uid: authUser?.uid,
-                photoURL: snap.data()?.photoURL,
-                username: snap.data()?.username,
-                email: snap.data()?.email,
-                mstatus: snap.data()?.mstatus,
-              })
-            );
 
-            if (snap.data()?.mstatus === "verified") {
-              db.collection("members")
-                .doc(authUser?.uid)
-                .onSnapshot((snap) => {
-                  dispatch(
-                    setMember({
-                      aim: snap.data()?.aim,
-                      branch: snap.data()?.branch,
-                      email: snap.data()?.email,
-                      gender: snap.data()?.gender,
-                      github: snap.data()?.github,
-                      linkedin: snap.data()?.linkedin,
-                      name: snap.data()?.name,
-                      photoURL: snap.data()?.photoURL,
-                      post: snap.data()?.post,
-                      regd: snap.data()?.regd,
-                      web: snap.data()?.web,
-                      leetcode: snap.data()?.leetcode,
-                      codechef: snap.data()?.codechef,
-                      codeforces: snap.data()?.codeforces,
-                    })
-                  );
-                });
-            }
+        // db.collection("users")
+        //   .doc(authUser?.uid)
+        //   .onSnapshot((snap) => {
+        //     dispatch(
+        //       login({
+        //         uid: authUser?.uid,
+        //         photoURL: snap.data()?.photoURL,
+        //         username: snap.data()?.username,
+        //         email: snap.data()?.email,
+        //         mstatus: snap.data()?.mstatus,
+        //       })
+        //     );
 
-            if (snap.data()?.mstatus === "alm__verified") {
-              db.collection("alumnis")
-                .doc(authUser?.uid)
-                .onSnapshot((snap) => {
-                  dispatch(
-                    setMember({
-                      aim: snap.data()?.aim,
-                      branch: snap.data()?.branch,
-                      email: snap.data()?.email,
-                      gender: snap.data()?.gender,
-                      github: snap.data()?.github,
-                      linkedin: snap.data()?.linkedin,
-                      name: snap.data()?.name,
-                      photoURL: snap.data()?.photoURL,
-                      post: snap.data()?.post,
-                      regd: snap.data()?.regd,
-                      web: snap.data()?.web,
-                      leetcode: snap.data()?.leetcode,
-                      codechef: snap.data()?.codechef,
-                      codeforces: snap.data()?.codeforces,
-                    })
-                  );
-                });
-            }
-          });
+        //     if (snap.data()?.mstatus === "verified") {
+        //       db.collection("members")
+        //         .doc(authUser?.uid)
+        //         .onSnapshot((snap) => {
+        //           dispatch(
+        //             setMember({
+        //               aim: snap.data()?.aim,
+        //               branch: snap.data()?.branch,
+        //               email: snap.data()?.email,
+        //               gender: snap.data()?.gender,
+        //               github: snap.data()?.github,
+        //               linkedin: snap.data()?.linkedin,
+        //               name: snap.data()?.name,
+        //               photoURL: snap.data()?.photoURL,
+        //               post: snap.data()?.post,
+        //               regd: snap.data()?.regd,
+        //               web: snap.data()?.web,
+        //               leetcode: snap.data()?.leetcode,
+        //               codechef: snap.data()?.codechef,
+        //               codeforces: snap.data()?.codeforces,
+        //             })
+        //           );
+        //         });
+        //     }
 
-          console.log(localStorage.getItem("jwttoken"));
+        //     if (snap.data()?.mstatus === "alm__verified") {
+        //       db.collection("alumnis")
+        //         .doc(authUser?.uid)
+        //         .onSnapshot((snap) => {
+        //           dispatch(
+        //             setMember({
+        //               aim: snap.data()?.aim,
+        //               branch: snap.data()?.branch,
+        //               email: snap.data()?.email,
+        //               gender: snap.data()?.gender,
+        //               github: snap.data()?.github,
+        //               linkedin: snap.data()?.linkedin,
+        //               name: snap.data()?.name,
+        //               photoURL: snap.data()?.photoURL,
+        //               post: snap.data()?.post,
+        //               regd: snap.data()?.regd,
+        //               web: snap.data()?.web,
+        //               leetcode: snap.data()?.leetcode,
+        //               codechef: snap.data()?.codechef,
+        //               codeforces: snap.data()?.codeforces,
+        //             })
+        //           );
+        //         });
+        //     }
+        //   });
+
+        //   console.log(localStorage.getItem("jwttoken"));
       } else {
         dispatch(logout());
       }

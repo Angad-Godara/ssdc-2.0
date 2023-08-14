@@ -30,7 +30,7 @@ function Register() {
 
     const navigate = useNavigate()
 
-    const upload = (e) => {
+    const upload = async (e) => {
         e.preventDefault();
 
         if (!file) {
@@ -39,28 +39,38 @@ function Register() {
         }
 
         // pending catches
-        const imageRef = ref(storage, `members/${user?.email}`)
-        uploadBytes(imageRef, file)
-            .then((result) => {
-                getDownloadURL(result.ref).then(url => {
-                    seturl(url)
-                    db
-                        .collection('users')
-                        .doc(user?.uid)
-                        .update({
-                            photoURL: url,
-                        })
-                        .catch((err) => {
-                            setfileE(err)
-                        })
+        // const imageRef = ref(storage, `members/${user?.email}`)
+        const getImgURL = await fetch(`${process.env.REACT_APP_SERVER}/form/uploadImg}`, {
+            method: "POST",
+            formData: {
+                img: file
+            }
+        })
 
-                    setfileE(null)
-                })
-            })
-            .catch(err => {
-                setfileE("Can't upload file at the moment")
-                console.log(err)
-            })
+        const imgURL = await getImgURL.json();
+        console.log(imgURL)
+        seturl(imgURL.url)
+        setfileE(null)
+        // uploadBytes(imageRef, file)
+        //     .then((result) => {
+        //         getDownloadURL(result.ref).then(url => {
+        //             db
+        //                 .collection('users')
+        //                 .doc(user?.uid)
+        //                 .update({
+        //                     photoURL: url,
+        //                 })
+        //                 .catch((err) => {
+        //                     setfileE(err)
+        //                 })
+
+        //             setfileE(null)
+        //         })
+        //     })
+        //     .catch(err => {
+        //         setfileE("Can't upload file at the moment")
+        //         console.log(err)
+        //     })
     }
 
     const checkFile = (e) => {
