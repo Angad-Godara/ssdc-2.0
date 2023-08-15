@@ -141,7 +141,7 @@ function App() {
     //   )
     // };
 
-      // to fetch projects: No login required---------------------------------------------
+    // to fetch projects: No login required---------------------------------------------
     const fetchProjects = async () => {
       const getProjects = await fetch(`${process.env.REACT_APP_SERVER}/open/getProjects`, {
         method: "GET"
@@ -151,40 +151,39 @@ function App() {
       dispatch(
         setProjects(
           resProjects.map((snap) => ({
-              owner: snap.owner,
-              repo: snap.repo,
+            owner: snap.owner,
+            repo: snap.repo,
           }))
         )
       )
     };
 
-    const unsubscribe = auth.onAuthStateChanged( async (authUser) => {
+    const unsubscribe = auth.onAuthStateChanged(async (authUser) => {
       setloading(true);
 
       if (authUser) {
         // fetching user from db
-        if(!localStorage.getItem("jwttoken")){
+        if (!localStorage.getItem("jwttoken") || (localStorage.getItem("jwttoken") && !user)) {
           const token = await fetch(`${process.env.REACT_APP_SERVER}/auth/login`, {
             method: "POST",
             headers: {
               "content-type": "application/json"
             },
             body: JSON.stringify({
-              "uuid": authUser.uid
+              uuid: authUser.uid
             })
           })
 
           const jwtTokenData = await token.json();
           dispatch(
             login({
-                uid: authUser?.uid,
-                photoURL: jwtTokenData?.photoURL,
-                username: jwtTokenData?.username,
-                email: jwtTokenData?.email,
-                mstatus: jwtTokenData?.mstatus,
+              uid: authUser?.uid,
+              photoURL: jwtTokenData?.photoURL,
+              username: jwtTokenData?.username,
+              email: jwtTokenData?.email,
+              mstatus: jwtTokenData?.mstatus,
             }))
           localStorage.setItem("jwttoken", jwtTokenData.authtoken)
-          
         }
 
         // db.collection("users")
