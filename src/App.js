@@ -11,7 +11,6 @@ import { auth } from "./firebase";
 import { logout, login, selectUser } from "./Features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import User from "./Components/User/User";
-// import db from "./firebase";
 import Explore from "./Components/Explore/Explore";
 import Team from "./Components/Team/Team";
 import Form from "./Components/Form/Form";
