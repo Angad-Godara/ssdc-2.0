@@ -28,10 +28,12 @@ function Projects() {
         }
 
         const fetchprojects = async () => {
+            const projectRes = await fetch(`${process.env.REACT_APP_SERVER}/open/getProjects`);
+            const res = await projectRes.json();
             try {
                 setLoading(true);
                 const projectData = await Promise.all(
-                    projects?.map((project) => {
+                    res?.map((project) => {
                         return fetchrepo(project.owner, project.repo);
                     })
                 );
@@ -44,9 +46,7 @@ function Projects() {
             }
         }
 
-        if (projects) {
-            fetchprojects();
-        }
+        fetchprojects();
     }, [projects])
 
 

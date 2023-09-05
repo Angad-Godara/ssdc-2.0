@@ -4,7 +4,6 @@ import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice';
-import db, { auth, storage } from '../../firebase';
 import { FiEdit2 } from 'react-icons/fi'
 import './user.css'
 import ProfileUpdateForm from './ProfileUpdate/ProfileUpdateForm';
@@ -96,18 +95,34 @@ function User() {
             }));
         }
         
-        const fetchContirbutions = () => {
-            db
-                .collection('members')
-                .doc(auth?.currentUser?.uid)
-                .collection('projects__contributions')
-                .onSnapshot(snapshot => {
-                    dispatch(loadContributions(snapshot.docs.map((snap) => ({
-                        owner: snap.data().owner,
-                        repo: snap.data().repo,
-                        status: snap.data().status,
-                    }))))
-                })
+        const fetchContirbutions = async () => {
+            const contriData = await fetch(`${process.env.REACT_APP_SERVER}/user/getContributions`, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${jwt}`
+                }
+            })
+
+            const contriRes = await contriData.json();
+            // console.log(contriRes);
+            dispatch(loadContributions(contriRes.map((data) => ({
+                owner: data.owner,
+                repo: data.repo,
+                status: data.status
+            }))))
+
+
+            // db
+            //     .collection('members')
+            //     .doc(auth?.currentUser?.uid)
+            //     .collection('projects__contributions')
+            //     .onSnapshot(snapshot => {
+            //         dispatch(loadContributions(snapshot.docs.map((snap) => ({
+            //             owner: snap.data().owner,
+            //             repo: snap.data().repo,
+            //             status: snap.data().status,
+            //         }))))
+            //     })
         }
         fetchContirbutions();
         fetchUserDetails();

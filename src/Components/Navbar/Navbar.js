@@ -90,7 +90,7 @@ function Navbar() {
                                     <li className='user__info'>
                                         <div>
                                             <img className='drop__item__logo' src={user?.photoURL} alt='U' />
-                                            <p className='drop__item__text'>{member ? member?.name : user?.username}</p>
+                                            <p className='drop__item__text'>{member?.name ? member?.name : user?.username}</p>
                                         </div>
                                     </li>
                                 </Link>

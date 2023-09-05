@@ -17,6 +17,7 @@ function ContributeForm() {
     const [repoverf, setrepoverf] = useState(false)
     const [ssdcContri, setssdcContri] = useState(null);
     const [gituser, setgituser] = useState('');
+    const jwt = localStorage.getItem('jwttoken');
 
     const [globalchange, setglobalchange] = useState(false)
 
@@ -45,48 +46,69 @@ function ContributeForm() {
         }
     }
 
-    const requestContribution = () => {
+    const requestContribution = async () => {
+
+        const gitData = await fetch(`${process.env.REACT_APP_SERVER}/user/contribute`, {
+            method: "POST",
+            headers:{
+                "content-type": "application/json",
+                "Authorization": `Bearer ${jwt}`,
+            },
+            body: JSON.stringify({
+                owner: (contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github),
+                repo: contributions.currentContribution?.repo,
+                ssdcContri: contributions.currentContribution.ssdcContri,
+                projectCount: (member?.project__count ? member.project__count : 0)
+            })       
+        })
+
+        const res = await gitData.json();
+        setglobalchange(false);
+        setssdcContri("");
+        setreponame("");
+        alert("Request added to queue");
+        console.log("Api request: ", res);
 
         // storing the request
 
         // checking whether the record exists previously or not?
-        var docRef = db.collection("project__requests").doc(`owner>${contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github}>repo>${contributions.currentContribution.repo}`)
-        docRef.get().then((doc) => {
-            if (doc.exists) {
-                alert('This request already exists');
-            } else {
-                db
-                    .collection('project__requests')
-                    .doc(`owner>${contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github}>repo>${contributions.currentContribution.repo}`)
-                    .set({
-                        owner: (contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github),
-                        repo: contributions.currentContribution?.repo,
-                        ssdcContri: contributions.currentContribution.ssdcContri,
-                        uid: auth.currentUser.uid,
-                        status: 'requested',
-                        count: (member?.project__count ? member.project__count : 0)
-                    })
-                    .then(res => {
-                        db
-                            .collection('members')
-                            .doc(auth?.currentUser?.uid)
-                            .collection('projects__contributions')
-                            .doc(`owner>${contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github}>repo>${contributions.currentContribution.repo}`)
-                            .set({
-                                owner: (contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github),
-                                repo: contributions.currentContribution?.repo,
-                                ssdcContri: contributions.currentContribution.ssdcContri,
-                                status: 'requested',
-                                count: (member?.project__count ? member.project__count : 0)
-                            })
-                            .then(res => alert('Added to requests'))
-                            .catch(error => alert(error))
-                    })
-                    .catch(error => alert(error))
-            }
-        }).catch((error) => {
-            console.log("Internal error:", error);
-        });
+        // var docRef = db.collection("project__requests").doc(`owner>${contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github}>repo>${contributions.currentContribution.repo}`)
+        // docRef.get().then((doc) => {
+        //     if (doc.exists) {
+        //         alert('This request already exists');
+        //     } else {
+        //         db
+        //             .collection('project__requests')
+        //             .doc(`owner>${contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github}>repo>${contributions.currentContribution.repo}`)
+        //             .set({
+        //                 owner: (contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github),
+        //                 repo: contributions.currentContribution?.repo,
+        //                 ssdcContri: contributions.currentContribution.ssdcContri,
+        //                 // uid: auth.currentUser.uid,
+        //                 status: 'requested',
+        //                 count: (member?.project__count ? member.project__count : 0)
+        //             })
+        //             .then(res => {
+        //                 db
+        //                     .collection('members')
+        //                     .doc(auth?.currentUser?.uid)
+        //                     .collection('projects__contributions')
+        //                     .doc(`owner>${contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github}>repo>${contributions.currentContribution.repo}`)
+        //                     .set({
+        //                         owner: (contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github),
+        //                         repo: contributions.currentContribution?.repo,
+        //                         ssdcContri: contributions.currentContribution.ssdcContri,
+        //                         status: 'requested',
+        //                         count: (member?.project__count ? member.project__count : 0)
+        //                     })
+        //                     .then(res => alert('Added to requests'))
+        //                     .catch(error => alert(error))
+        //             })
+        //             .catch(error => alert(error))
+        //     }
+        // }).catch((error) => {
+        //     console.log("Internal error:", error);
+        // });
     }
 
     const save = (e) => {
@@ -100,7 +122,7 @@ function ContributeForm() {
             {(!member)
                 ?
 
-                <h2>only members allowed</h2>
+                <h2>Only Members Allowed</h2>
                 :
                 <>
                     <>
@@ -113,7 +135,7 @@ function ContributeForm() {
                             <div className='left__upd'>Owner's Github</div>
                             <div className='right__upd'>
                                 <input type={'text'} defaultValue={contributions.currentContribution?.owner ? contributions.currentContribution?.owner : member?.github}
-                                    placeholder={"Owner's Github Account"}
+                                    placeholder={"Owner's Github User Name"}
                                     onChange={async (e) => {
                                         setgituser(e.target.value)
                                     }} />
