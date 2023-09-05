@@ -141,21 +141,21 @@ function App() {
     // };
 
     // to fetch projects: No login required---------------------------------------------
-    const fetchProjects = async () => {
-      const getProjects = await fetch(`${process.env.REACT_APP_SERVER}/open/getProjects`, {
-        method: "GET"
-      })
+    // const fetchProjects = async () => {
+    //   const getProjects = await fetch(`${process.env.REACT_APP_SERVER}/open/getProjects`, {
+    //     method: "GET"
+    //   })
 
-      const resProjects = await getProjects.json();
-      dispatch(
-        setProjects(
-          resProjects.map((snap) => ({
-            owner: snap.owner,
-            repo: snap.repo,
-          }))
-        )
-      )
-    };
+    //   const resProjects = await getProjects.json();
+    //   dispatch(
+    //     setProjects(
+    //       resProjects.map((snap) => ({
+    //         owner: snap.owner,
+    //         repo: snap.repo,
+    //       }))
+    //     )
+    //   )
+    // };
 
     const unsubscribe = auth.onAuthStateChanged(async (authUser) => {
       setloading(true);
@@ -254,7 +254,7 @@ function App() {
         dispatch(logout());
       }
       // fetchTeam();
-      fetchProjects();
+      // fetchProjects();
       setloading(false);
     });
 
