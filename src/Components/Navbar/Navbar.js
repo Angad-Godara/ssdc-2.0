@@ -55,7 +55,7 @@ function Navbar() {
                     </div>
                     <div className='nav__member'>
                         {
-                            (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified' || user?.mstatus === 'alm__verified')
+                            (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified' || user?.mstatus === 'alm__verified' || user?.mstatus === 'core__verified')
                                 ?
                                 <></>
                                 :
@@ -67,7 +67,7 @@ function Navbar() {
                                 </div>
                         }
                         {
-                            (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified' || user?.mstatus === 'alm__verified')
+                            (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified' || user?.mstatus === 'alm__verified' || user?.mstatus === 'core__verified')
                                 ?
                                 <></>
                                 :
@@ -170,7 +170,7 @@ function Navbar() {
                     <Link to="/privacy" className="option__link">Privacy Policy</Link>
                 </div>
                 {
-                    (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified' || user?.mstatus === 'alm__verified')
+                    (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified' || user?.mstatus === 'alm__verified' || user?.mstatus === 'core__verified')
                         ?
                         <></>
                         :
@@ -183,7 +183,7 @@ function Navbar() {
                 }
                 {
 
-                    (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified' || user?.mstatus === 'alm__verified')
+                    (!user || user?.mstatus === 'Applied' || user?.mstatus === 'verified' || user?.mstatus === 'alm__verified' || user?.mstatus === 'core__verified')
                         ?
                         <></>
                         :

@@ -1,14 +1,15 @@
+// User Screen component consiting of images edit and two tabs
+
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectUser } from '../../Features/userSlice';
-import db, { auth, storage } from '../../firebase';
 import { FiEdit2 } from 'react-icons/fi'
 import './user.css'
 import ProfileUpdateForm from './ProfileUpdate/ProfileUpdateForm';
 import PreviewImg from './ProfileUpdate/PreviewImg';
 import Footer from '../Footer/Footer';
-import { selectMember } from '../../Features/isMemberSlice';
+import { selectMember, setMember, updateMember } from '../../Features/isMemberSlice';
 import ContributeForm from './Contribute/ContributeForm';
 import { loadContributions } from '../../Features/contributeSlice';
 
@@ -22,6 +23,7 @@ function User() {
     const [file, setfile] = useState(null);
     const [preveiw, setPreveiw] = useState(null)
     const [left, setleft] = useState('basicInfo')
+    const jwt = localStorage.getItem("jwttoken");
 
     const checkFile = (e) => {
         if (e.target.files[0].size / (1048576) >= 2) {
@@ -46,7 +48,7 @@ function User() {
         setPreveiw(null);
     }
 
-    const upload = () => {
+    const upload = async () => {
 
         if (!file) {
             alert('Invalid upload');
@@ -54,43 +56,76 @@ function User() {
         }
 
         // pending catches
-        const imageRef = ref(storage, `members/${user?.email}`)
-        uploadBytes(imageRef, file)
-            .then((result) => {
-                getDownloadURL(result.ref).then(url => {
-                    db
-                        .collection('users')
-                        .doc(user?.uid)
-                        .update({
-                            photoURL: url
-                        })
-                        .catch((err) => alert(err))
-                })
-                alert('uploaded')
-                closeit();
-            })
-            .catch(err => {
-                alert('Please try again later!')
-                console.log(err)
-            })
+        // Sending img to backend for URL updation in DB
+        const formData = new FormData();
+        formData.append('img', file);
+
+        const getImgURL = await fetch(`${process.env.REACT_APP_SERVER}/user/updateImg`, {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${jwt}`,
+            },
+            body: formData,
+        })
     }
 
 
     useEffect(() => {
-        const fetchContirbutions = () => {
-            db
-                .collection('members')
-                .doc(auth?.currentUser?.uid)
-                .collection('projects__contributions')
-                .onSnapshot(snapshot => {
-                    dispatch(loadContributions(snapshot.docs.map((snap) => ({
-                        owner: snap.data().owner,
-                        repo: snap.data().repo,
-                        status: snap.data().status,
-                    }))))
-                })
+        const fetchUserDetails = async () => {
+            const getMember = await fetch(`${process.env.REACT_APP_SERVER}/user/getUser`, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${jwt}`
+                }
+            })
+    
+            const data = await getMember.json();
+            dispatch(setMember({
+                name: data?.name,
+                aim: data?.aim,
+                linkedin: data?.linkedin,
+                github: data?.github,
+                leetcode: data?.leetcode,
+                codechef: data?.codechef,
+                codeforces: data?.codeforces,
+                web: data?.web,
+                regd: data?.regd,
+                gender: data?.gender,
+                branch: data?.branch
+            }));
+        }
+        
+        const fetchContirbutions = async () => {
+            const contriData = await fetch(`${process.env.REACT_APP_SERVER}/user/getContributions`, {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${jwt}`
+                }
+            })
+
+            const contriRes = await contriData.json();
+            // console.log(contriRes);
+            dispatch(loadContributions(contriRes.map((data) => ({
+                owner: data.owner,
+                repo: data.repo,
+                status: data.status
+            }))))
+
+
+            // db
+            //     .collection('members')
+            //     .doc(auth?.currentUser?.uid)
+            //     .collection('projects__contributions')
+            //     .onSnapshot(snapshot => {
+            //         dispatch(loadContributions(snapshot.docs.map((snap) => ({
+            //             owner: snap.data().owner,
+            //             repo: snap.data().repo,
+            //             status: snap.data().status,
+            //         }))))
+            //     })
         }
         fetchContirbutions();
+        fetchUserDetails();
     }, [user])
 
     return (

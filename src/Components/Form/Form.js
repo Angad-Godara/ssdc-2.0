@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { selectUser } from '../../Features/userSlice';
-import db, { storage } from '../../firebase';
+import { selectUser, login } from '../../Features/userSlice';
 import './Form.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { AiOutlineFileImage } from 'react-icons/ai'
 import { BsUpload } from 'react-icons/bs'
@@ -27,10 +25,12 @@ function Register() {
     const [gender, setgender] = useState('male')
     const [headPost, setheadPost] = useState('Coordinator')
     const [fileE, setfileE] = useState(null);
+    const dispatch = useDispatch();
 
     const navigate = useNavigate()
+    const jwt = localStorage.getItem("jwttoken");
 
-    const upload = (e) => {
+    const upload = async (e) => {
         e.preventDefault();
 
         if (!file) {
@@ -38,29 +38,43 @@ function Register() {
             return;
         }
 
-        // pending catches
-        const imageRef = ref(storage, `members/${user?.email}`)
-        uploadBytes(imageRef, file)
-            .then((result) => {
-                getDownloadURL(result.ref).then(url => {
-                    seturl(url)
-                    db
-                        .collection('users')
-                        .doc(user?.uid)
-                        .update({
-                            photoURL: url,
-                        })
-                        .catch((err) => {
-                            setfileE(err)
-                        })
+        const formData = new FormData();
+        formData.append('img', file);
 
-                    setfileE(null)
-                })
-            })
-            .catch(err => {
-                setfileE("Can't upload file at the moment")
-                console.log(err)
-            })
+        // pending catches
+        // const imageRef = ref(storage, `members/${user?.email}`)
+        const getImgURL = await fetch(`${process.env.REACT_APP_SERVER}/form/uploadImg`, {
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${jwt}`,
+            },
+            body: formData,
+        })
+
+        const imgURL = await getImgURL.json();
+        console.log(imgURL)
+        seturl(imgURL.url)
+        setfileE(null)
+        // uploadBytes(imageRef, file)
+        //     .then((result) => {
+        //         getDownloadURL(result.ref).then(url => {
+        //             db
+        //                 .collection('users')
+        //                 .doc(user?.uid)
+        //                 .update({
+        //                     photoURL: url,
+        //                 })
+        //                 .catch((err) => {
+        //                     setfileE(err)
+        //                 })
+
+        //             setfileE(null)
+        //         })
+        //     })
+        //     .catch(err => {
+        //         setfileE("Can't upload file at the moment")
+        //         console.log(err)
+        //     })
     }
 
     const checkFile = (e) => {
@@ -74,12 +88,16 @@ function Register() {
         setfileE(null)
     }
 
-    const submitform = (e) => {
+    const submitform = async (e) => {
         e.preventDefault();
-        db
-            .collection('requests')
-            .doc(user?.uid)
-            .set({
+
+        const submitStatus = await fetch(`${process.env.REACT_APP_SERVER}/form/requestMembership`,{
+            method: "POST",
+            headers: {
+                'Authorization': `Bearer ${jwt}`,
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
                 email: user?.email,
                 photoURL: url,
                 name: `${fn} ${sn ? sn : ""}`,
@@ -92,14 +110,44 @@ function Register() {
                 aim: aim,
                 gender: gender,
                 headPost: (post !== 'member' ? headPost : null),
-            }).catch(err => console.log(err))
-
-        db
-            .collection('users')
-            .doc(user?.uid)
-            .update({
-                mstatus: 'Applied'
             })
+        });
+
+        dispatch(
+            login({
+              uid: submitStatus?.uid,
+              photoURL: submitStatus?.photoURL,
+              username: submitStatus?.username,
+              email: submitStatus?.email,
+              mstatus: submitStatus?.mstatus,
+            }))
+
+        console.log(submitStatus);
+
+        // db
+        //     .collection('requests')
+        //     .doc(user?.uid)
+        //     .set({
+        //         email: user?.email,
+        //         photoURL: url,
+        //         name: `${fn} ${sn ? sn : ""}`,
+        //         github: git,
+        //         linkedin: lkd,
+        //         post: post,
+        //         regd: regd,
+        //         branch: branch,
+        //         web: web,
+        //         aim: aim,
+        //         gender: gender,
+        //         headPost: (post !== 'member' ? headPost : null),
+        //     }).catch(err => console.log(err))
+
+        // db
+        //     .collection('users')
+        //     .doc(user?.uid)
+        //     .update({
+        //         mstatus: 'Applied'
+        //     })
         alert('Submitted successfully')
         navigate('/');
     }
