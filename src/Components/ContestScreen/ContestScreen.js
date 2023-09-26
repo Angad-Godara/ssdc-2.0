@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { selectUser } from '../../Features/userSlice';
 import { auth } from '../../firebase';
 import ImageSlider from '../Carousel/ImageSlider';
-import { RingLoader } from 'react-spinners';
+import { SyncLoader } from "react-spinners";
 import { brgrOpen, brgrClose, selectUserMenu } from '../../Features/userMenu';
 import { AiOutlineClose } from 'react-icons/ai';
 
@@ -322,7 +322,7 @@ function ContestScreen() {
 				<div className="table__wrapper">
 					{loading ? (
 						<div className="contest__spinner__wrapper">
-							<RingLoader color="#37474f" />
+							        <SyncLoader />
 						</div>
 					) : (
 						<div className="table">

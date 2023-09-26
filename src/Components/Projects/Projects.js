@@ -4,7 +4,7 @@ import { selectProjects, setProjectsData } from '../../Features/projectsSlice'
 import Footer from '../Footer/Footer'
 import ProjectCard from './ProjectCard'
 import './Projects.css'
-import { HashLoader } from 'react-spinners'
+import { SyncLoader } from "react-spinners";
 
 function Projects() {
 
@@ -55,7 +55,7 @@ function Projects() {
             <div className='projects__container'>
                 {loading ?
                     <div className='projects__spinner__wrapper'>
-                        <HashLoader color="#37474f" />
+                          <SyncLoader />
                     </div>
                     :
                     <div className='projectCard__container'>
