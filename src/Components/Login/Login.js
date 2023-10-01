@@ -1,57 +1,71 @@
 import React, { useRef, useState } from 'react'
 import './Login.css'
 import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
-import { BsFacebook, BsLinkedin } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import { auth, googleProvider, githubProvider, facebookProvider, twitterProvider } from '../../firebase';
-import db from '../../firebase'
+import { useDispatch } from 'react-redux';
+import { login, logout } from '../../Features/userSlice';
 
 function Login() {
 
     const emailRef = useRef(null);
     const passwordRef = useRef(null);
     const [error, seterror] = useState("");
+    const dispatch = useDispatch();
 
-    const store = (authUser) => {
+    const store = async (authUser) => {
 
         // pending checkblocks 
 
         // if user exists previously
-        db
-            .collection('users')
-            .doc(authUser?.uid)
-            .onSnapshot(snap => {
-                if (snap.data()) {
-                    return;
-                } else {
-                    // updating db
-                    db
-                        .collection('users')
-                        .doc(authUser?.uid)
-                        .set({
-                            email: authUser?.email,
-                            username: authUser?.displayName,
-                            photoURL: authUser?.photoURL,
-                            mstatus: 'NA',
-                        })
-                }
+        const token = await fetch(`${process.env.REACT_APP_SERVER}/auth/login`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                uuid: authUser.uid,
+                email: authUser?.email,
+                username: authUser?.displayName,
+                photoURL: authUser?.photoURL,
             })
-    }
-
-    const login = (e) => {
-        e.preventDefault();
-        auth.signInWithEmailAndPassword(
-            emailRef.current.value,
-            passwordRef.current.value
-        ).then((authUser) => {
-        }).catch((error) => {
-            seterror("Invalid Credentials")
-            // seterror(error.message)
         })
-
+        if (token.status === 200) {
+            const jwtTokenData = await token.json();
+            if (jwtTokenData.success) {
+                dispatch(login({
+                    uid: authUser?.uid,
+                    photoURL: jwtTokenData?.photoURL,
+                    username: jwtTokenData?.username,
+                    email: jwtTokenData?.email,
+                    mstatus: jwtTokenData?.mstatus,
+                }))
+                localStorage.setItem("jwttoken", jwtTokenData.authtoken)
+            }
+        } else {
+            const jwtTokenData = await token.json();
+            auth.signOut();
+            dispatch(logout())
+            alert(jwtTokenData.error)
+        }
     }
 
-    const googleLogin = () => {
+    const loginfunc = (isLogin = false) => {
+        if (isLogin?.loginClick) {
+            auth.signInWithEmailAndPassword(
+                emailRef.current.value,
+                passwordRef.current.value
+            ).then((authUser) => {
+                store(authUser);
+            }).catch((error) => {
+                seterror("Invalid Credentials")
+                // seterror(error.message)
+            })
+        }
+    }
+
+    const googleLogin = (e) => {
+        e.preventDefault();
         auth.signInWithPopup(googleProvider)
             .then((result) => {
                 store(result.user)
@@ -61,7 +75,8 @@ function Login() {
                 // seterror(error.message)
             })
     }
-    const githubLogin = () => {
+    const githubLogin = (e) => {
+        e.preventDefault();
         auth.signInWithPopup(githubProvider)
             .then((result) => {
                 store(result.user)
@@ -115,7 +130,7 @@ function Login() {
                         </span>
                         {error ? <p>{error}</p> : <p></p>}
                     </form>
-                    <button onClick={login} className='login__button'>Sign In</button>
+                    <button onClick={() => loginfunc({ loginClick: true })} className='login__button'>Sign In</button>
                     <div className='login__actions'>
                         <Link to='/forgotpassword'>Forgot Password?</Link>
                         <Link to='/register'>Sign Up</Link>

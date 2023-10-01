@@ -50,7 +50,7 @@ function ContributeForm() {
 
         const gitData = await fetch(`${process.env.REACT_APP_SERVER}/user/contribute`, {
             method: "POST",
-            headers:{
+            headers: {
                 "content-type": "application/json",
                 "Authorization": `Bearer ${jwt}`,
             },
@@ -59,7 +59,7 @@ function ContributeForm() {
                 repo: contributions.currentContribution?.repo,
                 ssdcContri: contributions.currentContribution.ssdcContri,
                 projectCount: (member?.project__count ? member.project__count : 0)
-            })       
+            })
         })
 
         const res = await gitData.json();
@@ -119,9 +119,8 @@ function ContributeForm() {
 
     return (
         <div className='ProfileUpdateForm ContributeForm'>
-            {(!member)
+            {(!member.name)
                 ?
-
                 <h2>Only Members Allowed</h2>
                 :
                 <>

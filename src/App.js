@@ -17,13 +17,12 @@ import Form from "./Components/Form/Form";
 import { selectUserMenu, close, brgrClose } from "./Features/userMenu";
 import VerifyEmail from "./Components/Register/VerifyEmail";
 import PrivacyPolicy from "./Components/PrivacyPolicy/PrivacyPolicy";
-import { setMember } from "./Features/isMemberSlice";
 import ForgotPassword from "./Components/Login/ForgotPassword";
 import Projects from "./Components/Projects/Projects";
-import { setProjects } from "./Features/projectsSlice";
 import Alumni from "./Components/Team/Alumni";
 import { SyncLoader } from "react-spinners";
 import AlumniForm from "./Components/Form/AlumniForm";
+import { setMember } from "./Features/isMemberSlice";
 
 function App() {
   const [loading, setloading] = useState(true);
@@ -172,17 +171,18 @@ function App() {
               uuid: authUser.uid
             })
           })
-
           const jwtTokenData = await token.json();
-          dispatch(
-            login({
-              uid: authUser?.uid,
-              photoURL: jwtTokenData?.photoURL,
-              username: jwtTokenData?.username,
-              email: jwtTokenData?.email,
-              mstatus: jwtTokenData?.mstatus,
-            }))
-          localStorage.setItem("jwttoken", jwtTokenData.authtoken)
+          if (jwtTokenData) {
+            dispatch(
+              login({
+                uid: authUser?.uid,
+                photoURL: jwtTokenData?.photoURL,
+                username: jwtTokenData?.username,
+                email: jwtTokenData?.email,
+                mstatus: jwtTokenData?.mstatus,
+              }))
+            localStorage.setItem("jwttoken", jwtTokenData.authtoken)
+          }
         }
 
         // db.collection("users")
@@ -258,8 +258,10 @@ function App() {
       setloading(false);
     });
 
+    unsubscribe();
+
     return unsubscribe;
-  }, [dispatch]);
+  }, []);
 
   return (
     <>
@@ -348,7 +350,7 @@ function App() {
               }
             />
           </Routes>
-        ) : auth?.currentUser?.emailVerified ? (
+        ) : auth?.currentUser?.emailVerified && user ? (
           <Routes>
             <Route path="/contests" element={<ContestScreen />} />
             <Route
