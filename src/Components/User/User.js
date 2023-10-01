@@ -78,23 +78,25 @@ function User() {
                     "Authorization": `Bearer ${jwt}`
                 }
             })
-    
-            const data = await getMember.json();
-            dispatch(setMember({
-                name: data?.name,
-                aim: data?.aim,
-                linkedin: data?.linkedin,
-                github: data?.github,
-                leetcode: data?.leetcode,
-                codechef: data?.codechef,
-                codeforces: data?.codeforces,
-                web: data?.web,
-                regd: data?.regd,
-                gender: data?.gender,
-                branch: data?.branch
-            }));
+
+            if (getMember.status === 200) {
+                const data = await getMember.json();
+                dispatch(setMember({
+                    name: data?.name,
+                    aim: data?.aim,
+                    linkedin: data?.linkedin,
+                    github: data?.github,
+                    leetcode: data?.leetcode,
+                    codechef: data?.codechef,
+                    codeforces: data?.codeforces,
+                    web: data?.web,
+                    regd: data?.regd,
+                    gender: data?.gender,
+                    branch: data?.branch
+                }));
+            }
         }
-        
+
         const fetchContirbutions = async () => {
             const contriData = await fetch(`${process.env.REACT_APP_SERVER}/user/getContributions`, {
                 method: "GET",

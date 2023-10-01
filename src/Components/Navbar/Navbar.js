@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { AiOutlineStar } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectUser } from '../../Features/userSlice'
+import { logout, selectUser } from '../../Features/userSlice'
 import { BiExit } from 'react-icons/bi'
 import { MdOutlinePrivacyTip } from 'react-icons/md'
 import { GiHamburgerMenu } from 'react-icons/gi'
@@ -27,6 +27,7 @@ function Navbar() {
 
     const Logout = (e) => {
         auth.signOut();
+        dispatch(logout());
     }
 
     return (

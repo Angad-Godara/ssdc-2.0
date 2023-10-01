@@ -4,12 +4,13 @@ import { AiFillGoogleCircle, AiFillGithub } from 'react-icons/ai'
 import { BsFacebook, BsLinkedin } from 'react-icons/bs'
 import { Link, useNavigate } from 'react-router-dom'
 import db, { auth, googleProvider, githubProvider, facebookProvider, twitterProvider } from '../../firebase'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../Features/userSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { login, selectUser } from '../../Features/userSlice'
 
 function Register() {
     const user = useSelector(selectUser);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (user) {
@@ -25,45 +26,46 @@ function Register() {
     const [password, setpassword] = useState(null);
     const [cnfpassword, setcnfpassword] = useState(null);
 
-    const store = (authUser) => {
+    const store = async (authUser) => {
         // pending checkblocks 
 
         // if user exists previously
-        db
-            .collection('users')
-            .doc(authUser?.uid)
-            .onSnapshot(snap => {
-                if (snap.data()) {
-                    return;
-                } else {
-                    // updating db
-                    db
-                        .collection('users')
-                        .doc(authUser?.uid)
-                        .set({
-                            email: authUser?.email,
-                            username: authUser?.displayName,
-                            photoURL: authUser?.photoURL,
-                            mstatus: 'NA',
-                        })
-                }
+        const res = await fetch(`${process.env.REACT_APP_SERVER}/auth/signup`, {
+            method: "POST",
+            headers: {
+                "content-type": "application/json"
+            },
+            body: JSON.stringify({
+                uuid: authUser.uid,
+                email: authUser.email,
+                photoURL: authUser.photoURL || defaultURL,
+                username: authUser.displayName,
             })
+        })
+        if (res.status === 200) {
+            const resjson = await res.json();
+            dispatch(login({
+                uid: resjson?.uid,
+                photoURL: resjson?.photoURL,
+                username: resjson?.username,
+                email: resjson?.email,
+                mstatus: resjson?.mstatus,
+            }))
+        } else if (res.status === 401) {
+            const resjson = await res.json();
+            alert(resjson?.error)
+            auth.signOut();
+        } else {
+            alert('Something went wrong')
+            auth.signOut();
+        }
+
     }
 
     const register = () => {
         auth.createUserWithEmailAndPassword(emailRef.current.value, cnfpassword)
             .then((authUser) => {
-                db
-                    .collection('users')
-                    .doc(authUser?.user.uid)
-                    .set({
-                        email: authUser.user.email,
-                        username: username,
-                        photoURL: defaultURL,
-                        mstatus: 'NA',
-                    })
-            }).catch((error) => {
-                alert(error.message)
+                store(authUser)
             })
     }
 

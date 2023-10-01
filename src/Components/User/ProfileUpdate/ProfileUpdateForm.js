@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectMember, updateMember } from "../../../Features/isMemberSlice";
-import db, { auth } from "../../../firebase";
 import "./ProfileUpdateForm.css";
-
 function ProfileUpdateForm() {
   const member = useSelector(selectMember);
   const [open, setopen] = useState(-1);
@@ -53,8 +51,8 @@ function ProfileUpdateForm() {
     );
 
     const response = await profileData.json();
-    if(response.success){
-        setglobalchange(false);
+    if (response.success) {
+      setglobalchange(false);
     }
 
     // db
@@ -79,7 +77,7 @@ function ProfileUpdateForm() {
 
   return (
     <div className="ProfileUpdateForm">
-      {member === "NA" ? (
+      {!member?.name ? (
         <h2>only members allowed</h2>
       ) : (
         <>
@@ -619,14 +617,14 @@ function ProfileUpdateForm() {
             } */}
         </>
       )}
-          <div className="button__wrapper">
-            <button
-              className={globalchange ? "" : "nochange"}
-              onClick={globalchange ? updateProfile : undefined}
-            >
-              Update
-            </button>
-          </div>
+      <div className="button__wrapper">
+        <button
+          className={globalchange ? "" : "nochange"}
+          onClick={globalchange ? updateProfile : undefined}
+        >
+          Update
+        </button>
+      </div>
     </div>
   );
 }
