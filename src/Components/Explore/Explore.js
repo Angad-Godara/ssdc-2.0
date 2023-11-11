@@ -14,7 +14,7 @@ function Explore() {
             <div className='explore__container'>
                 <div className='explore__title'>
                     <h3>Welcome to</h3>
-                    <h1>SSDC(beta) Explore</h1>
+                    <h1>SSDC Explore</h1>
                 </div>
                 <div className='explore__heading'><GrResources size={'20px'} /> <span>Resources</span></div>
                 <div className='resources__wrapper'>
