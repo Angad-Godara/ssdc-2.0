@@ -24,7 +24,11 @@ import { SyncLoader } from "react-spinners";
 import AlumniForm from "./Components/Form/AlumniForm";
 import { setMember } from "./Features/isMemberSlice";
 
+
 function App() {
+
+  console.log("currently running: ", process.env.REACT_APP_VERSION);
+
   const [loading, setloading] = useState(true);
   const dispatch = useDispatch();
   const { userMenu, brgrMenu } = useSelector(selectUserMenu);
