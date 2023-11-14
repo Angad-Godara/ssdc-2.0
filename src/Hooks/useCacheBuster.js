@@ -17,7 +17,7 @@ const useCacheBuster = () => {
                     if (packageVersion < metaVersion) {
                         console.log(packageVersion, metaVersion)
                         if (window?.location?.reload) {
-                            // window.location.reload();
+                            window.location.reload();
                         }
                     }
                 }
