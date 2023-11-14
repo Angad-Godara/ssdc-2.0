@@ -23,11 +23,15 @@ import Alumni from "./Components/Team/Alumni";
 import { SyncLoader } from "react-spinners";
 import AlumniForm from "./Components/Form/AlumniForm";
 import { setMember } from "./Features/isMemberSlice";
+import useCacheBuster from "./Hooks/useCacheBuster";
 
 
 function App() {
 
   console.log("currently running: ", process.env.REACT_APP_VERSION);
+
+  const cacheBuster = useCacheBuster();
+  console.log(cacheBuster)
 
   const [loading, setloading] = useState(true);
   const dispatch = useDispatch();
