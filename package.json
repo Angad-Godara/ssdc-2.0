@@ -29,7 +29,7 @@
     "start": "react-scripts start",
     "prebuild": "node ./build-version",
     "build": "set \"GENERATE_SOURCEMAP=false\" && set \"REACT_APP_VERSION=$npm_package_version\" && react-scripts build",
-    "host": "CI=false GENERATE_SOURCEMAP=false npm run prebuild && react-scripts build",
+    "host": "CI=false GENERATE_SOURCEMAP=false REACT_APP_VERSION=$npm_package_version npm run prebuild && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
