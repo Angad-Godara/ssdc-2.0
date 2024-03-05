@@ -64,9 +64,17 @@ function Register() {
 
     const register = () => {
         auth.createUserWithEmailAndPassword(emailRef.current.value, cnfpassword)
-            .then((authUser) => {
-                store(authUser)
+        .then((authUser) => {
+            const newUser = authUser.user;
+            return newUser.updateProfile({
+                displayName : username
+            }).then(()=>{
+                return newUser;
             })
+        })
+        .then((newUser)=>{
+            store(newUser);
+        })
     }
 
     const googleLogin = () => {

@@ -56,7 +56,7 @@ function Login() {
                 emailRef.current.value,
                 passwordRef.current.value
             ).then((authUser) => {
-                store(authUser);
+                store(authUser.user);
             }).catch((error) => {
                 seterror("Invalid Credentials")
                 // seterror(error.message)
