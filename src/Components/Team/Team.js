@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import "./Team.css";
 import Card from "./Card";
 import Footer from "../Footer/Footer";
@@ -10,7 +10,7 @@ import {
   setFaculties,
   setMentors,
 } from "../../Features/teamSlice";
-import { SyncLoader } from "react-spinners";
+import { HashLoader } from 'react-spinners'
 
 function Team() {
   const dispatch = useDispatch();
@@ -19,6 +19,19 @@ function Team() {
   useEffect(() => {
     // To fetch Team: No login required------------------------------------------
     const fetchTeam = async () => {
+
+      const getTeam = await fetch(`${process.env.REACT_APP_SERVER}/open/getCore`, { method: "GET" });
+      const resTeam = await getTeam.json();
+      dispatch(setCore(resTeam.map(snap => ({
+        aim: snap.aim,
+        github: snap.github,
+        linkedin: snap.linkedin,
+        email: snap.email,
+        name: snap.name,
+        photoURL: snap.photoURL,
+        headPost: snap.headPost,
+      }))));
+  
       if (!coreTeam) {
         const getTeam = await fetch(
           `${process.env.REACT_APP_SERVER}/open/getCore`,
@@ -261,7 +274,7 @@ function Team() {
         </div>
       ) : (
         <div className="spinner__wrapper">
-        <SyncLoader />
+          <HashLoader color="#37474f" />
         </div>
       )}
     </>
