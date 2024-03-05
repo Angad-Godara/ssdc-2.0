@@ -3,12 +3,14 @@ import './footer.css'
 import { Link } from 'react-router-dom'
 
 function Footer() {
+    const date = new Date();
+    const year = date.getFullYear();
     return (
         <div className='footer__body'>
             <div className='footer__wrapper'>
                 <div className='footer__links'>
                     <div className='footer__option'>
-                        Copyright &copy; 2023
+                        Copyright &copy; {year}
                     </div>
                     <div className='footer__option'>
                         <Link to="/" className="option__link">Explore</Link>
