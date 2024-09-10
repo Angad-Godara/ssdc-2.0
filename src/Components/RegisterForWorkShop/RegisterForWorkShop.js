@@ -160,7 +160,7 @@ const RegisterForWorkshop = () => {
         flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
         width: "85%",
-        gap: "10rem",
+        gap: { xs: "2rem", md: "10rem" },  
         mx: "auto",
         mt: 4,
         p: 2,
@@ -179,9 +179,15 @@ const RegisterForWorkshop = () => {
         }}
       >
         <img
-          src="/path/to/poster.jpg"
+          src={`${process.env.PUBLIC_URL}/Assets/Images/workshopPoster.png`} 
           alt="Workshop Poster"
-          style={{ maxWidth: "100%", borderRadius: "8px" }}
+          style={{ 
+            maxWidth: "90%", 
+            maxHeight: "500px",  
+            width: "auto",      
+            height: "auto",   
+            borderRadius: "8px" 
+          }}
         />
       </Box>
 
