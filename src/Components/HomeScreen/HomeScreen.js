@@ -46,7 +46,7 @@ function HomeScreen() {
                                 <Link to="/home" className='landing__nav__list__item'>Explore</Link>
                                 <Link to="/contests" className='landing__nav__list__item'>Contests</Link>
                                 <Link to="/team" className='landing__nav__list__item'>Team</Link>
-                                <Link to={user ? "/" : "/login"} onClick={Logout} className='landing__nav__list__item'>{user ? 'LogOut' : 'SignIn'}</Link>
+                                {/* <Link to={user ? "/" : "/login"} onClick={Logout} className='landing__nav__list__item'>{user ? 'LogOut' : 'SignIn'}</Link> */}
                             </div>
                             <div onClick={() => dispatch(brgrOpen(!brgrMenu))} className='landing__nav__list__item hms__brgr__open'>Menu</div>
                         </div>
@@ -57,7 +57,7 @@ function HomeScreen() {
                             <div className='container__text'>
                                 <h1>SSDC Welcome You</h1>
                                 <p>The only coding club in our college! dedicated to Information Technology. We are a group of passionate students who are dedicated to exploring the exciting world of coding and technology.</p>
-                                {!user ? <Link to='/register' className='container__button'>Create Account {'>'}</Link> : <></>}
+                                {/* {!user ? <Link to='/register' className='container__button'>Create Account {'>'}</Link> : <></>} */}
                             </div>
                         </div>
                         <div className='welcome__text__animation'>
