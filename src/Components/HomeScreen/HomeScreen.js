@@ -9,6 +9,7 @@ import Hometext from '../HomeText/Hometext'
 import { TypeAnimation } from 'react-type-animation';
 import { brgrOpen, brgrClose, selectUserMenu } from '../../Features/userMenu'
 import { AiOutlineClose } from 'react-icons/ai'
+import RegisterForWorkshop from '../RegisterForWorkShop/RegisterForWorkShop'
 
 function HomeScreen() {
 
@@ -81,6 +82,9 @@ function HomeScreen() {
                         </div>
                     </div>
                 </div>
+
+
+                <RegisterForWorkshop />
                 {/* burger nav starts here */}
                 <div className={brgrMenu ? 'brgr__wrapper open__brgr' : 'brgr__wrapper'}>
                     <div className='close__icon'>

@@ -17,12 +17,13 @@ const firebaseConfig = {
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const db = firebaseApp.firestore();
 const auth = firebase.auth();
-const storage = getStorage(firebaseApp)
+const storage = getStorage(firebaseApp);
 const googleProvider = new firebase.auth.GoogleAuthProvider();
 const githubProvider = new firebase.auth.GithubAuthProvider();
 const facebookProvider = new firebase.auth.FacebookAuthProvider();
 const twitterProvider = new firebase.auth.TwitterAuthProvider();
 const analytics = getAnalytics(firebaseApp);
 
-export { auth, googleProvider, githubProvider, facebookProvider, twitterProvider, storage, analytics }
+export { auth, googleProvider, githubProvider, facebookProvider, twitterProvider, analytics }
+export { storage };
 export default db;
