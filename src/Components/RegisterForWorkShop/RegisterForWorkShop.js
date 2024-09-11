@@ -13,7 +13,7 @@ import {
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { collection, addDoc } from "firebase/firestore";
 import db from "../../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Import Firebase Storage methods
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; 
 import { storage } from "../../firebase";
 
 const RegisterForWorkshop = () => {
@@ -36,7 +36,7 @@ const RegisterForWorkshop = () => {
   const [additionalDetails, setAdditionalDetails] = useState(
     initialAdditionalDetails
   );
-  const [paymentScreenshot, setPaymentScreenshot] = useState(null); // New state for file upload
+  const [paymentScreenshot, setPaymentScreenshot] = useState(null); 
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -81,7 +81,7 @@ const RegisterForWorkshop = () => {
   };
 
   const handleFileChange = (e) => {
-    setPaymentScreenshot(e.target.files[0]); // Set the uploaded file
+    setPaymentScreenshot(e.target.files[0]);
   };
 
   const handleCloseSnackbar = (event, reason) => {
@@ -131,7 +131,7 @@ const RegisterForWorkshop = () => {
       const storageRef = ref(
         storage,
         `workshopRegistrations/${paymentScreenshot.name}`
-      ); // Make sure this path is correct
+      );
       await uploadBytes(storageRef, paymentScreenshot);
       const downloadURL = await getDownloadURL(storageRef);
 
@@ -148,10 +148,10 @@ const RegisterForWorkshop = () => {
       setOpenSnackbar(true);
       setBasicDetails(initialBasicDetails);
       setAdditionalDetails(initialAdditionalDetails);
-      setPaymentScreenshot(null); // Reset file input
+      setPaymentScreenshot(null); 
 
       if (fileInputRef.current) {
-        fileInputRef.current.value = null; // Clear file input value
+        fileInputRef.current.value = null; 
       }
 
       setShowAdditionalFields(false);
@@ -352,7 +352,7 @@ const RegisterForWorkshop = () => {
                 src={`${process.env.PUBLIC_URL}/Assets/Images/QR_worshop_registration.jpg`}
                 alt="QR Code for Payment"
                 sx={{
-                  maxWidth: { xs: "200px", md: "150px" }, // Breakpoints for xs and md screens
+                  maxWidth: { xs: "200px", md: "150px" }, 
                 }}
               />
 
