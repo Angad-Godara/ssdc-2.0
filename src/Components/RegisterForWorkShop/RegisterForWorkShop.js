@@ -364,7 +364,7 @@ const RegisterForWorkshop = () => {
                 <Tooltip title="Copy UPI ID">
                   <IconButton
                     onClick={() => {
-                      navigator.clipboard.writeText("user@upi");
+                      navigator.clipboard.writeText("cpyadavishal@okaxis");
                       alert("UPI ID copied to clipboard!");
                     }}
                     size="small"
