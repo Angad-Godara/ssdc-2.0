@@ -7,7 +7,10 @@ import {
   MenuItem,
   Alert,
   Snackbar,
+  IconButton,
+  Tooltip,
 } from "@mui/material";
+import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import { collection, addDoc } from "firebase/firestore";
 import db from "../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Import Firebase Storage methods
@@ -30,7 +33,9 @@ const RegisterForWorkshop = () => {
   };
 
   const [basicDetails, setBasicDetails] = useState(initialBasicDetails);
-  const [additionalDetails, setAdditionalDetails] = useState(initialAdditionalDetails);
+  const [additionalDetails, setAdditionalDetails] = useState(
+    initialAdditionalDetails
+  );
   const [paymentScreenshot, setPaymentScreenshot] = useState(null); // New state for file upload
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
@@ -80,7 +85,7 @@ const RegisterForWorkshop = () => {
   };
 
   const handleCloseSnackbar = (event, reason) => {
-    if (reason === 'clickaway') {
+    if (reason === "clickaway") {
       return;
     }
     setOpenSnackbar(false);
@@ -116,26 +121,29 @@ const RegisterForWorkshop = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log("Form is being submitted");
-  
+
     if (!paymentScreenshot) {
       alert("Please upload a payment screenshot before submitting.");
       return;
     }
-  
+
     try {
-      const storageRef = ref(storage, `workshopRegistrations/${paymentScreenshot.name}`); // Make sure this path is correct
+      const storageRef = ref(
+        storage,
+        `workshopRegistrations/${paymentScreenshot.name}`
+      ); // Make sure this path is correct
       await uploadBytes(storageRef, paymentScreenshot);
       const downloadURL = await getDownloadURL(storageRef);
-    
+
       await addDoc(collection(db, "workshopRegistrations"), {
         ...basicDetails,
         ...additionalDetails,
         paymentScreenshot: downloadURL,
         timestamp: new Date(),
       });
-    
+
       console.log("Data successfully added to Firestore");
-    
+
       setSuccessMessage("Registered successfully!");
       setOpenSnackbar(true);
       setBasicDetails(initialBasicDetails);
@@ -147,11 +155,10 @@ const RegisterForWorkshop = () => {
       }
 
       setShowAdditionalFields(false);
-    
     } catch (error) {
       console.error("Error adding document: ", error);
     }
-};
+  };
 
   return (
     <Box
@@ -160,7 +167,7 @@ const RegisterForWorkshop = () => {
         flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
         width: "85%",
-        gap: { xs: "2rem", md: "10rem" },  
+        gap: { xs: "2rem", md: "10rem" },
         mx: "auto",
         mt: 4,
         p: 2,
@@ -179,14 +186,14 @@ const RegisterForWorkshop = () => {
         }}
       >
         <img
-          src={`${process.env.PUBLIC_URL}/Assets/Images/workshopPoster.png`} 
+          src={`${process.env.PUBLIC_URL}/Assets/Images/Workshop final.png`}
           alt="Workshop Poster"
-          style={{ 
-            maxWidth: "90%", 
-            maxHeight: "500px",  
-            width: "auto",      
-            height: "auto",   
-            borderRadius: "8px" 
+          style={{
+            maxWidth: "90%",
+            maxHeight: "500px",
+            width: "auto",
+            height: "auto",
+            borderRadius: "8px",
           }}
         />
       </Box>
@@ -340,13 +347,32 @@ const RegisterForWorkshop = () => {
                 gap: 2,
               }}
             >
-              <img 
-                src={`${process.env.PUBLIC_URL}/Assets/Images/QR_worshop_registration.jpg`} 
-                alt="QR Code for Payment" 
-                style={{ maxWidth: "150px" }} 
+              <Box
+                component="img"
+                src={`${process.env.PUBLIC_URL}/Assets/Images/QR_worshop_registration.jpg`}
+                alt="QR Code for Payment"
+                sx={{
+                  maxWidth: { xs: "200px", md: "150px" }, // Breakpoints for xs and md screens
+                }}
               />
 
+
               <Typography>Scan the QR code and pay ₹99</Typography>
+
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                <Typography variant="body1">UPI ID: cpyadavishal@okaxis</Typography>
+                <Tooltip title="Copy UPI ID">
+                  <IconButton
+                    onClick={() => {
+                      navigator.clipboard.writeText("user@upi");
+                      alert("UPI ID copied to clipboard!");
+                    }}
+                    size="small"
+                  >
+                    <ContentCopyIcon />
+                  </IconButton>
+                </Tooltip>
+              </Box>
 
               <TextField
                 type="file"
