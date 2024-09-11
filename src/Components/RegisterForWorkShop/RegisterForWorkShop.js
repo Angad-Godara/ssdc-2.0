@@ -13,7 +13,7 @@ import {
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { collection, addDoc } from "firebase/firestore";
 import db from "../../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Import Firebase Storage methods
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; 
 import { storage } from "../../firebase";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -96,7 +96,7 @@ const RegisterForWorkshop = () => {
   };
 
   const handleFileChange = (e) => {
-    setPaymentScreenshot(e.target.files[0]); // Set the uploaded file
+    setPaymentScreenshot(e.target.files[0]);
   };
 
   const handleCloseSnackbar = (event, reason) => {
@@ -183,10 +183,10 @@ const RegisterForWorkshop = () => {
       setOpenWhatsAppSnackbar(true);
       setBasicDetails(initialBasicDetails);
       setAdditionalDetails(initialAdditionalDetails);
-      setPaymentScreenshot(null); // Reset file input
+      setPaymentScreenshot(null); 
 
       if (fileInputRef.current) {
-        fileInputRef.current.value = null; // Clear file input value
+        fileInputRef.current.value = null; 
       }
 
       setShowAdditionalFields(false);
@@ -417,7 +417,7 @@ const RegisterForWorkshop = () => {
                 src={`${process.env.PUBLIC_URL}/Assets/Images/QR_worshop_registration.jpg`}
                 alt="QR Code for Payment"
                 sx={{
-                  maxWidth: { xs: "200px", md: "150px" }, // Breakpoints for xs and md screens
+                  maxWidth: { xs: "200px", md: "150px" }, 
                 }}
               />
 
