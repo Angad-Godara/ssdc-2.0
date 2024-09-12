@@ -186,7 +186,7 @@ const RegisterForWorkshop = () => {
         }}
       >
         <img
-          src={`${process.env.PUBLIC_URL}/Assets/Images/Workshop final.png`}
+          src={`${process.env.PUBLIC_URL}/Assets/Images/Final-1.png`}
           alt="Workshop Poster"
           style={{
             maxWidth: "90%",
