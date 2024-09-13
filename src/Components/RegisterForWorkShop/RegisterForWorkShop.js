@@ -17,6 +17,7 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Import F
 import { storage } from "../../firebase";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import { FcOk } from "react-icons/fc";
 
 const RegisterForWorkshop = () => {
   const fileInputRef = useRef(null);
@@ -38,11 +39,13 @@ const RegisterForWorkshop = () => {
   const [additionalDetails, setAdditionalDetails] = useState(
     initialAdditionalDetails
   );
+  const [transactionId, setTransactionId] = useState(null);
   const [paymentScreenshot, setPaymentScreenshot] = useState(null); // New state for file upload
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [upiCopied, setUpiCopied] = useState(false);
   const [basicDetailsError, setBasicDetailsError] = useState({
     name: false,
     email: false,
@@ -83,6 +86,13 @@ const RegisterForWorkshop = () => {
     }));
   };
 
+  const handleTransactionId = (e) => {
+    e.preventDefault();
+    if (e.target.value.toString().length === 12) {
+      setTransactionId(e.target.value);
+    }
+    console.log(transactionId);
+  };
   const handleFileChange = (e) => {
     setPaymentScreenshot(e.target.files[0]); // Set the uploaded file
   };
@@ -152,6 +162,7 @@ const RegisterForWorkshop = () => {
       await addDoc(collection(db, "workshopRegistrations"), {
         ...basicDetails,
         ...additionalDetails,
+        ...transactionId,
         paymentScreenshot: downloadURL,
         timestamp: new Date(),
       });
@@ -286,6 +297,7 @@ const RegisterForWorkshop = () => {
             <TextField
               label="Registration Number"
               name="registrationNumber"
+              type="number"
               value={basicDetails.registrationNumber}
               onChange={handleBasicDetailsChange}
               margin="normal"
@@ -379,16 +391,32 @@ const RegisterForWorkshop = () => {
                 <Tooltip title="Copy UPI ID">
                   <IconButton
                     onClick={() => {
-                      navigator.clipboard.writeText("user@upi");
-                      alert("UPI ID copied to clipboard!");
+                      navigator.clipboard.writeText("cpyadavishal@okaxis");
+                      setUpiCopied(true);
                     }}
                     size="small"
                   >
-                    <ContentCopyIcon />
+                    {!upiCopied ? (
+                      <>
+                        <ContentCopyIcon />
+                      </>
+                    ) : (
+                      <>
+                        <FcOk />
+                      </>
+                    )}
                   </IconButton>
                 </Tooltip>
               </Box>
-
+              <TextField
+                type="number"
+                onChange={(e) => handleTransactionId(e)}
+                margin="normal"
+                fullWidth
+                required
+                InputLabelProps={{ shrink: true }}
+                label="UTR Number/Transaction ID"
+              />
               <TextField
                 type="file"
                 onChange={handleFileChange}
@@ -415,8 +443,6 @@ const RegisterForWorkshop = () => {
               <Button type="submit" variant="contained" color="primary">
                 Register
               </Button>
-              {/* {loading && (
-                <> */}
               <Backdrop
                 sx={(theme) => ({
                   color: "#fff",
@@ -426,10 +452,8 @@ const RegisterForWorkshop = () => {
               >
                 <CircularProgress color="inherit" />
               </Backdrop>
-              {/* </>
-              )} */}
             </Box>
-          </> 
+          </>
         )}
       </Box>
     </Box>
