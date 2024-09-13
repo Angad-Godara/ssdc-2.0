@@ -10,11 +10,13 @@ import {
   IconButton,
   Tooltip,
 } from "@mui/material";
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { collection, addDoc } from "firebase/firestore";
 import db from "../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Import Firebase Storage methods
 import { storage } from "../../firebase";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const RegisterForWorkshop = () => {
   const fileInputRef = useRef(null);
@@ -40,6 +42,7 @@ const RegisterForWorkshop = () => {
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [basicDetailsError, setBasicDetailsError] = useState({
     name: false,
     email: false,
@@ -120,8 +123,8 @@ const RegisterForWorkshop = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form is being submitted");
-
+    // console.log("Form is being submitted");
+    setLoading(true);
     if (!paymentScreenshot) {
       alert("Please upload a payment screenshot before submitting.");
       return;
@@ -132,7 +135,18 @@ const RegisterForWorkshop = () => {
         storage,
         `workshopRegistrations/${paymentScreenshot.name}`
       ); // Make sure this path is correct
-      await uploadBytes(storageRef, paymentScreenshot);
+
+      const expirationDate = new Date();
+      expirationDate.setMinutes(expirationDate.getMinutes() + 10);
+      const expirationTimestamp = expirationDate.toISOString();
+
+      const metaData = {
+        customMetadata: {
+          expirationTime: expirationTimestamp,
+        },
+      };
+
+      await uploadBytes(storageRef, paymentScreenshot, metaData);
       const downloadURL = await getDownloadURL(storageRef);
 
       await addDoc(collection(db, "workshopRegistrations"), {
@@ -142,8 +156,8 @@ const RegisterForWorkshop = () => {
         timestamp: new Date(),
       });
 
-      console.log("Data successfully added to Firestore");
-
+      // console.log("Data successfully added to Firestore");
+      setLoading(false);
       setSuccessMessage("Registered successfully!");
       setOpenSnackbar(true);
       setBasicDetails(initialBasicDetails);
@@ -356,11 +370,12 @@ const RegisterForWorkshop = () => {
                 }}
               />
 
-
               <Typography>Scan the QR code and pay ₹99</Typography>
 
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <Typography variant="body1">UPI ID: cpyadavishal@okaxis</Typography>
+                <Typography variant="body1">
+                  UPI ID: cpyadavishal@okaxis
+                </Typography>
                 <Tooltip title="Copy UPI ID">
                   <IconButton
                     onClick={() => {
@@ -400,8 +415,21 @@ const RegisterForWorkshop = () => {
               <Button type="submit" variant="contained" color="primary">
                 Register
               </Button>
+              {/* {loading && (
+                <> */}
+              <Backdrop
+                sx={(theme) => ({
+                  color: "#fff",
+                  zIndex: theme.zIndex.drawer + 1,
+                })}
+                open={loading}
+              >
+                <CircularProgress color="inherit" />
+              </Backdrop>
+              {/* </>
+              )} */}
             </Box>
-          </>
+          </> 
         )}
       </Box>
     </Box>
