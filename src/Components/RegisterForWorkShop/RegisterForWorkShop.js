@@ -88,14 +88,18 @@ const RegisterForWorkshop = () => {
 
   const handleTransactionId = (e) => {
     e.preventDefault();
-    if (e.target.value.toString().length === 12) {
+    if (e.target.value.length === 12) {
       setTransactionId(e.target.value);
     }
     console.log(transactionId);
   };
+
+
+
   const handleFileChange = (e) => {
     setPaymentScreenshot(e.target.files[0]); // Set the uploaded file
   };
+
 
   const handleCloseSnackbar = (event, reason) => {
     if (reason === "clickaway") {
@@ -162,7 +166,7 @@ const RegisterForWorkshop = () => {
       await addDoc(collection(db, "workshopRegistrations"), {
         ...basicDetails,
         ...additionalDetails,
-        ...transactionId,
+        transactionId: transactionId,
         paymentScreenshot: downloadURL,
         timestamp: new Date(),
       });
@@ -427,6 +431,7 @@ const RegisterForWorkshop = () => {
                 label="Upload Payment Screenshot"
                 inputRef={fileInputRef}
               />
+              
             </Box>
 
             <Box
