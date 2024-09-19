@@ -13,7 +13,7 @@ import {
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { collection, addDoc } from "firebase/firestore";
 import db from "../../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; 
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -52,6 +52,7 @@ const RegisterForWorkshop = () => {
     contactNumber: false,
     registrationNumber: false,
   });
+  const [openWhatsAppSnackbar, setOpenWhatsAppSnackbar] = useState(false);
 
   const handleBasicDetailsChange = (e) => {
     const { name, value } = e.target;
@@ -94,18 +95,22 @@ const RegisterForWorkshop = () => {
     console.log(transactionId);
   };
 
-
-
   const handleFileChange = (e) => {
     setPaymentScreenshot(e.target.files[0]);
   };
-
 
   const handleCloseSnackbar = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
     setOpenSnackbar(false);
+  };
+
+  const handleCloseWhatsAppSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenWhatsAppSnackbar(false);
   };
 
   const handleContinue = () => {
@@ -175,12 +180,13 @@ const RegisterForWorkshop = () => {
       setLoading(false);
       setSuccessMessage("Registered successfully!");
       setOpenSnackbar(true);
+      setOpenWhatsAppSnackbar(true);
       setBasicDetails(initialBasicDetails);
       setAdditionalDetails(initialAdditionalDetails);
-      setPaymentScreenshot(null); 
+      setPaymentScreenshot(null);
 
       if (fileInputRef.current) {
-        fileInputRef.current.value = null; 
+        fileInputRef.current.value = null;
       }
 
       setShowAdditionalFields(false);
@@ -254,6 +260,32 @@ const RegisterForWorkshop = () => {
             sx={{ width: "100%" }}
           >
             {successMessage}
+          </Alert>
+        </Snackbar>
+
+        <Snackbar
+          open={openWhatsAppSnackbar}
+          autoHideDuration={60000}
+          onClose={handleCloseWhatsAppSnackbar}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert
+            onClose={handleCloseWhatsAppSnackbar}
+            severity="info"
+            sx={{ width: "100%" }}
+            action={
+              <Button
+                color="inherit"
+                size="small"
+                href="https://chat.whatsapp.com/LYxyrASGTHhE1GVyyjuisd "
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join Group
+              </Button>
+            }
+          >
+            Join our WhatsApp group for further updates!
           </Alert>
         </Snackbar>
 
@@ -382,7 +414,7 @@ const RegisterForWorkshop = () => {
                 src={`${process.env.PUBLIC_URL}/Assets/Images/QR_worshop_registration.jpg`}
                 alt="QR Code for Payment"
                 sx={{
-                  maxWidth: { xs: "200px", md: "150px" }, 
+                  maxWidth: { xs: "200px", md: "150px" },
                 }}
               />
 
@@ -431,7 +463,6 @@ const RegisterForWorkshop = () => {
                 label="Upload Payment Screenshot"
                 inputRef={fileInputRef}
               />
-              
             </Box>
 
             <Box
