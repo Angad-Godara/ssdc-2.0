@@ -10,11 +10,14 @@ import {
   IconButton,
   Tooltip,
 } from "@mui/material";
-import ContentCopyIcon from '@mui/icons-material/ContentCopy';
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { collection, addDoc } from "firebase/firestore";
 import db from "../../firebase";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; 
 import { storage } from "../../firebase";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import { FcOk } from "react-icons/fc";
 
 const RegisterForWorkshop = () => {
   const fileInputRef = useRef(null);
@@ -36,10 +39,13 @@ const RegisterForWorkshop = () => {
   const [additionalDetails, setAdditionalDetails] = useState(
     initialAdditionalDetails
   );
-  const [paymentScreenshot, setPaymentScreenshot] = useState(null); 
+  const [transactionId, setTransactionId] = useState(null);
+  const [paymentScreenshot, setPaymentScreenshot] = useState(null); // New state for file upload
   const [showAdditionalFields, setShowAdditionalFields] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [upiCopied, setUpiCopied] = useState(false);
   const [basicDetailsError, setBasicDetailsError] = useState({
     name: false,
     email: false,
@@ -80,9 +86,20 @@ const RegisterForWorkshop = () => {
     }));
   };
 
+  const handleTransactionId = (e) => {
+    e.preventDefault();
+    if (e.target.value.length === 12) {
+      setTransactionId(e.target.value);
+    }
+    console.log(transactionId);
+  };
+
+
+
   const handleFileChange = (e) => {
     setPaymentScreenshot(e.target.files[0]);
   };
+
 
   const handleCloseSnackbar = (event, reason) => {
     if (reason === "clickaway") {
@@ -120,8 +137,8 @@ const RegisterForWorkshop = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form is being submitted");
-
+    // console.log("Form is being submitted");
+    setLoading(true);
     if (!paymentScreenshot) {
       alert("Please upload a payment screenshot before submitting.");
       return;
@@ -131,19 +148,31 @@ const RegisterForWorkshop = () => {
       const storageRef = ref(
         storage,
         `workshopRegistrations/${paymentScreenshot.name}`
-      );
-      await uploadBytes(storageRef, paymentScreenshot);
+      ); // Make sure this path is correct
+
+      const expirationDate = new Date();
+      expirationDate.setMinutes(expirationDate.getMinutes() + 10);
+      const expirationTimestamp = expirationDate.toISOString();
+
+      const metaData = {
+        customMetadata: {
+          expirationTime: expirationTimestamp,
+        },
+      };
+
+      await uploadBytes(storageRef, paymentScreenshot, metaData);
       const downloadURL = await getDownloadURL(storageRef);
 
       await addDoc(collection(db, "workshopRegistrations"), {
         ...basicDetails,
         ...additionalDetails,
+        transactionId: transactionId,
         paymentScreenshot: downloadURL,
         timestamp: new Date(),
       });
 
-      console.log("Data successfully added to Firestore");
-
+      // console.log("Data successfully added to Firestore");
+      setLoading(false);
       setSuccessMessage("Registered successfully!");
       setOpenSnackbar(true);
       setBasicDetails(initialBasicDetails);
@@ -186,7 +215,7 @@ const RegisterForWorkshop = () => {
         }}
       >
         <img
-          src={`${process.env.PUBLIC_URL}/Assets/Images/Workshop final.png`}
+          src={`${process.env.PUBLIC_URL}/Assets/Images/Final-1.png`}
           alt="Workshop Poster"
           style={{
             maxWidth: "90%",
@@ -272,6 +301,7 @@ const RegisterForWorkshop = () => {
             <TextField
               label="Registration Number"
               name="registrationNumber"
+              type="number"
               value={basicDetails.registrationNumber}
               onChange={handleBasicDetailsChange}
               margin="normal"
@@ -356,24 +386,41 @@ const RegisterForWorkshop = () => {
                 }}
               />
 
-
               <Typography>Scan the QR code and pay ₹99</Typography>
 
               <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <Typography variant="body1">UPI ID: cpyadavishal@okaxis</Typography>
+                <Typography variant="body1">
+                  UPI ID: cpyadavishal@okaxis
+                </Typography>
                 <Tooltip title="Copy UPI ID">
                   <IconButton
                     onClick={() => {
                       navigator.clipboard.writeText("cpyadavishal@okaxis");
-                      alert("UPI ID copied to clipboard!");
+                      setUpiCopied(true);
                     }}
                     size="small"
                   >
-                    <ContentCopyIcon />
+                    {!upiCopied ? (
+                      <>
+                        <ContentCopyIcon />
+                      </>
+                    ) : (
+                      <>
+                        <FcOk />
+                      </>
+                    )}
                   </IconButton>
                 </Tooltip>
               </Box>
-
+              <TextField
+                type="number"
+                onChange={(e) => handleTransactionId(e)}
+                margin="normal"
+                fullWidth
+                required
+                InputLabelProps={{ shrink: true }}
+                label="UTR Number/Transaction ID"
+              />
               <TextField
                 type="file"
                 onChange={handleFileChange}
@@ -384,6 +431,7 @@ const RegisterForWorkshop = () => {
                 label="Upload Payment Screenshot"
                 inputRef={fileInputRef}
               />
+              
             </Box>
 
             <Box
@@ -400,6 +448,15 @@ const RegisterForWorkshop = () => {
               <Button type="submit" variant="contained" color="primary">
                 Register
               </Button>
+              <Backdrop
+                sx={(theme) => ({
+                  color: "#fff",
+                  zIndex: theme.zIndex.drawer + 1,
+                })}
+                open={loading}
+              >
+                <CircularProgress color="inherit" />
+              </Backdrop>
             </Box>
           </>
         )}
