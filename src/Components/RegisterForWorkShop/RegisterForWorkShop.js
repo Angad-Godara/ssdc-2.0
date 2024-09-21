@@ -94,12 +94,9 @@ const RegisterForWorkshop = () => {
     console.log(transactionId);
   };
 
-
-
   const handleFileChange = (e) => {
     setPaymentScreenshot(e.target.files[0]); // Set the uploaded file
   };
-
 
   const handleCloseSnackbar = (event, reason) => {
     if (reason === "clickaway") {
@@ -238,7 +235,7 @@ const RegisterForWorkshop = () => {
           alignItems: "center",
         }}
       >
-        <Typography variant="h4" component="h1" gutterBottom>
+        {/* <Typography variant="h4" component="h1" gutterBottom>
           Register for Workshop
         </Typography>
 
@@ -255,9 +252,15 @@ const RegisterForWorkshop = () => {
           >
             {successMessage}
           </Alert>
-        </Snackbar>
+        </Snackbar> */}
 
-        {!showAdditionalFields && (
+        <Typography style={{fontWeight:"600", fontSize:30}}>
+          Sorry for the inconvinence 😔. 
+          <br/>
+          Registrations will Resume in sometime.
+        </Typography>
+
+        {/* {!showAdditionalFields && (
           <>
             <TextField
               label="Name"
@@ -323,7 +326,7 @@ const RegisterForWorkshop = () => {
               Continue
             </Button>
           </>
-        )}
+        )} */}
 
         {showAdditionalFields && (
           <>
@@ -431,7 +434,6 @@ const RegisterForWorkshop = () => {
                 label="Upload Payment Screenshot"
                 inputRef={fileInputRef}
               />
-              
             </Box>
 
             <Box
