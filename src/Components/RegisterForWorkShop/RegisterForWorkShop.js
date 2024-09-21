@@ -95,10 +95,19 @@ const RegisterForWorkshop = () => {
     console.log(transactionId);
   };
 
-  const handleFileChange = (e) => {
-    setPaymentScreenshot(e.target.files[0]);
-  };
+  // const handleFileChange = (e) => {
+  //   setPaymentScreenshot(e.target.files[0]);
+  // };
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file.size > 1 * 1024 * 1024) {
+      alert('File size exceeds 1 MB');
+      return;
+    }
+    setPaymentScreenshot(file);
+  };
+  
   const handleCloseSnackbar = (event, reason) => {
     if (reason === "clickaway") {
       return;
@@ -142,7 +151,7 @@ const RegisterForWorkshop = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("Form is being submitted");
+    console.log("Starting upload...", paymentScreenshot);
     setLoading(true);
     if (!paymentScreenshot) {
       alert("Please upload a payment screenshot before submitting.");
@@ -176,7 +185,9 @@ const RegisterForWorkshop = () => {
         timestamp: new Date(),
       });
 
-      // console.log("Data successfully added to Firestore");
+      console.log("Starting upload...", paymentScreenshot);
+      console.log("Data successfully added to Firestore");
+
       setLoading(false);
       setSuccessMessage("Registered successfully!");
       setOpenSnackbar(true);
