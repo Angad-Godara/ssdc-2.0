@@ -52,6 +52,7 @@ const RegisterForWorkshop = () => {
     contactNumber: false,
     registrationNumber: false,
   });
+  const [openWhatsAppSnackbar, setOpenWhatsAppSnackbar] = useState(false);
 
   const handleBasicDetailsChange = (e) => {
     const { name, value } = e.target;
@@ -132,6 +133,13 @@ const RegisterForWorkshop = () => {
     setShowAdditionalFields(false);
   };
 
+  const handleCloseWhatsAppSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenWhatsAppSnackbar(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // console.log("Form is being submitted");
@@ -172,6 +180,7 @@ const RegisterForWorkshop = () => {
       setLoading(false);
       setSuccessMessage("Registered successfully!");
       setOpenSnackbar(true);
+      setOpenWhatsAppSnackbar(true);
       setBasicDetails(initialBasicDetails);
       setAdditionalDetails(initialAdditionalDetails);
       setPaymentScreenshot(null); // Reset file input
@@ -235,7 +244,7 @@ const RegisterForWorkshop = () => {
           alignItems: "center",
         }}
       >
-        {/* <Typography variant="h4" component="h1" gutterBottom>
+        <Typography variant="h4" component="h1" gutterBottom>
           Register for Workshop
         </Typography>
 
@@ -252,15 +261,40 @@ const RegisterForWorkshop = () => {
           >
             {successMessage}
           </Alert>
-        </Snackbar> */}
+        </Snackbar> 
+        <Snackbar
+          open={openWhatsAppSnackbar}
+          autoHideDuration={60000}
+          onClose={handleCloseWhatsAppSnackbar}
+          anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        >
+          <Alert
+            onClose={handleCloseWhatsAppSnackbar}
+            severity="info"
+            sx={{ width: "100%" }}
+            action={
+              <Button
+                color="inherit"
+                size="small"
+                href="https://chat.whatsapp.com/LYxyrASGTHhE1GVyyjuisd "
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Join Group
+              </Button>
+            }
+          >
+            Join our WhatsApp group for further updates!
+          </Alert>
+        </Snackbar>
 
-        <Typography style={{fontWeight:"600", fontSize:30}}>
+        {/* <Typography style={{fontWeight:"600", fontSize:30}}>
           Sorry for the inconvinence 😔. 
           <br/>
           Registrations will Resume in sometime.
-        </Typography>
+        </Typography> */}
 
-        {/* {!showAdditionalFields && (
+        {!showAdditionalFields && (
           <>
             <TextField
               label="Name"
@@ -326,7 +360,7 @@ const RegisterForWorkshop = () => {
               Continue
             </Button>
           </>
-        )} */}
+        )}
 
         {showAdditionalFields && (
           <>
