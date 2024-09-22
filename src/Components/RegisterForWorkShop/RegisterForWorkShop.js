@@ -244,7 +244,7 @@ const RegisterForWorkshop = () => {
           alignItems: "center",
         }}
       >
-        <Typography variant="h4" component="h1" gutterBottom>
+       {/* <Typography variant="h4" component="h1" gutterBottom>
           Register for Workshop
         </Typography>
 
@@ -286,15 +286,13 @@ const RegisterForWorkshop = () => {
           >
             Join our WhatsApp group for further updates!
           </Alert>
-        </Snackbar>
+        </Snackbar> */}
 
-        {/* <Typography style={{fontWeight:"600", fontSize:30}}>
-          Sorry for the inconvinence 😔. 
-          <br/>
-          Registrations will Resume in sometime.
-        </Typography> */}
+        <Typography style={{fontWeight:"600", fontSize:30}}>
+        Registration is now closed, and the workshop will begin on 28th September
+        </Typography>
 
-        {!showAdditionalFields && (
+        {/* {!showAdditionalFields && (
           <>
             <TextField
               label="Name"
@@ -360,7 +358,7 @@ const RegisterForWorkshop = () => {
               Continue
             </Button>
           </>
-        )}
+        )} */}
 
         {showAdditionalFields && (
           <>
