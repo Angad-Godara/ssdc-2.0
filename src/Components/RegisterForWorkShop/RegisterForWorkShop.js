@@ -7,75 +7,46 @@ import {
   MenuItem,
   Alert,
   Snackbar,
-  IconButton,
-  Tooltip,
+  Backdrop,
+  CircularProgress,
 } from "@mui/material";
-import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { collection, addDoc } from "firebase/firestore";
 import db from "../../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Import Firebase Storage methods
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../firebase";
-import Backdrop from "@mui/material/Backdrop";
-import CircularProgress from "@mui/material/CircularProgress";
-import { FcOk } from "react-icons/fc";
 
-const RegisterForWorkshop = () => {
+const CodingClubRegistration = () => {
   const fileInputRef = useRef(null);
 
-  const initialBasicDetails = {
+  const initialDetails = {
     name: "",
     email: "",
     contactNumber: "",
     registrationNumber: "",
+    course: "",
+    yearOfStudy: "",
   };
 
   const initialAdditionalDetails = {
-    course: "",
-    yearOfStudy: "",
     branch: "",
+    skills: "",
+    motivation: "",
+    projects: "",
   };
 
-  const [basicDetails, setBasicDetails] = useState(initialBasicDetails);
-  const [additionalDetails, setAdditionalDetails] = useState(
-    initialAdditionalDetails
-  );
-  const [transactionId, setTransactionId] = useState(null);
-  const [paymentScreenshot, setPaymentScreenshot] = useState(null); // New state for file upload
-  const [showAdditionalFields, setShowAdditionalFields] = useState(false);
+  const [details, setDetails] = useState(initialDetails);
+  const [additionalDetails, setAdditionalDetails] = useState(initialAdditionalDetails);
+  const [resume, setResume] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [upiCopied, setUpiCopied] = useState(false);
-  const [basicDetailsError, setBasicDetailsError] = useState({
-    name: false,
-    email: false,
-    contactNumber: false,
-    registrationNumber: false,
-  });
-  const [openWhatsAppSnackbar, setOpenWhatsAppSnackbar] = useState(false);
+  const [step, setStep] = useState(1); 
 
-  const handleBasicDetailsChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === "email") {
-      const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
-      setBasicDetailsError((prevState) => ({
-        ...prevState,
-        [name]: value.trim().length > 0 && !isValidEmail,
-      }));
-    } else if (name === "contactNumber") {
-      const isValidContactNumber = /^\d{10}$/.test(value);
-      setBasicDetailsError((prevState) => ({
-        ...prevState,
-        [name]: value.trim().length > 0 && !isValidContactNumber,
-      }));
-    }
-    setBasicDetails((prevState) => ({
+    setDetails((prevState) => ({
       ...prevState,
       [name]: value,
-    }));
-    setBasicDetailsError((prevState) => ({
-      ...prevState,
-      [name]: false,
     }));
   };
 
@@ -87,144 +58,74 @@ const RegisterForWorkshop = () => {
     }));
   };
 
-  const handleTransactionId = (e) => {
-    e.preventDefault();
-    if (e.target.value.length === 12) {
-      setTransactionId(e.target.value);
-    }
-    console.log(transactionId);
-  };
-
   const handleFileChange = (e) => {
-    setPaymentScreenshot(e.target.files[0]); // Set the uploaded file
+    setResume(e.target.files[0]);
   };
 
-  const handleCloseSnackbar = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
+  const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
-  };
-
-  const handleContinue = () => {
-    if (
-      basicDetails.name &&
-      /^\d{10}$/.test(basicDetails.contactNumber) &&
-      basicDetails.registrationNumber &&
-      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(basicDetails.email)
-    ) {
-      setShowAdditionalFields(true);
-    } else {
-      setBasicDetailsError({
-        name: !basicDetails.name,
-        email:
-          !basicDetails.email ||
-          (basicDetails.email.trim().length > 0 &&
-            !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(basicDetails.email)),
-        contactNumber:
-          basicDetails.contactNumber.trim().length === 0 ||
-          !/^\d{10}$/.test(basicDetails.contactNumber),
-        registrationNumber: !basicDetails.registrationNumber,
-      });
-    }
-  };
-
-  const handleBack = () => {
-    setShowAdditionalFields(false);
-  };
-
-  const handleCloseWhatsAppSnackbar = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpenWhatsAppSnackbar(false);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("Form is being submitted");
     setLoading(true);
-    if (!paymentScreenshot) {
-      alert("Please upload a payment screenshot before submitting.");
+    if (!resume) {
+      alert("Please upload your resume before submitting.");
+      setLoading(false);
       return;
     }
 
     try {
-      const storageRef = ref(
-        storage,
-        `workshopRegistrations/${paymentScreenshot.name}`
-      ); // Make sure this path is correct
-
-      const expirationDate = new Date();
-      expirationDate.setMinutes(expirationDate.getMinutes() + 10);
-      const expirationTimestamp = expirationDate.toISOString();
-
-      const metaData = {
-        customMetadata: {
-          expirationTime: expirationTimestamp,
-        },
-      };
-
-      await uploadBytes(storageRef, paymentScreenshot, metaData);
+      const storageRef = ref(storage, `clubRegistrations/${resume.name}`);
+      await uploadBytes(storageRef, resume);
       const downloadURL = await getDownloadURL(storageRef);
 
-      await addDoc(collection(db, "workshopRegistrations"), {
-        ...basicDetails,
+      await addDoc(collection(db, "codingClubRegistrations"), {
+        ...details,
         ...additionalDetails,
-        transactionId: transactionId,
-        paymentScreenshot: downloadURL,
+        resumeURL: downloadURL,
         timestamp: new Date(),
       });
 
-      // console.log("Data successfully added to Firestore");
       setLoading(false);
-      setSuccessMessage("Registered successfully!");
+      setSuccessMessage("Registration successful!");
       setOpenSnackbar(true);
-      setOpenWhatsAppSnackbar(true);
-      setBasicDetails(initialBasicDetails);
+      setDetails(initialDetails);
       setAdditionalDetails(initialAdditionalDetails);
-      setPaymentScreenshot(null); // Reset file input
-
-      if (fileInputRef.current) {
-        fileInputRef.current.value = null; // Clear file input value
-      }
-
-      setShowAdditionalFields(false);
+      setResume(null);
+      if (fileInputRef.current) fileInputRef.current.value = null;
     } catch (error) {
-      console.error("Error adding document: ", error);
+      console.error("Error submitting form: ", error);
     }
   };
 
   return (
     <Box
       sx={{
+        width: "85%",
+        mx: "auto",
+        mt: 4,
+        p: 3,
+        boxShadow: 3,
+        borderRadius: 2,
         display: "flex",
         flexDirection: { xs: "column", md: "row" },
         alignItems: "center",
-        width: "85%",
-        gap: { xs: "2rem", md: "10rem" },
-        mx: "auto",
-        mt: 4,
-        p: 2,
-        boxShadow: 3,
-        borderRadius: 2,
+        gap: 4,
       }}
     >
-      {/* Poster Image */}
       <Box
         sx={{
-          flex: { md: 1 },
+          flex: "1",
           display: "flex",
           justifyContent: "center",
-          mb: { xs: 2, md: 0 },
-          mr: { md: 2 },
         }}
       >
         <img
-          src={`${process.env.PUBLIC_URL}/Assets/Images/Final-1.png`}
+          src={`${process.env.PUBLIC_URL}/Assets/Images/Recruitment poster for website.png`}
           alt="Workshop Poster"
           style={{
-            maxWidth: "90%",
+            maxWidth: "100%",
             maxHeight: "500px",
             width: "auto",
             height: "auto",
@@ -233,270 +134,68 @@ const RegisterForWorkshop = () => {
         />
       </Box>
 
-      {/* Registration Form */}
       <Box
         component="form"
         onSubmit={handleSubmit}
         sx={{
-          flex: { md: 1 },
+          flex: "1",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
+          gap: 2,
+          width: "100%",
         }}
       >
-       {/* <Typography variant="h4" component="h1" gutterBottom>
-          Register for Workshop
+        <Typography variant="h4" gutterBottom>
+          Recruitment Form
         </Typography>
 
-        <Snackbar
-          open={openSnackbar}
-          autoHideDuration={3000}
-          onClose={handleCloseSnackbar}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        >
-          <Alert
-            onClose={handleCloseSnackbar}
-            severity="success"
-            sx={{ width: "100%" }}
-          >
+        <Snackbar open={openSnackbar} autoHideDuration={3000} onClose={handleCloseSnackbar}>
+          <Alert onClose={handleCloseSnackbar} severity="success">
             {successMessage}
           </Alert>
-        </Snackbar> 
-        <Snackbar
-          open={openWhatsAppSnackbar}
-          autoHideDuration={60000}
-          onClose={handleCloseWhatsAppSnackbar}
-          anchorOrigin={{ vertical: "top", horizontal: "center" }}
-        >
-          <Alert
-            onClose={handleCloseWhatsAppSnackbar}
-            severity="info"
-            sx={{ width: "100%" }}
-            action={
-              <Button
-                color="inherit"
-                size="small"
-                href="https://chat.whatsapp.com/LYxyrASGTHhE1GVyyjuisd "
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Join Group
-              </Button>
-            }
-          >
-            Join our WhatsApp group for further updates!
-          </Alert>
-        </Snackbar> */}
+        </Snackbar>
 
-        <Typography style={{fontWeight:"600", fontSize:30}}>
-        Registration is now closed, and the workshop will begin on 28th September
-        </Typography>
-
-        {/* {!showAdditionalFields && (
+        {step === 1 && (
           <>
-            <TextField
-              label="Name"
-              name="name"
-              value={basicDetails.name}
-              onChange={handleBasicDetailsChange}
-              margin="normal"
-              fullWidth
-              required
-              error={basicDetailsError.name}
-              helperText={basicDetailsError.name && "Please enter your name"}
-            />
-            <TextField
-              label="Email"
-              name="email"
-              type="email"
-              value={basicDetails.email}
-              onChange={handleBasicDetailsChange}
-              margin="normal"
-              fullWidth
-              required
-              error={basicDetailsError.email}
-              helperText={
-                basicDetailsError.email && "Please enter a valid email address"
-              }
-            />
-            <TextField
-              label="Contact Number"
-              name="contactNumber"
-              value={basicDetails.contactNumber}
-              onChange={handleBasicDetailsChange}
-              margin="normal"
-              fullWidth
-              required
-              error={basicDetailsError.contactNumber}
-              helperText={
-                basicDetailsError.contactNumber &&
-                "Please enter a valid 10-digit contact number"
-              }
-            />
-            <TextField
-              label="Registration Number"
-              name="registrationNumber"
-              type="number"
-              value={basicDetails.registrationNumber}
-              onChange={handleBasicDetailsChange}
-              margin="normal"
-              fullWidth
-              required
-              error={basicDetailsError.registrationNumber}
-              helperText={
-                basicDetailsError.registrationNumber &&
-                "Please enter your registration number"
-              }
-            />
+            <TextField label="Name" name="name" value={details.name} onChange={handleChange} fullWidth required />
+            <TextField label="Email" name="email" type="email" value={details.email} onChange={handleChange} fullWidth required />
+            <TextField label="Contact Number" name="contactNumber" value={details.contactNumber} onChange={handleChange} fullWidth required />
+            <TextField label="Registration Number" name="registrationNumber" value={details.registrationNumber} onChange={handleChange} fullWidth required />
 
-            <Button
-              onClick={handleContinue}
-              variant="contained"
-              color="primary"
-              sx={{ mt: 2 }}
-            >
-              Continue
-            </Button>
-          </>
-        )} */}
-
-        {showAdditionalFields && (
-          <>
-            <TextField
-              label="Course"
-              name="course"
-              value={additionalDetails.course}
-              onChange={handleAdditionalDetailsChange}
-              select
-              margin="normal"
-              fullWidth
-              required
-            >
+            <TextField label="Course" name="course" value={details.course} onChange={handleChange} select fullWidth required>
               <MenuItem value="ICD">ICD</MenuItem>
               <MenuItem value="BE">B.E.</MenuItem>
             </TextField>
-            <TextField
-              label="Year of Study"
-              name="yearOfStudy"
-              value={additionalDetails.yearOfStudy}
-              onChange={handleAdditionalDetailsChange}
-              select
-              margin="normal"
-              fullWidth
-              required
-            >
+
+            <TextField label="Year of Study" name="yearOfStudy" value={details.yearOfStudy} onChange={handleChange} select fullWidth required>
               <MenuItem value="1st">1st</MenuItem>
               <MenuItem value="2nd">2nd</MenuItem>
               <MenuItem value="3rd">3rd</MenuItem>
               <MenuItem value="4th">4th</MenuItem>
             </TextField>
-            <TextField
-              label="Branch/Department"
-              name="branch"
-              value={additionalDetails.branch}
-              onChange={handleAdditionalDetailsChange}
-              margin="normal"
-              fullWidth
-              required
-            />
 
-            {/* QR Code and Payment Screenshot */}
-            <Typography variant="h6" component="h2" gutterBottom>
-              Payment Information
-            </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                gap: 2,
-              }}
-            >
-              <Box
-                component="img"
-                src={`${process.env.PUBLIC_URL}/Assets/Images/QR_worshop_registration.jpg`}
-                alt="QR Code for Payment"
-                sx={{
-                  maxWidth: { xs: "200px", md: "150px" }, // Breakpoints for xs and md screens
-                }}
-              />
-
-              <Typography>Scan the QR code and pay ₹99</Typography>
-
-              <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
-                <Typography variant="body1">
-                  UPI ID: cpyadavishal@okaxis
-                </Typography>
-                <Tooltip title="Copy UPI ID">
-                  <IconButton
-                    onClick={() => {
-                      navigator.clipboard.writeText("cpyadavishal@okaxis");
-                      setUpiCopied(true);
-                    }}
-                    size="small"
-                  >
-                    {!upiCopied ? (
-                      <>
-                        <ContentCopyIcon />
-                      </>
-                    ) : (
-                      <>
-                        <FcOk />
-                      </>
-                    )}
-                  </IconButton>
-                </Tooltip>
-              </Box>
-              <TextField
-                type="number"
-                onChange={(e) => handleTransactionId(e)}
-                margin="normal"
-                fullWidth
-                required
-                InputLabelProps={{ shrink: true }}
-                label="UTR Number/Transaction ID"
-              />
-              <TextField
-                type="file"
-                onChange={handleFileChange}
-                margin="normal"
-                fullWidth
-                required
-                InputLabelProps={{ shrink: true }}
-                label="Upload Payment Screenshot"
-                inputRef={fileInputRef}
-              />
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                mt: 2,
-                gap: 2,
-              }}
-            >
-              <Button onClick={handleBack} variant="contained">
-                Back
-              </Button>
-              <Button type="submit" variant="contained" color="primary">
-                Register
-              </Button>
-              <Backdrop
-                sx={(theme) => ({
-                  color: "#fff",
-                  zIndex: theme.zIndex.drawer + 1,
-                })}
-                open={loading}
-              >
-                <CircularProgress color="inherit" />
-              </Backdrop>
-            </Box>
+            <Button variant="contained" color="primary" onClick={() => setStep(2)}>Continue</Button>
           </>
         )}
+
+        {step === 2 && (
+          <>
+            <TextField label="Branch/Department" name="branch" value={additionalDetails.branch} onChange={handleAdditionalDetailsChange} fullWidth required />
+            <TextField label="Skills" name="skills" value={additionalDetails.skills} onChange={handleAdditionalDetailsChange} fullWidth required />
+            <TextField label="Why do you want to join?" name="motivation" value={additionalDetails.motivation} onChange={handleAdditionalDetailsChange} fullWidth multiline required />
+            <TextField label="Describe any coding projects you've worked on" name="projects" value={additionalDetails.projects} onChange={handleAdditionalDetailsChange} fullWidth multiline />
+            <Typography>Upload Resume (PDF: max size 2MB)</Typography>
+            <TextField type="file" onChange={handleFileChange} inputRef={fileInputRef} fullWidth required />
+            <Button type="submit" variant="contained" color="primary">Submit</Button>
+          </>
+        )}
+
+<Backdrop open={loading}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
       </Box>
     </Box>
   );
 };
 
-export default RegisterForWorkshop;
+export default CodingClubRegistration;
