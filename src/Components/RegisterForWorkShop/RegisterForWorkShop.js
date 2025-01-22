@@ -13,7 +13,7 @@ import {
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import { collection, addDoc } from "firebase/firestore";
 import db from "../../firebase";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"; // Import Firebase Storage methods
 import { storage } from "../../firebase";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -95,31 +95,15 @@ const RegisterForWorkshop = () => {
     console.log(transactionId);
   };
 
-  // const handleFileChange = (e) => {
-  //   setPaymentScreenshot(e.target.files[0]);
-  // };
-
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file.size > 1 * 1024 * 1024) {
-      alert('File size exceeds 1 MB');
-      return;
-    }
-    setPaymentScreenshot(file);
+    setPaymentScreenshot(e.target.files[0]); // Set the uploaded file
   };
-  
+
   const handleCloseSnackbar = (event, reason) => {
     if (reason === "clickaway") {
       return;
     }
     setOpenSnackbar(false);
-  };
-
-  const handleCloseWhatsAppSnackbar = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-    setOpenWhatsAppSnackbar(false);
   };
 
   const handleContinue = () => {
@@ -149,9 +133,16 @@ const RegisterForWorkshop = () => {
     setShowAdditionalFields(false);
   };
 
+  const handleCloseWhatsAppSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenWhatsAppSnackbar(false);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Starting upload...", paymentScreenshot);
+    // console.log("Form is being submitted");
     setLoading(true);
     if (!paymentScreenshot) {
       alert("Please upload a payment screenshot before submitting.");
@@ -185,19 +176,17 @@ const RegisterForWorkshop = () => {
         timestamp: new Date(),
       });
 
-      console.log("Starting upload...", paymentScreenshot);
-      console.log("Data successfully added to Firestore");
-
+      // console.log("Data successfully added to Firestore");
       setLoading(false);
       setSuccessMessage("Registered successfully!");
       setOpenSnackbar(true);
       setOpenWhatsAppSnackbar(true);
       setBasicDetails(initialBasicDetails);
       setAdditionalDetails(initialAdditionalDetails);
-      setPaymentScreenshot(null);
+      setPaymentScreenshot(null); // Reset file input
 
       if (fileInputRef.current) {
-        fileInputRef.current.value = null;
+        fileInputRef.current.value = null; // Clear file input value
       }
 
       setShowAdditionalFields(false);
@@ -255,7 +244,7 @@ const RegisterForWorkshop = () => {
           alignItems: "center",
         }}
       >
-        <Typography variant="h4" component="h1" gutterBottom>
+       <Typography variant="h4" component="h1" gutterBottom>
           Register for Workshop
         </Typography>
 
@@ -272,8 +261,7 @@ const RegisterForWorkshop = () => {
           >
             {successMessage}
           </Alert>
-        </Snackbar>
-
+        </Snackbar> 
         <Snackbar
           open={openWhatsAppSnackbar}
           autoHideDuration={60000}
@@ -299,6 +287,10 @@ const RegisterForWorkshop = () => {
             Join our WhatsApp group for further updates!
           </Alert>
         </Snackbar>
+
+        {/* <Typography style={{fontWeight:"600", fontSize:30}}>
+        Registration is now closed, and the workshop will begin on 28th September
+        </Typography> */}
 
         {!showAdditionalFields && (
           <>
@@ -425,7 +417,7 @@ const RegisterForWorkshop = () => {
                 src={`${process.env.PUBLIC_URL}/Assets/Images/QR_worshop_registration.jpg`}
                 alt="QR Code for Payment"
                 sx={{
-                  maxWidth: { xs: "200px", md: "150px" },
+                  maxWidth: { xs: "200px", md: "150px" }, // Breakpoints for xs and md screens
                 }}
               />
 
@@ -507,4 +499,4 @@ const RegisterForWorkshop = () => {
   );
 };
 
-export default RegisterForWorkshop;
+export default RegisterForWorkshop;  

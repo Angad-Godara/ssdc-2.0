@@ -10,6 +10,7 @@ import { TypeAnimation } from 'react-type-animation';
 import { brgrOpen, brgrClose, selectUserMenu } from '../../Features/userMenu'
 import { AiOutlineClose } from 'react-icons/ai'
 import RegisterForWorkshop from '../RegisterForWorkShop/RegisterForWorkShop'
+import ClubRecruitment from '../Recruitment/Recruitment'
 
 function HomeScreen() {
 
@@ -84,7 +85,10 @@ function HomeScreen() {
                 </div>
 
 
-                <RegisterForWorkshop />
+                {/* <RegisterForWorkshop /> */}
+                <ClubRecruitment />
+
+
                 {/* burger nav starts here */}
                 <div className={brgrMenu ? 'brgr__wrapper open__brgr' : 'brgr__wrapper'}>
                     <div className='close__icon'>
